@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hej igen");
 
         JFrame frame = new JFrame();
@@ -12,6 +14,8 @@ public class Main {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        frame.setVisible(true);
+        //frame.setVisible(true);
+
+        FileReader fr = new FileReader();
     }
 }
