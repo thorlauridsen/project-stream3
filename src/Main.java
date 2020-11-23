@@ -1,10 +1,8 @@
 import javax.swing.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("Hej igen");
 
         JFrame frame = new JFrame();
@@ -17,5 +15,6 @@ public class Main {
         //frame.setVisible(true);
 
         FileReader fr = new FileReader();
+        fr.readMovies();
     }
 }
