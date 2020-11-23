@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 public class Main {
@@ -9,7 +7,7 @@ public class Main {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Super Calculator");
+        frame.setTitle("Streaming service");
         frame.setSize(600, 600);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
