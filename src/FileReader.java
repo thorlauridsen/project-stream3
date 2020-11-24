@@ -12,7 +12,7 @@ public class FileReader {
 
     public List<Movie> readMovies() {
 
-        Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream("film.txt"));
+        Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream("res/data/film.txt"));
 
         List<Movie> list = new ArrayList<>();
 
