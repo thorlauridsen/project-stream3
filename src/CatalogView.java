@@ -1,7 +1,5 @@
+import models.BaseView;
 import models.Media;
-import models.Movie;
-import models.Series;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,31 +7,28 @@ import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.List;
 
-public class CatalogView {
+public class CatalogView extends BaseView {
 
-    private JFrame frame;
-    private JPanel mainPanel;
+    private JScrollPane scroll;
     private Catalog c;
 
     public CatalogView(Catalog c) {
-        frame = new JFrame();
+        super();
         this.c = c;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        scroll.setVisible(visible);
     }
 
     public void updateGUI() {
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Streaming service");
-        frame.setResizable(true);
-        frame.setLocationRelativeTo(null);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        mainPanel = new JPanel();
-
         //TODO: Make this less scuffed
         mainPanel.setPreferredSize(new Dimension(800, 10000));
 
-        JScrollPane scroll = new JScrollPane(mainPanel);
+        scroll = new JScrollPane(mainPanel);
         scroll.setSize(new Dimension(800, 600));
 
         mainPanel.setLayout(new GridLayout(34, 6, 20, 20));
@@ -65,17 +60,24 @@ public class CatalogView {
             JLabel imageLabel = new JLabel();
             imageLabel.setSize(new Dimension(width, height));
 
-            JLabel titleLabel = new JLabel(m.getTitle());
-            titleLabel.setSize(new Dimension(width, height));
+            JButton titleButton = new JButton(m.getTitle());
+            titleButton.setSize(new Dimension(width, height));
 
             imageLabel.setIcon(new ImageIcon(pic));
             imageLabel.setSize(new Dimension(width, height));
 
+            titleButton.addActionListener(
+                e -> {
+                    setVisible(false);
+                    MediaDetailsController mdc = new MediaDetailsController(m);
+                }
+            );
+
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
-            titleLabel.setHorizontalAlignment(JLabel.CENTER);
+            titleButton.setHorizontalAlignment(JLabel.CENTER);
 
             mediaPanel.add(imageLabel, BorderLayout.CENTER);
-            mediaPanel.add(titleLabel, BorderLayout.PAGE_END);
+            mediaPanel.add(titleButton, BorderLayout.PAGE_END);
 
         } catch (Exception e) {
             e.printStackTrace();
