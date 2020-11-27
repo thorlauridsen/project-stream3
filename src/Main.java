@@ -33,7 +33,7 @@ public class Main {
 
         mainPanel = new JPanel();
 
-        mainPanel.setPreferredSize(new Dimension(800, 600));
+        mainPanel.setPreferredSize(new Dimension(800, 5000));
 
         JScrollPane scroll = new JScrollPane(mainPanel);
         scroll.setSize(new Dimension(800, 600));
@@ -55,12 +55,25 @@ public class Main {
 
     public void addMedia(Media m) {
         JLabel mediaLabel = new JLabel(m.getTitle());
+        mediaLabel.setSize(new Dimension(140, 209));
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
             BufferedImage pic = ImageIO.read(is);
-            mediaLabel.setIcon(new ImageIcon(pic));
-            mediaLabel.setSize(new Dimension(140, 209));
+            //mediaLabel.setIcon(new ImageIcon(pic));
+            //mediaLabel.setSize(new Dimension(140, 209));
+
+            int desiredWidth = 140;
+            int desiredHeight = 209;
+
+            BufferedImage newImage = new BufferedImage(desiredWidth, desiredHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = newImage.getGraphics();
+
+            g.drawImage(pic, 0, 0, desiredWidth, desiredHeight, null);
+            g.dispose();
+
+            Icon newIcon = new ImageIcon(newImage);
+            mediaLabel.setIcon(newIcon);
 
         } catch (Exception e) {
             e.printStackTrace();
