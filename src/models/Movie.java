@@ -12,4 +12,12 @@ public class Movie extends Media {
         this.categories = categories;
         this.year = year;
     }
+
+    public String toString() {
+        String str = "";
+        for (String cat : categories) {
+            str = str + " " + cat;
+        }
+        return title + " " + rating + " " + year + str;
+    }
 }

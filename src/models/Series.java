@@ -29,4 +29,17 @@ public class Series extends Media {
     public HashMap<Integer, Integer> getSeasonMap() {
         return seasonMap;
     }
+
+    public String toString() {
+        String str = "";
+        for (String cat : categories) {
+            str += " " + cat;
+        }
+        String seasonStr = "";
+        for (Integer seasonNumber : seasonMap.keySet()) {
+            int episodeAmount = seasonMap.get(seasonNumber);
+            seasonStr += " " + seasonNumber + "-" + episodeAmount;
+        }
+        return title + " " + rating + " " + yearFrom + "-" + yearTo + str + seasonStr;
+    }
 }
