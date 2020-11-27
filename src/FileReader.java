@@ -1,3 +1,4 @@
+import models.Media;
 import models.Movie;
 import models.Series;
 
@@ -7,6 +8,18 @@ public class FileReader {
 
     public FileReader() {
 
+    }
+
+    public List<Media> readMedia() {
+        List<Media> mediaList = new ArrayList<>();
+
+        for (Movie m : readMovies()) {
+            mediaList.add(m);
+        }
+        for (Series m : readSeries()) {
+            mediaList.add(m);
+        }
+        return mediaList;
     }
 
     public List<Movie> readMovies() {
