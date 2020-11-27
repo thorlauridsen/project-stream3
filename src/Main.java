@@ -16,5 +16,6 @@ public class Main {
 
         FileReader fr = new FileReader();
         fr.readMovies();
+        fr.readSeries();
     }
 }
