@@ -6,8 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -33,12 +31,13 @@ public class Main {
 
         mainPanel = new JPanel();
 
-        mainPanel.setPreferredSize(new Dimension(800, 5000));
+        //TODO: Make this less scuffed
+        mainPanel.setPreferredSize(new Dimension(800, 10000));
 
         JScrollPane scroll = new JScrollPane(mainPanel);
         scroll.setSize(new Dimension(800, 600));
 
-        mainPanel.setLayout(new GridLayout(25, 4));
+        mainPanel.setLayout(new GridLayout(34, 6, 20, 20));
 
         frame.add(scroll);
 
@@ -49,35 +48,44 @@ public class Main {
         for (Movie m : movieList) {
             addMedia(m);
         }
+        for (Series m : seriesList) {
+            addMedia(m);
+        }
         frame.pack();
         frame.setVisible(true);
     }
 
     public void addMedia(Media m) {
-        JLabel mediaLabel = new JLabel(m.getTitle());
-        mediaLabel.setSize(new Dimension(140, 209));
+        JPanel mediaPanel = new JPanel();
+        mediaPanel.setLayout(new BorderLayout());
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
             BufferedImage pic = ImageIO.read(is);
-            //mediaLabel.setIcon(new ImageIcon(pic));
-            //mediaLabel.setSize(new Dimension(140, 209));
 
-            int desiredWidth = 140;
-            int desiredHeight = 209;
+            int width = pic.getWidth();
+            int height = pic.getHeight();
 
-            BufferedImage newImage = new BufferedImage(desiredWidth, desiredHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics g = newImage.getGraphics();
+            //TODO: Handle max width/height
 
-            g.drawImage(pic, 0, 0, desiredWidth, desiredHeight, null);
-            g.dispose();
+            JLabel imageLabel = new JLabel();
+            imageLabel.setSize(new Dimension(width, height));
 
-            Icon newIcon = new ImageIcon(newImage);
-            mediaLabel.setIcon(newIcon);
+            JLabel titleLabel = new JLabel(m.getTitle());
+            titleLabel.setSize(new Dimension(width, height));
+
+            imageLabel.setIcon(new ImageIcon(pic));
+            imageLabel.setSize(new Dimension(width, height));
+
+            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            titleLabel.setHorizontalAlignment(JLabel.CENTER);
+
+            mediaPanel.add(imageLabel, BorderLayout.CENTER);
+            mediaPanel.add(titleLabel, BorderLayout.PAGE_END);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mainPanel.add(mediaLabel);
+        mainPanel.add(mediaPanel);
     }
 }

@@ -16,7 +16,7 @@ public class Series extends Media {
         this.yearFrom =  yearFrom;
         this.yearTo = yearTo;
         this.seasonMap = seasonMap;
-        this.imageType = "movies";
+        this.imageType = "series";
     }
 
     public int getYearFrom() {
