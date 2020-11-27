@@ -11,6 +11,7 @@ public class Movie extends Media {
         this.rating = rating;
         this.categories = categories;
         this.year = year;
+        this.imageType = "movies";
     }
 
     public String toString() {
