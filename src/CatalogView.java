@@ -3,20 +3,21 @@ import models.Media;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
-import java.util.List;
 
 public class CatalogView extends BaseView {
 
     private JScrollPane scroll;
     private Catalog c;
-    private List<Media> mediaList;
 
-    public CatalogView(Catalog c) {
+    public CatalogView() {
         super();
+    }
+
+    public void setCatalog(Catalog c) {
         this.c = c;
-        this.mediaList = c.getMediaList();
     }
 
     @Override
@@ -25,39 +26,37 @@ public class CatalogView extends BaseView {
         scroll.setVisible(visible);
     }
 
-    public void updateGUI(List<Media> mediaList) {
+    @Override
+    public void updateView() {
+        updateView(1);
+    }
+
+    public void updateView(int size) {
 
         //TODO: Make this less scuffed
-        if (mediaList == null) {
-            mediaList = this.mediaList;
-        }
 
+        //TODO: Minimum height
         int heightMulti = 50;
-        int height = mediaList.size() * heightMulti;
-
-        System.out.println("Size: " + mediaList.size());
-        System.out.println("Height: " + height);
+        int height = size * heightMulti;
 
         mainPanel.setPreferredSize(new Dimension(800, height));
 
         scroll = new JScrollPane(mainPanel);
         scroll.setSize(new Dimension(800, 600));
 
-        int rows = mediaList.size() / 6;
+        int rows = size / 6;
 
-        System.out.println("Rows: " + rows);
         mainPanel.setLayout(new GridLayout(rows, 6, 20, 20));
+    }
 
+    public void pack() {
         frame.add(scroll);
 
-        for (Media m : mediaList) {
-            addMedia(m);
-        }
         frame.pack();
         frame.setVisible(true);
     }
 
-    public void addMedia(Media m) {
+    public void addMedia(Media m, ActionListener al) {
         JPanel mediaPanel = new JPanel();
         mediaPanel.setLayout(new BorderLayout());
 
@@ -79,12 +78,7 @@ public class CatalogView extends BaseView {
             imageLabel.setIcon(new ImageIcon(pic));
             imageLabel.setSize(new Dimension(width, height));
 
-            titleButton.addActionListener(
-                e -> {
-                    setVisible(false);
-                    MediaDetailsController mdc = new MediaDetailsController(m);
-                }
-            );
+            titleButton.addActionListener(al);
 
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             titleButton.setHorizontalAlignment(JLabel.CENTER);

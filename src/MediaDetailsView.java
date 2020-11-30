@@ -1,10 +1,12 @@
 import models.BaseView;
+import models.Media;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MediaDetailsView extends BaseView {
 
+    private Media media;
     private MediaDetails md;
 
     public MediaDetailsView(MediaDetails md) {
@@ -19,5 +21,14 @@ public class MediaDetailsView extends BaseView {
         frame.setVisible(true);
 
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+
+    public void updateView() {
+
+
     }
 }
