@@ -20,11 +20,16 @@ public class Main {
         JFrame frame = SingletonFrame.getInstance();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Streaming service");
+        frame.setTitle("Stream Lime");
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        CatalogController cc = new CatalogController();
+        Catalog c = new Catalog();
+        CatalogView cv = new CatalogView();
+
+        CatalogController cc = new CatalogController(c, cv);
+        cc.updateView();
+
     }
 }

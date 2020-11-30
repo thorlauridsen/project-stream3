@@ -12,6 +12,8 @@ public abstract class BaseView {
         mainPanel = new JPanel();
     }
 
+    public abstract void updateView();
+
     public void setVisible(boolean visible) {
         mainPanel.setVisible(visible);
     }
