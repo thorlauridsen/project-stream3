@@ -62,9 +62,9 @@ public class CatalogView extends BaseView {
         mediaPanel.setLayout(new BorderLayout());
 
         try {
+
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
             BufferedImage pic = ImageIO.read(is);
-
             int width = pic.getWidth();
             int height = pic.getHeight();
 

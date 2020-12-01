@@ -10,5 +10,11 @@ public class MediaDetailsController extends BaseController {
         this.md = md;
         this.mdv = mdv;
         mdv.setMedia(md.getMedia());
+        mdv.addStuff(md.getMedia(), md.getSampleText());
+
+    }
+
+    public void updateView(){
+        mdv.updateView();
     }
 }
