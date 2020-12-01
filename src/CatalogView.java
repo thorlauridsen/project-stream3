@@ -43,6 +43,7 @@ public class CatalogView extends BaseView {
 
         scroll = new JScrollPane(mainPanel);
         scroll.setSize(new Dimension(800, 600));
+        scroll.getVerticalScrollBar().setUnitIncrement(20);
 
         int rows = size / 6;
 
