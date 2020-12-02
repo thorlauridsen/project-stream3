@@ -1,12 +1,11 @@
 package com.stream.viewmodels;
 
 import com.stream.FileReader;
-import com.stream.models.BaseModel;
 import com.stream.models.Media;
-
 import java.util.List;
 
-public class Catalog extends BaseModel {
+
+public class Catalog extends BaseViewModel {
 
     private FileReader fr;
     private List<Media> mediaList;

@@ -1,11 +1,11 @@
-package controllers;
+package com.stream.controllers;
 
-import listeners.ClickMediaListener;
-import models.BaseController;
-import models.Catalog;
-import models.Media;
-import views.CatalogView;
+import com.stream.listeners.ClickMediaListener;
+import com.stream.viewmodels.Catalog;
+import com.stream.models.Media;
+import com.stream.views.CatalogView;
 import java.util.List;
+
 
 public class CatalogController extends BaseController {
 
@@ -16,21 +16,17 @@ public class CatalogController extends BaseController {
         super(c, cv);
         this.c = c;
         this.cv = cv;
-        this.cv.setCatalog(this.c);
     }
 
     @Override
     public void updateView() {
-        cv.updateView(c.getMediaList().size());
-        setAllMedia();
-    }
-
-    public void setAllMedia() {
         List<Media> mediaList = c.getMediaList();
+
+        cv.updateView(mediaList.size());
 
         for (Media media : mediaList) {
             cv.addMedia(media, new ClickMediaListener(cv, media));
         }
-        this.cv.pack();
+        cv.display();
     }
 }

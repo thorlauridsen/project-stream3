@@ -1,5 +1,6 @@
-package com.stream.models;
+package com.stream.viewmodels;
 
-public abstract class BaseModel {
+
+public abstract class BaseViewModel {
 
 }

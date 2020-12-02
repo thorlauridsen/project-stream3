@@ -4,14 +4,10 @@ import com.stream.models.Media;
 import com.stream.models.MediaType;
 import com.stream.models.Movie;
 import com.stream.models.Series;
-
 import java.util.*;
 
+
 public class FileReader {
-
-    public FileReader() {
-
-    }
 
     public List<Media> readAllMedia() {
         List<Media> mediaList = new ArrayList<>();

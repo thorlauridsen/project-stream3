@@ -1,7 +1,8 @@
-package models;
+package com.stream.models;
 
 import java.util.HashMap;
 import java.util.List;
+
 
 public class Series extends Media {
 

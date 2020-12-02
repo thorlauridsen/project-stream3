@@ -1,13 +1,12 @@
-package listeners;
+package com.stream.listeners;
 
-import controllers.MediaDetailsController;
-import models.BaseListener;
-import models.Media;
-import models.MediaDetails;
-import views.CatalogView;
-import views.MediaDetailsView;
-
+import com.stream.controllers.MediaDetailsController;
+import com.stream.models.Media;
+import com.stream.viewmodels.MediaDetails;
+import com.stream.views.CatalogView;
+import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
+
 
 public class ClickMediaListener extends BaseListener {
 
@@ -21,7 +20,7 @@ public class ClickMediaListener extends BaseListener {
     public void actionPerformed(ActionEvent e) {
         view.setVisible(false);
         MediaDetails model = new MediaDetails(media);
-        MediaDetailsView view = new MediaDetailsView(model);
+        MediaDetailsView view = new MediaDetailsView();
         MediaDetailsController mdc = new MediaDetailsController(model, view);
         mdc.updateView();
     }

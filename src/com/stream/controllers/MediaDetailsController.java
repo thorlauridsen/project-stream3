@@ -1,9 +1,9 @@
-package controllers;
+package com.stream.controllers;
 
-import listeners.BackListener;
-import models.BaseController;
-import models.MediaDetails;
-import views.MediaDetailsView;
+import com.stream.listeners.BackListener;
+import com.stream.viewmodels.MediaDetails;
+import com.stream.views.MediaDetailsView;
+
 
 public class MediaDetailsController extends BaseController {
 
@@ -14,17 +14,12 @@ public class MediaDetailsController extends BaseController {
         super(md, mdv);
         this.md = md;
         this.mdv = mdv;
-        mdv.setMedia(md.getMedia());
-        mdv.addStuff(md.getMedia(), md.getSampleText());
-        addBackButton();
-
     }
 
-    public void addBackButton() {
-        mdv.addBackButton(new BackListener(mdv));
-    }
-
+    @Override
     public void updateView(){
-        mdv.updateView();
+        mdv.updateView(md.getMedia(), md.getSampleText());
+        mdv.addBackButton(new BackListener(mdv));
+        mdv.display();
     }
 }

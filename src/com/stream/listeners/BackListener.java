@@ -1,12 +1,11 @@
-package listeners;
+package com.stream.listeners;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
-import controllers.CatalogController;
-import models.BaseListener;
-import views.CatalogView;
-import views.MediaDetailsView;
-
+import com.stream.controllers.CatalogController;
+import com.stream.viewmodels.Catalog;
+import com.stream.views.CatalogView;
+import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
+
 
 public class BackListener extends BaseListener {
 

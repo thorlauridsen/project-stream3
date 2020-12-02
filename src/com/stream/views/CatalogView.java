@@ -1,7 +1,5 @@
 package com.stream.views;
 
-import com.stream.models.BaseView;
-import com.stream.viewmodels.Catalog;
 import com.stream.models.Media;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,34 +8,17 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
+
 public class CatalogView extends BaseView {
 
     private JScrollPane scroll;
-    private Catalog c;
 
     public CatalogView() {
         super();
     }
 
-    public void setCatalog(Catalog c) {
-        this.c = c;
-    }
-
-    @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        scroll.setVisible(visible);
-    }
-
-    @Override
-    public void updateView() {
-        updateView(1);
-    }
-
     public void updateToolBar() {
         toolBar.add(new JButton("Button 1"));
-        toolBar.add(new JButton("Button 2"));
-        toolBar.add(new JButton("Button 3"));
     }
 
     public void updateView(int size) {
@@ -60,13 +41,6 @@ public class CatalogView extends BaseView {
         mainPanel.add(scroll, BorderLayout.CENTER);
 
         scroll.getVerticalScrollBar().setUnitIncrement(20);
-    }
-
-    public void pack() {
-        frame.add(mainPanel);
-
-        frame.pack();
-        frame.setVisible(true);
     }
 
     public void addMedia(Media m, ActionListener al) {
