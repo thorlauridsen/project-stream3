@@ -38,4 +38,6 @@ public abstract class Media {
     public List<String> getCategories() {
         return categories;
     }
+
+    public abstract String yearToString();
 }

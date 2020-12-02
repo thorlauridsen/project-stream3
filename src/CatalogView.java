@@ -31,27 +31,36 @@ public class CatalogView extends BaseView {
         updateView(1);
     }
 
+    public void updateToolBar() {
+        toolBar.add(new JButton("Button 1"));
+        toolBar.add(new JButton("Button 2"));
+        toolBar.add(new JButton("Button 3"));
+    }
+
     public void updateView(int size) {
 
-        //TODO: Make this less scuffed
+        scroll = new JScrollPane(contentPanel);
 
-        //TODO: Minimum height
         int heightMulti = 50;
         int height = size * heightMulti;
 
-        mainPanel.setPreferredSize(new Dimension(800, height));
-
-        scroll = new JScrollPane(mainPanel);
-        scroll.setSize(new Dimension(800, 600));
-        scroll.getVerticalScrollBar().setUnitIncrement(20);
+        contentPanel.setPreferredSize(new Dimension(800, height));
 
         int rows = size / 6;
+        contentPanel.setLayout(new GridLayout(rows, 6, 20, 20));
+        contentPanel.setBorder(BorderFactory.createEmptyBorder(10,20,10,20));
 
-        mainPanel.setLayout(new GridLayout(rows, 6, 20, 20));
+        updateToolBar();
+
+        mainPanel.setPreferredSize(new Dimension(800, height));
+
+        mainPanel.add(scroll, BorderLayout.CENTER);
+
+        scroll.getVerticalScrollBar().setUnitIncrement(20);
     }
 
     public void pack() {
-        frame.add(scroll);
+        frame.add(mainPanel);
 
         frame.pack();
         frame.setVisible(true);
@@ -90,6 +99,6 @@ public class CatalogView extends BaseView {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mainPanel.add(mediaPanel);
+        contentPanel.add(mediaPanel);
     }
 }

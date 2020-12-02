@@ -1,11 +1,12 @@
 import models.BaseView;
 import models.Media;
 import models.Movie;
-import sun.misc.JavaLangAccess;
+import models.Series;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
@@ -20,21 +21,27 @@ public class MediaDetailsView extends BaseView {
         this.md = md;
     }
 
-
+    public void updateToolBar() {
+        toolBar.add(new JButton("Button 1"));
+        toolBar.add(new JButton("Button 2"));
+        toolBar.add(new JButton("Button 3"));
+    }
 
     public void addStuff (Media m, String sampleText){
         try {
-            mainPanel.setLayout(new GridLayout(2, 2, 30, 30));
+            contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
 
+            updateToolBar();
 
+            mainPanel.add(contentPanel, BorderLayout.CENTER);
 
             frame.add(mainPanel);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
             BufferedImage pic = ImageIO.read(is);
-            int resizedHeight = 2*pic.getHeight();
-            int resizedWidth = 2*pic.getWidth();
+            int resizedHeight = (int) (1.5 * pic.getHeight());
+            int resizedWidth = (int) (1.5 * pic.getWidth());
 
             BufferedImage outputImage = new BufferedImage(resizedWidth, resizedHeight, pic.getType());
 
@@ -45,24 +52,23 @@ public class MediaDetailsView extends BaseView {
             JPanel imagePanel = new JPanel();
             imagePanel.setLayout(new BorderLayout());
 
-
             JLabel imageLabel = new JLabel();
             imageLabel.setSize(new Dimension(resizedWidth, resizedHeight));
-
 
             imageLabel.setIcon(new ImageIcon(outputImage));
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             imagePanel.add(imageLabel, BorderLayout.CENTER);
 
-
-
-            JLabel descriptionLabel = new JLabel("<html><p style='font-size:15px; font-family:Verdana'>" + sampleText + "</p></html>");
-
+            JTextArea descriptionTextArea = new JTextArea(sampleText);
+            descriptionTextArea.setLineWrap(true);
+            descriptionTextArea.setWrapStyleWord(true);
+            descriptionTextArea.setFont(new Font("Verdana", Font.PLAIN, 15));
+            descriptionTextArea.setMargin(new Insets(20, 10, 10, 10));
+            descriptionTextArea.setOpaque(false);
 
             JPanel factPanel = new JPanel();
             factPanel.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
-
 
             JLabel titleLabel = new JLabel(m.getTitle());
             titleLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
@@ -78,15 +84,7 @@ public class MediaDetailsView extends BaseView {
             c.insets = new Insets(0,20,0,0);
             factPanel.add(ratingLabel, c);
 
-            String s = "";
-            if(m instanceof Movie){
-                Movie i = (Movie) m;
-                s += "" + i.getYear();
-            } else {
-                s += "?";
-            }
-
-            JLabel yearLabel = new JLabel(s);
+            JLabel yearLabel = new JLabel(m.yearToString());
             yearLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
             c.gridx = 0;
             c.gridy = 1;
@@ -95,9 +93,9 @@ public class MediaDetailsView extends BaseView {
 
             String categories = "";
             int i = 1;
-            for(String l : m.getCategories()){
+            for (String l : m.getCategories()) {
 
-                if(i == m.getCategories().size()){
+                if (i == m.getCategories().size()) {
                     categories += l + "";
                     i++;
                 } else {
@@ -114,13 +112,57 @@ public class MediaDetailsView extends BaseView {
             c.insets = new Insets(30,0,0,0);
             factPanel.add(categoriesLabel, c);
 
-            JPanel panel4 = new JPanel();
-            panel4.setBackground(Color.yellow);
+            if (m instanceof Series) {
+                Series a = (Series) m;
+                JComboBox seasonComboBox = new JComboBox();
+                for (Integer seasonNumber : a.getSeasonMap().keySet()){
+                    seasonComboBox.addItem(seasonNumber);
+                }
+                c.gridx = 0;
+                c.gridy = 3;
+                c.gridwidth = 1;
+                c.insets = new Insets(30,0,0,0);
 
-            mainPanel.add(imagePanel);
-            mainPanel.add(descriptionLabel);
-            mainPanel.add(factPanel);
-            mainPanel.add(panel4);
+                factPanel.add(seasonComboBox, c);
+
+                JComboBox episodeComboBox = new JComboBox();
+
+                for (int j = 1 ; j<= a.getSeasonMap().get(1) ; j++) {
+                    episodeComboBox.addItem(j);
+                }
+                c.gridx = 0;
+                c.gridy = 3;
+                c.gridwidth = 1;
+                c.insets = new Insets(30,80,0,0);
+
+                factPanel.add(episodeComboBox, c);
+
+            }
+            JPanel playPanel = new JPanel();
+            playPanel.setLayout(new GridLayout(2,1,10,10));
+
+            JTextArea episodeTextArea = new JTextArea(sampleText);
+            episodeTextArea.setLineWrap(true);
+            episodeTextArea.setWrapStyleWord(true);
+            episodeTextArea.setFont(new Font("Verdana", Font.PLAIN, 12));
+            episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
+            episodeTextArea.setOpaque(false);
+
+            playPanel.add(episodeTextArea);
+
+            JPanel buttonPanel = new JPanel();
+            JButton playButton = new JButton("Play");
+            JButton watchListButton = new JButton("<3");
+            buttonPanel.add(playButton);
+            buttonPanel.add(watchListButton);
+
+            playPanel.add(episodeTextArea);
+            playPanel.add(buttonPanel);
+
+            contentPanel.add(imagePanel);
+            contentPanel.add(descriptionTextArea);
+            contentPanel.add(factPanel);
+            contentPanel.add(playPanel);
 
             frame.setVisible(true);
         } catch (Exception e) {
@@ -128,11 +170,16 @@ public class MediaDetailsView extends BaseView {
         }
     }
 
-        public void setMedia(Media media) {
+    public void setMedia(Media media) {
         this.media = media;
     }
 
     public void updateView() {
 
+    }
+
+    public void addBackButton(ActionListener al){
+        JButton backButton = new JButton("<-");
+        backButton.addActionListener(al);
     }
 }

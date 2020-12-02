@@ -43,4 +43,12 @@ public class Series extends Media {
         }
         return title + " " + rating + " " + yearFrom + "-" + yearTo + str + seasonStr;
     }
+
+    public String yearToString() {
+        if (yearFrom == yearTo) {
+            return "" + yearFrom;
+        } else {
+            return yearFrom + "-" + yearTo;
+        }
+    }
 }

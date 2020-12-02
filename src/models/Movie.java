@@ -25,4 +25,8 @@ public class Movie extends Media {
     public int getYear(){
         return year;
     }
+
+    public String yearToString() {
+        return "" + year;
+    }
 }
