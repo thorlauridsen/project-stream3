@@ -1,4 +1,4 @@
-package models;
+package com.stream.models;
 
 import java.awt.event.ActionListener;
 

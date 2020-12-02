@@ -1,4 +1,4 @@
-package models;
+package com.stream.models;
 
 public abstract class BaseController {
 

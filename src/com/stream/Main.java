@@ -1,5 +1,10 @@
+package com.stream;
+
 import com.formdev.flatlaf.FlatDarculaLaf;
-import models.SingletonFrame;
+import com.stream.controllers.CatalogController;
+import com.stream.viewmodels.Catalog;
+import com.stream.models.SingletonFrame;
+import com.stream.views.CatalogView;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package models;
+package com.stream.models;
 
 import javax.swing.*;
 import java.awt.*;

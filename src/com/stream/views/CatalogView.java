@@ -1,5 +1,8 @@
-import models.BaseView;
-import models.Media;
+package com.stream.views;
+
+import com.stream.models.BaseView;
+import com.stream.viewmodels.Catalog;
+import com.stream.models.Media;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

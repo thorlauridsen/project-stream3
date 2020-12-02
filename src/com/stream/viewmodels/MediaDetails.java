@@ -1,5 +1,7 @@
-import models.BaseModel;
-import models.Media;
+package com.stream.viewmodels;
+
+import com.stream.models.BaseModel;
+import com.stream.models.Media;
 
 public class MediaDetails extends BaseModel {
 

@@ -1,7 +1,9 @@
-import models.Media;
-import models.MediaType;
-import models.Movie;
-import models.Series;
+package com.stream;
+
+import com.stream.models.Media;
+import com.stream.models.MediaType;
+import com.stream.models.Movie;
+import com.stream.models.Series;
 
 import java.util.*;
 

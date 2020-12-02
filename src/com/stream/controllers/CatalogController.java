@@ -1,8 +1,10 @@
-import models.BaseController;
-import models.BaseListener;
-import models.Media;
+package controllers;
 
-import java.awt.event.ActionEvent;
+import listeners.ClickMediaListener;
+import models.BaseController;
+import models.Catalog;
+import models.Media;
+import views.CatalogView;
 import java.util.List;
 
 public class CatalogController extends BaseController {
@@ -30,23 +32,5 @@ public class CatalogController extends BaseController {
             cv.addMedia(media, new ClickMediaListener(cv, media));
         }
         this.cv.pack();
-    }
-}
-
-class ClickMediaListener extends BaseListener {
-
-    private Media media;
-
-    public ClickMediaListener(CatalogView cv, Media media) {
-        super(cv);
-        this.media = media;
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        view.setVisible(false);
-        MediaDetails model = new MediaDetails(media);
-        MediaDetailsView view = new MediaDetailsView(model);
-        MediaDetailsController mdc = new MediaDetailsController(model, view);
-        mdc.updateView();
     }
 }
