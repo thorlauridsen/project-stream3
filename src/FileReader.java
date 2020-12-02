@@ -113,4 +113,10 @@ public class FileReader {
         }
         return mediaList;
     }
+
+    public String readSampleText(){
+        String path = "res/data/sampleText.txt";
+        Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream(path));
+        return sc.nextLine();
+    }
 }

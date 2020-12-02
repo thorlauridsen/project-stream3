@@ -21,4 +21,8 @@ public class Movie extends Media {
         }
         return title + " " + rating + " " + year + str;
     }
+
+    public int getYear(){
+        return year;
+    }
 }
