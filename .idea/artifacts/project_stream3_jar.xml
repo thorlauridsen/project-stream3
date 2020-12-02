@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/project_stream3_jar</output-path>
     <root id="archive" name="project-stream3.jar">
       <element id="module-output" name="project-stream3" />
-      <element id="library" level="project" name="flatlaf-0.44" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/flatlaf-0.44.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
