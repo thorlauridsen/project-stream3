@@ -4,6 +4,7 @@ import com.stream.models.Media;
 import com.stream.models.Series;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -120,7 +121,7 @@ public class MediaDetailsView extends BaseView {
             factPanel.add(seasonComboBox, c);
 
             JComboBox episodeComboBox = new JComboBox();
-
+            int selectedSeason = ((Integer) seasonComboBox.getSelectedItem());
             for (int j = 1 ; j<= a.getSeasonMap().get(1) ; j++) {
                 episodeComboBox.addItem(j);
             }
@@ -145,11 +146,26 @@ public class MediaDetailsView extends BaseView {
         playPanel.add(episodeTextArea);
 
         JPanel buttonPanel = new JPanel();
-        JButton playButton = new JButton("Play");
-        JButton watchListButton = new JButton("<3");
+        JButton playButton = new JButton();
+
+        try {
+            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/button.jpg");
+            BufferedImage pic = ImageIO.read(is2);
+            playButton.setIcon(new ImageIcon(pic));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        JButton watchListButton = new JButton();
+        try {
+            InputStream is3 = getClass().getClassLoader().getResourceAsStream("res/images/finalHeart.png");
+            BufferedImage pic2 = ImageIO.read(is3);
+            watchListButton.setIcon(new ImageIcon(pic2));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         buttonPanel.add(playButton);
         buttonPanel.add(watchListButton);
-
+        buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         playPanel.add(episodeTextArea);
         playPanel.add(buttonPanel);
 
