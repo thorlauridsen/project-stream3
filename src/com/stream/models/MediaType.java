@@ -1,4 +1,5 @@
-package models;
+package com.stream.models;
+
 
 public enum MediaType {
     MOVIE,

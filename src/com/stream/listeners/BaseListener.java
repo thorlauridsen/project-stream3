@@ -1,6 +1,8 @@
-package models;
+package com.stream.listeners;
 
+import com.stream.views.BaseView;
 import java.awt.event.ActionListener;
+
 
 public abstract class BaseListener implements ActionListener {
 

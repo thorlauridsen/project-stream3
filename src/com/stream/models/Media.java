@@ -1,7 +1,8 @@
-package models;
+package com.stream.models;
 
 import java.io.File;
 import java.util.List;
+
 
 public abstract class Media {
 

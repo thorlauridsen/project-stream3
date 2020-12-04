@@ -1,3 +1,6 @@
+package com.stream;
+
+
 public class Utility {
 
     public static boolean isInt(String str) {

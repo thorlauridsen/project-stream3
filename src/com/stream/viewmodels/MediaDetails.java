@@ -1,7 +1,10 @@
-import models.BaseModel;
-import models.Media;
+package com.stream.viewmodels;
 
-public class MediaDetails extends BaseModel {
+import com.stream.FileReader;
+import com.stream.models.Media;
+
+
+public class MediaDetails extends BaseViewModel {
 
     private Media media;
     private FileReader fr;

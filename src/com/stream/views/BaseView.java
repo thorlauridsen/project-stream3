@@ -1,7 +1,9 @@
-package models;
+package com.stream.views;
 
+import com.stream.models.SingletonFrame;
 import javax.swing.*;
 import java.awt.*;
+
 
 public abstract class BaseView {
 
@@ -22,7 +24,11 @@ public abstract class BaseView {
         mainPanel.add(toolBar, BorderLayout.PAGE_START);
     }
 
-    public abstract void updateView();
+    public void display() {
+        frame.add(mainPanel);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setVisible(true);
+    }
 
     public abstract void updateToolBar();
 

@@ -1,6 +1,7 @@
-package models;
+package com.stream.models;
 
 import java.util.List;
+
 
 public class Movie extends Media {
 
