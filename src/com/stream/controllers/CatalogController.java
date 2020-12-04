@@ -1,6 +1,7 @@
 package com.stream.controllers;
 
 import com.stream.listeners.ClickMediaListener;
+import com.stream.listeners.SearchListener;
 import com.stream.viewmodels.Catalog;
 import com.stream.models.Media;
 import com.stream.views.CatalogView;
@@ -24,9 +25,20 @@ public class CatalogController extends BaseController {
 
         cv.updateView(mediaList.size());
 
+        addCategories();
+        cv.updateToolBar();
+        cv.addSearchButton(new SearchListener(cv, c));
+
         for (Media media : mediaList) {
             cv.addMedia(media, new ClickMediaListener(cv, media));
         }
+
         cv.display();
+    }
+
+    public void addCategories() {
+        for(String s : c.getCategories()) {
+            cv.addCategoryButton(s);
+        }
     }
 }
