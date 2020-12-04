@@ -149,7 +149,7 @@ public class MediaDetailsView extends BaseView {
         JButton playButton = new JButton();
 
         try {
-            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/button.jpg");
+            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/playButton.jpg");
             BufferedImage pic = ImageIO.read(is2);
             playButton.setIcon(new ImageIcon(pic));
         } catch (Exception ex) {
@@ -157,7 +157,7 @@ public class MediaDetailsView extends BaseView {
         }
         JButton watchListButton = new JButton();
         try {
-            InputStream is3 = getClass().getClassLoader().getResourceAsStream("res/images/finalHeart.png");
+            InputStream is3 = getClass().getClassLoader().getResourceAsStream("res/images/watchListButton.png");
             BufferedImage pic2 = ImageIO.read(is3);
             watchListButton.setIcon(new ImageIcon(pic2));
         } catch (Exception ex) {
