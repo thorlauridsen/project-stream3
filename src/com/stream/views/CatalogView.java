@@ -17,23 +17,22 @@ public class CatalogView extends BaseView {
     private JTextField searchField;
     private JButton searchButton;
     private List<JRadioButton> categoryButtons = new ArrayList<>();
+    private JPanel leftPanel;
 
     public CatalogView() {
         super();
     }
 
     public void updateToolBar() {
-
         searchField = new JTextField(2);
         //searchField.setPreferredSize(new Dimension(30, searchField.getHeight()));
         //toolBar.add(new JToolBar.Separator(new Dimension(1400, 0)));
         toolBar.add(searchField);
-
     }
 
     public void addCategoryButton(String s) {
         JRadioButton categoryButton = new JRadioButton(s);
-        toolBar.add(categoryButton);
+        leftPanel.add(categoryButton);
         categoryButtons.add(categoryButton);
     }
 
@@ -47,16 +46,24 @@ public class CatalogView extends BaseView {
         toolBar.add(searchButton);
     }
 
-    public void updateView(int size) {
+    public void addCategoryPanel(int categorySize) {
+        leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(categorySize, 1));
+        leftPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,30));
+
+        mainPanel.add(leftPanel, BorderLayout.WEST);
+    }
+
+    public void updateView(int mediaSize) {
 
         scroll = new JScrollPane(contentPanel);
 
         int heightMulti = 40;
-        int height = size * heightMulti;
+        int height = mediaSize * heightMulti;
 
         contentPanel.setPreferredSize(new Dimension(800, height));
 
-        int rows = size / 8;
+        int rows = mediaSize / 8;
         contentPanel.setLayout(new GridLayout(rows, 8, 20, 20));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10,30,10,30));
 
@@ -72,7 +79,6 @@ public class CatalogView extends BaseView {
         mediaPanel.setLayout(new BorderLayout());
 
         try {
-
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
             BufferedImage pic = ImageIO.read(is);
             int width = pic.getWidth();
@@ -105,16 +111,17 @@ public class CatalogView extends BaseView {
 
     public void clearMedia() {
         List<Component> toRemove = new ArrayList<>();
+
         for (Component c : contentPanel.getComponents()) {
             toRemove.add(c);
         }
-
         for(Component c : toRemove) {
             contentPanel.remove(c);
         }
         mainPanel.remove(scroll);
         repaint();
     }
+
     public void repaint() {
         contentPanel.revalidate();
         contentPanel.repaint();

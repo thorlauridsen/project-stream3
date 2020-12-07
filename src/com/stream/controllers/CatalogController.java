@@ -24,6 +24,7 @@ public class CatalogController extends BaseController {
         List<Media> mediaList = c.getMediaList();
 
         cv.updateView(mediaList.size());
+        cv.addCategoryPanel(c.getCategories().size());
 
         addCategories();
         cv.updateToolBar();

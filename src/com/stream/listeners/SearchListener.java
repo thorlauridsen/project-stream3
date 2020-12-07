@@ -3,12 +3,10 @@ package com.stream.listeners;
 import com.stream.models.Media;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
-
-
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class SearchListener extends BaseListener{
 
