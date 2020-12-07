@@ -18,7 +18,6 @@ public class ClickMediaListener extends BaseListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        view.setVisible(false);
         MediaDetails model = new MediaDetails(media);
         MediaDetailsView view = new MediaDetailsView();
         MediaDetailsController mdc = new MediaDetailsController(model, view);

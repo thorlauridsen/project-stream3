@@ -1,5 +1,6 @@
 package com.stream.listeners;
 
+import com.stream.controllers.PageController;
 import com.stream.models.Media;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
@@ -38,6 +39,8 @@ public class SearchListener extends BaseListener{
             cv.addMedia(m, new ClickMediaListener(cv, m));
         }
         cv.updateView(newList.size());
-        cv.display();
+
+        PageController pageController = PageController.getInstance();
+        pageController.setView(cv.getPanel());
     }
 }

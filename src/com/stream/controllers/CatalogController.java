@@ -33,8 +33,7 @@ public class CatalogController extends BaseController {
         for (Media media : mediaList) {
             cv.addMedia(media, new ClickMediaListener(cv, media));
         }
-
-        cv.display();
+        pageController.setView(cv.getPanel());
     }
 
     public void addCategories() {

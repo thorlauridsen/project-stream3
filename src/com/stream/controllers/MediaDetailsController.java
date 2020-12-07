@@ -20,6 +20,6 @@ public class MediaDetailsController extends BaseController {
     public void updateView(){
         mdv.updateView(md.getMedia(), md.getSampleText());
         mdv.addBackButton(new BackListener(mdv));
-        mdv.display();
+        pageController.setView(mdv.getPanel());
     }
 }
