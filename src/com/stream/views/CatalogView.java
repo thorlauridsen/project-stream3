@@ -1,12 +1,8 @@
 package com.stream.views;
 
-import com.stream.models.Media;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,51 +72,8 @@ public class CatalogView extends BaseView {
         scroll.getVerticalScrollBar().setUnitIncrement(20);
     }
 
-    public void addMedia(Media m, ActionListener al) {
-        JPanel mediaPanel = new JPanel();
-
-        GridBagLayout grid = new GridBagLayout();
-        GridBagConstraints gbc = new GridBagConstraints();
-        mediaPanel.setLayout(grid);
-
-        try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
-            BufferedImage pic = ImageIO.read(is);
-            int width = pic.getWidth();
-            int height = pic.getHeight();
-
-            //TODO: Handle max width/height
-
-            JLabel imageLabel = new JLabel();
-            imageLabel.setSize(new Dimension(width, height));
-
-            JButton titleButton = new JButton(m.getShortTitle());
-            titleButton.setSize(new Dimension(width, height));
-
-            imageLabel.setIcon(new ImageIcon(pic));
-            imageLabel.setSize(new Dimension(width, height));
-
-            titleButton.addActionListener(al);
-
-            imageLabel.setHorizontalAlignment(JLabel.CENTER);
-            titleButton.setHorizontalAlignment(JLabel.CENTER);
-
-            gbc.fill = GridBagConstraints.WEST;
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-
-            mediaPanel.add(imageLabel, gbc);
-
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-
-            mediaPanel.add(titleButton, gbc);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        contentPanel.add(mediaPanel);
+    public void addMedia(JPanel panel) {
+        contentPanel.add(panel);
     }
 
     public void clearMedia() {

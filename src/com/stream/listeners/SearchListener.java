@@ -2,6 +2,7 @@ package com.stream.listeners;
 
 import com.stream.controllers.PageController;
 import com.stream.models.Media;
+import com.stream.models.MediaPanel;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
 import java.awt.event.ActionEvent;
@@ -35,8 +36,9 @@ public class SearchListener extends BaseListener{
 
         cv.clearMedia();
 
-        for (Media m : newList) {
-            cv.addMedia(m, new ClickMediaListener(cv, m));
+        for (Media media : newList) {
+            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
+            cv.addMedia(mp.getPanel());
         }
         cv.updateView(newList.size());
 
