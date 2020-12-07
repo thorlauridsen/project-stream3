@@ -58,13 +58,15 @@ public class CatalogView extends BaseView {
 
         scroll = new JScrollPane(contentPanel);
 
-        int heightMulti = 40;
-        int height = mediaSize * heightMulti;
+        int cols = 7;
+        int rows = (mediaSize / cols) + 1;
+
+        int heightMulti = 260;
+        int height = rows * heightMulti;
 
         contentPanel.setPreferredSize(new Dimension(800, height));
 
-        int rows = mediaSize / 8;
-        contentPanel.setLayout(new GridLayout(rows, 8, 20, 20));
+        contentPanel.setLayout(new GridLayout(rows, cols, 10, 10));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10,30,10,30));
 
         mainPanel.setPreferredSize(new Dimension(800, height));
@@ -76,7 +78,10 @@ public class CatalogView extends BaseView {
 
     public void addMedia(Media m, ActionListener al) {
         JPanel mediaPanel = new JPanel();
-        mediaPanel.setLayout(new BorderLayout());
+
+        GridBagLayout grid = new GridBagLayout();
+        GridBagConstraints gbc = new GridBagConstraints();
+        mediaPanel.setLayout(grid);
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream(m.getImagePath());
@@ -89,7 +94,7 @@ public class CatalogView extends BaseView {
             JLabel imageLabel = new JLabel();
             imageLabel.setSize(new Dimension(width, height));
 
-            JButton titleButton = new JButton(m.getTitle());
+            JButton titleButton = new JButton(m.getShortTitle());
             titleButton.setSize(new Dimension(width, height));
 
             imageLabel.setIcon(new ImageIcon(pic));
@@ -100,8 +105,17 @@ public class CatalogView extends BaseView {
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             titleButton.setHorizontalAlignment(JLabel.CENTER);
 
-            mediaPanel.add(imageLabel, BorderLayout.CENTER);
-            mediaPanel.add(titleButton, BorderLayout.PAGE_END);
+            gbc.fill = GridBagConstraints.WEST;
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+
+            mediaPanel.add(imageLabel, gbc);
+
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+
+            mediaPanel.add(titleButton, gbc);
 
         } catch (Exception e) {
             e.printStackTrace();

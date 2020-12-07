@@ -28,6 +28,15 @@ public abstract class Media {
         return null;
     }
 
+    public String getShortTitle() {
+        int max = 19;
+
+        if (title.length() > max) {
+            return title.substring(0, (max - 3)) + "...";
+        }
+        return title;
+    }
+
     public String getTitle() {
         return title;
     }
