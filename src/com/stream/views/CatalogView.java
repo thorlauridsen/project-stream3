@@ -12,7 +12,7 @@ public class CatalogView extends BaseView {
     private JScrollPane scroll;
     private JTextField searchField;
     private JButton searchButton;
-    private List<JRadioButton> categoryButtons = new ArrayList<>();
+    private List<JCheckBox> categoryBoxList = new ArrayList<>();
     private JPanel leftPanel;
 
     public CatalogView() {
@@ -26,14 +26,19 @@ public class CatalogView extends BaseView {
         toolBar.add(searchField);
     }
 
-    public void addCategoryButton(String s) {
-        JRadioButton categoryButton = new JRadioButton(s);
-        leftPanel.add(categoryButton);
-        categoryButtons.add(categoryButton);
+    public void addCategoryButton(String s, ActionListener al) {
+        JCheckBox categoryBox = new JCheckBox(s);
+        categoryBox.addActionListener(al);
+        leftPanel.add(categoryBox);
+        categoryBoxList.add(categoryBox);
     }
 
     public String getSearchQuery() {
         return searchField.getText();
+    }
+
+    public List<JCheckBox> getCategoryBoxList() {
+        return categoryBoxList;
     }
 
     public void addSearchButton(ActionListener al){

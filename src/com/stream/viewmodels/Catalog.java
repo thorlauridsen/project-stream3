@@ -39,7 +39,8 @@ public class Catalog extends BaseViewModel {
         }
     }
 
-    public List<String> getCategories() {
+    public List<String> getUniqueCategories() {
+
         return categories;
     }
 }
