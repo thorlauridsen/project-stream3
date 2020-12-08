@@ -1,5 +1,6 @@
 package com.stream.controllers;
 
+import com.stream.listeners.CategoryButtonListener;
 import com.stream.listeners.ClickMediaListener;
 import com.stream.listeners.SearchListener;
 import com.stream.models.MediaPanel;
@@ -25,7 +26,7 @@ public class CatalogController extends BaseController {
         List<Media> mediaList = c.getMediaList();
 
         cv.updateView(mediaList.size());
-        cv.addCategoryPanel(c.getCategories().size());
+        cv.addCategoryPanel(c.getUniqueCategories().size());
 
         addCategories();
         cv.updateToolBar();
@@ -39,8 +40,8 @@ public class CatalogController extends BaseController {
     }
 
     public void addCategories() {
-        for(String s : c.getCategories()) {
-            cv.addCategoryButton(s);
+        for(String s : c.getUniqueCategories()) {
+            cv.addCategoryButton(s, new CategoryButtonListener(cv, c));
         }
     }
 }
