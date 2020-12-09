@@ -31,6 +31,7 @@ public class CatalogController extends BaseController {
         cv.addSearchField(new SearchListener(cv, c));
         cv.addClearButton(new ClearListener());
         cv.addSearchButton(new SearchListener(cv, c));
+        cv.addMyListButton(new ShowMyListListener(cv, c));
 
         for (Media media : mediaList) {
             MediaPanel mp = new MediaPanel(media, new ClickMediaListener(media));

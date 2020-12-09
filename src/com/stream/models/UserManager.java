@@ -6,7 +6,7 @@ public class UserManager {
     private User currentUser;
 
     public UserManager() {
-        currentUser = new User("Cronval", true, false);
+        currentUser = new User("Cronval", false, false);
     }
 
     public static UserManager getInstance() {

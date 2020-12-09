@@ -11,11 +11,15 @@ public class User {
     private List<Media> watchList;
     private String name;
 
+
+    private boolean myListToggled;
+
     public User(String name, boolean isChild, boolean isAdmin) {
         this.isAdmin = isAdmin;
         this.isChild = isChild;
         this.name = name;
         watchList = new ArrayList<>();
+        myListToggled = false;
     }
 
     public void addToWatchlist(Media m) {
@@ -40,13 +44,19 @@ public class User {
     }
 
     public boolean isAdmin() {
-
         return isAdmin;
     }
 
     public boolean isChild() {
-
         return isChild;
+    }
+
+    public boolean isMyListToggled() {
+        return myListToggled;
+    }
+
+    public void setMyListToggled(boolean myListToggled) {
+        this.myListToggled = myListToggled;
     }
 
 }

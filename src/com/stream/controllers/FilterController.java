@@ -46,8 +46,6 @@ public class FilterController {
     }
 
     public void updateFilterView() {
-
-
         filteredList.clear();
         filteredList.addAll(searchList);
         filteredList.retainAll(selectedCategoryList);

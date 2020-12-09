@@ -23,9 +23,14 @@ public class CatalogViewModel extends BaseViewModel {
     }
 
     public List<Media> getMediaList() {
+
         UserManager userManager = UserManager.getInstance();
         User user = userManager.getCurrentUser();
+
         if (user != null) {
+            if (user.isMyListToggled()) {
+                return user.getWatchList();
+            }
             if (user.isChild()) {
                 List<Media> familyList = new ArrayList<>();
                 for (Media m : mediaList) {

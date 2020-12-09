@@ -13,6 +13,7 @@ public class CatalogView extends BaseView {
     private JTextField searchField;
     private JButton clearButton;
     private JButton searchButton;
+    private JButton myListButton;
     private List<JCheckBox> categoryBoxList = new ArrayList<>();
     private JPanel leftPanel;
 
@@ -104,5 +105,11 @@ public class CatalogView extends BaseView {
     public void repaint() {
         contentPanel.revalidate();
         contentPanel.repaint();
+    }
+
+    public void addMyListButton(ActionListener al) {
+        myListButton = new JButton("My List");
+        myListButton.addActionListener(al);
+        toolBar.add(myListButton);
     }
 }
