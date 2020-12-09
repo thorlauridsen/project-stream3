@@ -1,11 +1,8 @@
 package com.stream.listeners;
 
-import com.stream.controllers.MediaDetailsController;
-import com.stream.controllers.PageController;
 import com.stream.models.Media;
 import com.stream.models.User;
 import com.stream.models.UserManager;
-import com.stream.viewmodels.MediaDetailsViewModel;
 import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,9 +11,11 @@ import java.awt.event.ActionListener;
 public class ModifyWatchListListener implements ActionListener {
 
     private Media media;
+    private MediaDetailsView mediaDetailsView;
 
-    public ModifyWatchListListener(Media media) {
+    public ModifyWatchListListener(Media media, MediaDetailsView mediaDetailsView) {
         this.media = media;
+        this.mediaDetailsView = mediaDetailsView;
     }
 
     @Override
@@ -27,16 +26,11 @@ public class ModifyWatchListListener implements ActionListener {
         if (user != null) {
             if (user.containsWatchList(media)) {
                 user.removeFromWatchList(media);
+                mediaDetailsView.updateWatchListButton("res/images/watchListButtonEmpty.png");
             } else {
                 user.addToWatchlist(media);
+                mediaDetailsView.updateWatchListButton("res/images/watchListButton.png");
             }
         }
-        MediaDetailsViewModel model = new MediaDetailsViewModel(media);
-        MediaDetailsView view = new MediaDetailsView();
-        MediaDetailsController mdc = new MediaDetailsController(model, view);
-        mdc.updateView();
-
-        PageController pageController = PageController.getInstance();
-        pageController.setView(view.getPanel());
     }
 }

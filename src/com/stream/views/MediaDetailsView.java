@@ -161,10 +161,12 @@ public class MediaDetailsView extends BaseView {
         playButton = new ImageButton(al, imagePath);
     }
 
-    public void updateWatchListButton(ActionListener al, String imagePath) {
+    public void addWatchListButton(ActionListener al, String imagePath) {
         watchListButton = new ImageButton(al, imagePath);
-        watchListButton.revalidate();
-        watchListButton.repaint();
+    }
+    
+    public void updateWatchListButton(String imagePath) {
+        watchListButton.draw(imagePath);
     }
 
     public void addBackButton(ActionListener al){

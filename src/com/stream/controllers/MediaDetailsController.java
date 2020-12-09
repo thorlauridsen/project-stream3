@@ -32,12 +32,12 @@ public class MediaDetailsController extends BaseController {
 
         if (user != null) {
             if (user.containsWatchList(media)) {
-                mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media), "res/images/watchListButton.png");
+                mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButton.png");
             } else {
-                mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media), "res/images/watchListButtonEmpty.png");
+                mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
             }
         } else {
-            mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media), "res/images/watchListButtonEmpty.png");
+            mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
         }
 
         mediaDetailsView.updateView(media, md.getSampleText());
