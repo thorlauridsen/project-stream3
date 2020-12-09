@@ -17,6 +17,8 @@ public class MediaDetailsView extends BaseView {
 
     private JPanel buttonPanel = new JPanel();
     private JPanel playPanel = new JPanel();
+    private ImageButton playButton;
+    private ImageButton watchListButton;
 
     public void updateView(Media media, String sampleText) {
 
@@ -143,6 +145,9 @@ public class MediaDetailsView extends BaseView {
         playPanel.add(episodeTextArea);
 
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
+        buttonPanel.add(playButton);
+        buttonPanel.add(watchListButton);
+
         playPanel.add(episodeTextArea);
         playPanel.add(buttonPanel);
 
@@ -150,20 +155,23 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(descriptionTextArea);
         contentPanel.add(factPanel);
         contentPanel.add(playPanel);
+
+
+
     }
 
-    public void addPlayButton(ActionListener al) {
-        ImageButton playButton = new ImageButton(al, "res/images/playButton.jpg");
-        buttonPanel.add(playButton);
+    public void updatePlayButton(ActionListener al, String imagePath) {
+        playButton = new ImageButton(al, imagePath);
     }
 
-    public void addWatchListButton(ActionListener al) {
-        ImageButton watchListButton = new ImageButton(al, "res/images/watchListButton.jpg");
-        buttonPanel.add(watchListButton);
+    public void updateWatchListButton(ActionListener al, String imagePath) {
+
+        watchListButton = new ImageButton(al, imagePath);
+
     }
 
     public void addBackButton(ActionListener al){
-        JButton backButton = new JButton("<-");
+        JButton backButton = new JButton("<--");
         backButton.addActionListener(al);
         toolBar.add(backButton);
     }

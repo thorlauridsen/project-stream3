@@ -2,6 +2,10 @@ package com.stream.controllers;
 
 import com.stream.listeners.BackListener;
 import com.stream.listeners.ClearListener;
+import com.stream.listeners.ModifyWatchListListener;
+import com.stream.models.Media;
+import com.stream.models.User;
+import com.stream.models.UserManager;
 import com.stream.viewmodels.MediaDetailsViewModel;
 import com.stream.views.MediaDetailsView;
 
@@ -9,21 +13,39 @@ import com.stream.views.MediaDetailsView;
 public class MediaDetailsController extends BaseController {
 
     private MediaDetailsViewModel md;
-    private MediaDetailsView mdv;
+    private MediaDetailsView mediaDetailsView;
 
-    public MediaDetailsController(MediaDetailsViewModel md, MediaDetailsView mdv) {
-        super(md, mdv);
+    public MediaDetailsController(MediaDetailsViewModel md, MediaDetailsView mediaDetailsView) {
+        super(md, mediaDetailsView);
         this.md = md;
-        this.mdv = mdv;
+        this.mediaDetailsView = mediaDetailsView;
     }
 
     @Override
     public void updateView() {
-        mdv.addPlayButton(null);
-        mdv.addWatchListButton(null);
-        mdv.updateView(md.getMedia(), md.getSampleText());
-        mdv.addHomeButton(new ClearListener());
-        mdv.addBackButton(new BackListener());
-        pageController.setView(mdv.getPanel());
+        Media media = md.getMedia();
+
+        mediaDetailsView.updatePlayButton(null, "res/images/playButton.jpg");
+
+        UserManager userManager = UserManager.getInstance();
+        User user = userManager.getCurrentUser();
+
+        if(user != null) {
+            if (user.containsWatchList(media)) {
+                user.removeFromWatchList(media);
+                mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
+            } else {
+                user.addToWatchlist(media);
+                mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButton.png");
+            }
+
+        } else {
+            mediaDetailsView.updateWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
+        }
+
+        mediaDetailsView.updateView(media, md.getSampleText());
+        mediaDetailsView.addHomeButton(new ClearListener());
+        mediaDetailsView.addBackButton(new BackListener());
+        pageController.setView(mediaDetailsView.getPanel());
     }
 }

@@ -44,4 +44,9 @@ public class PageController {
         }
         return pageController;
     }
+
+    public void repaint() {
+        frame.revalidate();
+        frame.repaint();
+    }
 }
