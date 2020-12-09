@@ -25,12 +25,12 @@ public class SearchListener implements ActionListener {
         String query = cv.getSearchQuery().toLowerCase();
         List<Media> mediaList = c.getMediaList();
         List<Media> newList = new ArrayList<>();
+
         for(Media m : mediaList) {
             String title = m.getTitle().toLowerCase();
             if (title.contains(query)){
                 newList.add(m);
             }
-
         }
         FilterController filterController = FilterController.getInstance();
         filterController.setCatalog(c, cv);

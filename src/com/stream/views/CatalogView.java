@@ -20,8 +20,9 @@ public class CatalogView extends BaseView {
         super();
     }
 
-    public void updateToolBar() {
+    public void addSearchField(ActionListener al) {
         searchField = new JTextField(2);
+        searchField.addActionListener(al);
         toolBar.add(searchField);
     }
 
