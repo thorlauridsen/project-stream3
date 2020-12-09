@@ -6,17 +6,17 @@ import com.stream.viewmodels.MediaDetails;
 import com.stream.views.CatalogView;
 import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-public class ClickMediaListener extends BaseListener {
+public class ClickMediaListener implements ActionListener {
 
     private Media media;
 
     public ClickMediaListener(CatalogView cv, Media media) {
-        super(cv);
         this.media = media;
     }
-
+    @Override
     public void actionPerformed(ActionEvent e) {
         MediaDetails model = new MediaDetails(media);
         MediaDetailsView view = new MediaDetailsView();

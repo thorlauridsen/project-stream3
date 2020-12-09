@@ -1,6 +1,7 @@
 package com.stream.controllers;
 
 import com.stream.listeners.CategoryButtonListener;
+import com.stream.listeners.ClearListener;
 import com.stream.listeners.ClickMediaListener;
 import com.stream.listeners.SearchListener;
 import com.stream.models.MediaPanel;
@@ -29,7 +30,9 @@ public class CatalogController extends BaseController {
         cv.addCategoryPanel(c.getUniqueCategories().size());
 
         addCategories();
+        cv.addHomeButton(new ClearListener());
         cv.updateToolBar();
+        cv.addClearButton(new ClearListener());
         cv.addSearchButton(new SearchListener(cv, c));
 
         for (Media media : mediaList) {

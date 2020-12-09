@@ -3,6 +3,7 @@ package com.stream.views;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
@@ -29,6 +30,9 @@ public abstract class BaseView {
     }
 
     public void updateToolBar() {
+    }
+
+    public void addHomeButton(ActionListener al) {
         JButton homeButton = new JButton();
         try {
             InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/homeButton.png");
@@ -37,6 +41,7 @@ public abstract class BaseView {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+        homeButton.addActionListener(al);
         toolBar.add(homeButton);
     }
 }

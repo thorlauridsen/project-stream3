@@ -11,6 +11,7 @@ public class CatalogView extends BaseView {
 
     private JScrollPane scroll;
     private JTextField searchField;
+    private JButton clearButton;
     private JButton searchButton;
     private List<JCheckBox> categoryBoxList = new ArrayList<>();
     private JPanel leftPanel;
@@ -41,6 +42,13 @@ public class CatalogView extends BaseView {
     public List<JCheckBox> getCategoryBoxList() {
         return categoryBoxList;
     }
+
+    public void addClearButton(ActionListener al) {
+        clearButton = new JButton("X");
+        clearButton.addActionListener(al);
+        toolBar.add(clearButton);
+    }
+
 
     public void addSearchButton(ActionListener al){
         searchButton = new JButton("Search");

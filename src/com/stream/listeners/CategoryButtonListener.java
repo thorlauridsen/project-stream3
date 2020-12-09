@@ -8,11 +8,12 @@ import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CategoryButtonListener extends BaseListener{
+public class CategoryButtonListener implements ActionListener {
 
     private CatalogView cv;
     private Catalog c;
@@ -20,7 +21,6 @@ public class CategoryButtonListener extends BaseListener{
     private boolean somethingChecked;
 
     public CategoryButtonListener(CatalogView cv, Catalog c) {
-        super(cv);
         this.cv = cv;
         this.c = c;
     }
@@ -52,7 +52,8 @@ public class CategoryButtonListener extends BaseListener{
             filteredList.addAll(medialist);
         }
 
-        FilterController filterController = FilterController.getInstance(c, cv);
+        FilterController filterController = FilterController.getInstance();
+        filterController.setCatalog(c, cv);
         filterController.setSelectedCategoryList(filteredList);
         filterController.updateFilterView();
     }

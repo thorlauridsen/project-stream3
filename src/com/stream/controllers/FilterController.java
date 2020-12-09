@@ -18,18 +18,25 @@ public class FilterController {
     private Catalog c;
     private CatalogView cv;
 
-    public FilterController(Catalog c, CatalogView cv) {
-        this.c = c;
-        this.cv = cv;
-        searchList.addAll(c.getMediaList());
-        selectedCategoryList.addAll(c.getMediaList());
+    public FilterController() {
+
     }
 
-    public static FilterController getInstance(Catalog c, CatalogView cv) {
+    public static FilterController getInstance() {
         if (filterController == null) {
-            filterController = new FilterController(c, cv);
+            filterController = new FilterController();
         }
         return filterController;
+    }
+
+    public void setCatalog(Catalog c, CatalogView cv) {
+        this.c = c;
+        this.cv = cv;
+
+        searchList.clear();
+        selectedCategoryList.clear();
+        searchList.addAll(c.getMediaList());
+        selectedCategoryList.addAll(c.getMediaList());
     }
 
     public void setSearchList(List<Media> list) {

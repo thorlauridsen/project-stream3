@@ -8,17 +8,17 @@ import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchListener extends BaseListener{
+public class SearchListener implements ActionListener {
 
     private CatalogView cv;
     private Catalog c;
 
     public SearchListener(CatalogView cv, Catalog c) {
-        super(cv);
         this.cv = cv;
         this.c = c;
     }
@@ -35,7 +35,8 @@ public class SearchListener extends BaseListener{
             }
 
         }
-        FilterController filterController = FilterController.getInstance(c, cv);
+        FilterController filterController = FilterController.getInstance();
+        filterController.setCatalog(c, cv);
         filterController.setSearchList(newList);
         filterController.updateFilterView();
     }

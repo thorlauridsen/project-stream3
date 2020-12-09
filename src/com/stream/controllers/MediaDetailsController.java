@@ -1,6 +1,7 @@
 package com.stream.controllers;
 
 import com.stream.listeners.BackListener;
+import com.stream.listeners.ClearListener;
 import com.stream.viewmodels.MediaDetails;
 import com.stream.views.MediaDetailsView;
 
@@ -19,7 +20,8 @@ public class MediaDetailsController extends BaseController {
     @Override
     public void updateView(){
         mdv.updateView(md.getMedia(), md.getSampleText());
-        mdv.addBackButton(new BackListener(mdv));
+        mdv.addHomeButton(new ClearListener());
+        mdv.addBackButton(new BackListener());
         pageController.setView(mdv.getPanel());
     }
 }
