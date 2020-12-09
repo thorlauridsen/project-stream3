@@ -1,5 +1,6 @@
 package com.stream.listeners;
 
+import com.stream.controllers.FilterController;
 import com.stream.controllers.PageController;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
@@ -51,13 +52,9 @@ public class CategoryButtonListener extends BaseListener{
             medialist = filteredList;
         }
 
-        for (Media media : medialist) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
-            cv.addMedia(mp.getPanel());
-        }
-        cv.updateView(medialist.size());
+        FilterController filterController = FilterController.getInstance(c, cv);
 
-        PageController pageController = PageController.getInstance();
-        pageController.setView(cv.getPanel());
+        filterController.setSelectedCategoryList(medialist);
+        filterController.updateFilterView();
     }
 }

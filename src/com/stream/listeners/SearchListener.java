@@ -1,10 +1,12 @@
 package com.stream.listeners;
 
+import com.stream.controllers.FilterController;
 import com.stream.controllers.PageController;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
+
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +35,8 @@ public class SearchListener extends BaseListener{
             }
 
         }
-
-        cv.clearMedia();
-
-        for (Media media : newList) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
-            cv.addMedia(mp.getPanel());
-        }
-        cv.updateView(newList.size());
-
-        PageController pageController = PageController.getInstance();
-        pageController.setView(cv.getPanel());
+        FilterController filterController = FilterController.getInstance(c, cv);
+        filterController.setSearchList(newList);
+        filterController.updateFilterView();
     }
 }
