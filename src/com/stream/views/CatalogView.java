@@ -46,7 +46,6 @@ public class CatalogView extends BaseView {
         toolBar.add(clearButton);
     }
 
-
     public void addSearchButton(ActionListener al){
         searchButton = new JButton("Search");
         searchButton.addActionListener(al);

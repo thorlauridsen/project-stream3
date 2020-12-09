@@ -33,8 +33,6 @@ public class MediaPanel {
             int width = pic.getWidth();
             int height = pic.getHeight();
 
-            //TODO: Handle max width/height
-
             JLabel imageLabel = new JLabel();
             imageLabel.setSize(new Dimension(width, height));
 

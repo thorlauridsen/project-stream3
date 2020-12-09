@@ -155,9 +155,6 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(descriptionTextArea);
         contentPanel.add(factPanel);
         contentPanel.add(playPanel);
-
-
-
     }
 
     public void updatePlayButton(ActionListener al, String imagePath) {
@@ -165,9 +162,9 @@ public class MediaDetailsView extends BaseView {
     }
 
     public void updateWatchListButton(ActionListener al, String imagePath) {
-
         watchListButton = new ImageButton(al, imagePath);
-
+        watchListButton.revalidate();
+        watchListButton.repaint();
     }
 
     public void addBackButton(ActionListener al){
