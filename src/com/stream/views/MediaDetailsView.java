@@ -14,15 +14,9 @@ import java.io.InputStream;
 
 public class MediaDetailsView extends BaseView {
 
-    public void updateToolBar() {
-        super.updateToolBar();
-    }
-
     public void updateView(Media media, String sampleText) {
 
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
-
-        updateToolBar();
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 

@@ -1,9 +1,7 @@
 package com.stream.listeners;
 
 import com.stream.controllers.FilterController;
-import com.stream.controllers.PageController;
 import com.stream.models.Media;
-import com.stream.models.MediaPanel;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
 import javax.swing.*;

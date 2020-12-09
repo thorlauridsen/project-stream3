@@ -5,9 +5,9 @@ import com.stream.controllers.FilterController;
 import com.stream.controllers.PageController;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class ClearListener implements ActionListener {
 
@@ -24,6 +24,4 @@ public class ClearListener implements ActionListener {
         PageController pageController = PageController.getInstance();
         pageController.setView(cv.getPanel());
     }
-
-
 }

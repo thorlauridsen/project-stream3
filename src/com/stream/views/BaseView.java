@@ -29,9 +29,6 @@ public abstract class BaseView {
         return mainPanel;
     }
 
-    public void updateToolBar() {
-    }
-
     public void addHomeButton(ActionListener al) {
         JButton homeButton = new JButton();
         try {

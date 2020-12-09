@@ -21,10 +21,7 @@ public class CatalogView extends BaseView {
     }
 
     public void updateToolBar() {
-        super.updateToolBar();
         searchField = new JTextField(2);
-        //searchField.setPreferredSize(new Dimension(30, searchField.getHeight()));
-        //toolBar.add(new JToolBar.Separator(new Dimension(1400, 0)));
         toolBar.add(searchField);
     }
 

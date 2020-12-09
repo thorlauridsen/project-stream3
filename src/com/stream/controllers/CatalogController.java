@@ -36,14 +36,14 @@ public class CatalogController extends BaseController {
         cv.addSearchButton(new SearchListener(cv, c));
 
         for (Media media : mediaList) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
+            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(media));
             cv.addMedia(mp.getPanel());
         }
         pageController.setView(cv.getPanel());
     }
 
     public void addCategories() {
-        for(String s : c.getUniqueCategories()) {
+        for (String s : c.getUniqueCategories()) {
             cv.addCategoryButton(s, new CategoryButtonListener(cv, c));
         }
     }

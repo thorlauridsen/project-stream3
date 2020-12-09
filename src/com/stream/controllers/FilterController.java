@@ -5,9 +5,9 @@ import com.stream.models.Media;
 import com.stream.models.MediaPanel;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FilterController {
 
@@ -17,10 +17,6 @@ public class FilterController {
     private List<Media> filteredList = new ArrayList<>();
     private Catalog c;
     private CatalogView cv;
-
-    public FilterController() {
-
-    }
 
     public static FilterController getInstance() {
         if (filterController == null) {
@@ -51,17 +47,13 @@ public class FilterController {
 
     public void updateFilterView() {
         filteredList.clear();
-
         filteredList.addAll(searchList);
-
-
         filteredList.retainAll(selectedCategoryList);
-
 
         cv.clearMedia();
 
         for (Media media : filteredList) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
+            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(media));
             cv.addMedia(mp.getPanel());
         }
         cv.updateView(filteredList.size());
@@ -69,7 +61,4 @@ public class FilterController {
         PageController pageController = PageController.getInstance();
         pageController.setView(cv.getPanel());
     }
-
-
-
 }

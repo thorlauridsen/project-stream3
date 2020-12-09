@@ -1,7 +1,6 @@
 package com.stream.listeners;
 
 import com.stream.controllers.PageController;
-import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

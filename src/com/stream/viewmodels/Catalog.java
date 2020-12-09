@@ -20,12 +20,10 @@ public class Catalog extends BaseViewModel {
     }
 
     public List<Media> getMediaList() {
-
         return mediaList;
     }
 
     public void setMediaList(List<Media> mediaList) {
-
         this.mediaList = mediaList;
     }
 
@@ -40,7 +38,6 @@ public class Catalog extends BaseViewModel {
     }
 
     public List<String> getUniqueCategories() {
-
         return categories;
     }
 }
