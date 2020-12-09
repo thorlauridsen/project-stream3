@@ -27,7 +27,6 @@ public class CategoryButtonListener extends BaseListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cv.clearMedia();
         selectedCategoryList.clear();
 
         List<Media> medialist = c.getMediaList();
@@ -50,9 +49,13 @@ public class CategoryButtonListener extends BaseListener{
         }
         if (somethingChecked) {
             medialist = filteredList;
+        } else {
+            medialist = c.getMediaList();
         }
 
         FilterController filterController = FilterController.getInstance(c, cv);
+
+        System.out.println("Size1: " + medialist.size() + "something checked: " + somethingChecked);
 
         filterController.setSelectedCategoryList(medialist);
         filterController.updateFilterView();

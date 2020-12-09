@@ -12,15 +12,16 @@ import java.util.List;
 public class FilterController {
 
     private static FilterController filterController = null;
-    private List<Media> searchList;
-    private List<Media> selectedCategoryList = new ArrayList<>();
+    private List<Media> searchList = null;
+    private List<Media> selectedCategoryList = null;
+    private List<Media> filteredList;
     private Catalog c;
     private CatalogView cv;
 
     public FilterController(Catalog c, CatalogView cv) {
         this.c = c;
         this.cv = cv;
-        searchList = c.getMediaList();
+        filteredList = c.getMediaList();
     }
 
     public static FilterController getInstance(Catalog c, CatalogView cv) {
@@ -39,15 +40,36 @@ public class FilterController {
     }
 
     public void updateFilterView() {
-        searchList.retainAll(selectedCategoryList);
+
+        if(searchList != null) {
+            System.out.println("Size3: " + searchList.size());
+        }
+        if(selectedCategoryList != null) {
+            System.out.println("Size4: " + selectedCategoryList.size());
+        }
+
+        System.out.println("Size5: " + filteredList.size());
+
+        if(searchList != null) {
+            filteredList = searchList;
+        }
+        filteredList.retainAll(selectedCategoryList);
+
+        if(searchList != null) {
+            System.out.println("Size32: " + searchList.size());
+        }
+        if(selectedCategoryList != null) {
+            System.out.println("Size42: " + selectedCategoryList.size());
+        }
+        System.out.println("Size52: " + filteredList.size());
 
         cv.clearMedia();
 
-        for (Media media : searchList) {
+        for (Media media : filteredList) {
             MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
             cv.addMedia(mp.getPanel());
         }
-        cv.updateView(searchList.size());
+        cv.updateView(filteredList.size());
 
         PageController pageController = PageController.getInstance();
         pageController.setView(cv.getPanel());
