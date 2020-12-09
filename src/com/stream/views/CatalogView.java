@@ -71,12 +71,10 @@ public class CatalogView extends BaseView {
         int height = rows * heightMulti;
 
         contentPanel.setPreferredSize(new Dimension(800, height));
-
         contentPanel.setLayout(new GridLayout(rows, cols, 10, 10));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10,30,10,30));
 
         mainPanel.setPreferredSize(new Dimension(800, height));
-
         mainPanel.add(scroll, BorderLayout.CENTER);
 
         scroll.getVerticalScrollBar().setUnitIncrement(20);

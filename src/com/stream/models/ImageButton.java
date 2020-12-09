@@ -21,6 +21,7 @@ public class ImageButton extends JButton {
             InputStream is = getClass().getClassLoader().getResourceAsStream(imagePath);
             BufferedImage pic = ImageIO.read(is);
             this.setIcon(new ImageIcon(pic));
+
         } catch (Exception ex) {
             System.out.println(ex);
         }

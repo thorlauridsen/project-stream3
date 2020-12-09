@@ -13,17 +13,17 @@ public class FilterController extends BaseController {
 
     private static FilterController instance;
 
+    private List<Media> filteredList;
     private List<Media> searchList;
     private List<Media> selectedCategoryList;
-    private List<Media> filteredList;
 
     private CatalogViewModel viewModel;
     private CatalogView view;
 
     public FilterController() {
+        filteredList = new ArrayList<>();
         searchList = new ArrayList<>();
         selectedCategoryList = new ArrayList<>();
-        filteredList = new ArrayList<>();
     }
 
     public void setCatalog(CatalogViewModel viewModel, CatalogView view) {
@@ -32,6 +32,7 @@ public class FilterController extends BaseController {
 
         searchList.clear();
         selectedCategoryList.clear();
+
         searchList.addAll(viewModel.getMediaList());
         selectedCategoryList.addAll(viewModel.getMediaList());
     }
