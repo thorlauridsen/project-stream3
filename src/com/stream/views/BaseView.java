@@ -1,7 +1,10 @@
 package com.stream.views;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 
 public abstract class BaseView {
@@ -25,5 +28,15 @@ public abstract class BaseView {
         return mainPanel;
     }
 
-    public abstract void updateToolBar();
+    public void updateToolBar() {
+        JButton homeButton = new JButton();
+        try {
+            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/homeButton.png");
+            BufferedImage pic = ImageIO.read(is2);
+            homeButton.setIcon(new ImageIcon(pic));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        toolBar.add(homeButton);
+    }
 }

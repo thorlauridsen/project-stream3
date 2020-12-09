@@ -15,7 +15,7 @@ import java.io.InputStream;
 public class MediaDetailsView extends BaseView {
 
     public void updateToolBar() {
-        //toolBar.add(new JButton("Button 1"));
+        super.updateToolBar();
     }
 
     public void updateView(Media media, String sampleText) {
