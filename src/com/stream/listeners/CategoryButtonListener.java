@@ -5,9 +5,6 @@ import com.stream.models.Media;
 import com.stream.models.MediaPanel;
 import com.stream.viewmodels.Catalog;
 import com.stream.views.CatalogView;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -37,62 +34,30 @@ public class CategoryButtonListener extends BaseListener{
 
         somethingChecked = false;
 
-        for(JCheckBox box : cv.getCategoryBoxList()) {
-            if(box.isSelected()) {
+        for (JCheckBox box : cv.getCategoryBoxList()) {
+            if (box.isSelected()) {
                 selectedCategoryList.add(box.getText());
                 somethingChecked = true;
             }
         }
 
-
-
-            if(selectedCategoryList.size() == 1) {
-                for (Media m : medialist) {
-                    for (String s : m.getCategories()) {
-                        if (s.equals(selectedCategoryList.get(0))) {
-                            filteredList.add(m);
-                        }
-                    }
-                }
+        for (Media m : medialist) {
+            List<String> categories = m.getCategories();
+            if (categories.containsAll(selectedCategoryList)) {
+                filteredList.add(m);
             }
-
-            if(selectedCategoryList.size() == 2) {
-                for (Media m : medialist) {
-                   if (m.getCategories().contains(selectedCategoryList.get(0)) &&
-                       m.getCategories().contains(selectedCategoryList.get(1))) {
-                       filteredList.add(m);
-                   }
-                }
-           }
-
-            if(selectedCategoryList.size() == 3) {
-                for (Media m : medialist) {
-                    if (m.getCategories().equals(selectedCategoryList)) {
-                        filteredList.add(m);
-                    }
-                }
-            }
-
-        if(somethingChecked) {
-            for (Media media : filteredList) {
-                MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
-                cv.addMedia(mp.getPanel());
-            }
-            cv.updateView(filteredList.size());
-
-            PageController pageController = PageController.getInstance();
-            pageController.setView(cv.getPanel());
-        } else if (!somethingChecked){
-            for (Media media : medialist) {
-                MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
-                cv.addMedia(mp.getPanel());
-            }
-            cv.updateView(medialist.size());
-
-            PageController pageController = PageController.getInstance();
-            pageController.setView(cv.getPanel());
         }
+        if (somethingChecked) {
+            medialist = filteredList;
+        }
+
+        for (Media media : medialist) {
+            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
+            cv.addMedia(mp.getPanel());
+        }
+        cv.updateView(medialist.size());
+
+        PageController pageController = PageController.getInstance();
+        pageController.setView(cv.getPanel());
     }
-
-
 }
