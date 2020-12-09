@@ -33,25 +33,26 @@ public class MediaPanel {
             int width = pic.getWidth();
             int height = pic.getHeight();
 
-            JLabel imageLabel = new JLabel();
-            imageLabel.setSize(new Dimension(width, height));
+            JButton imageButton = new JButton();
+            imageButton.setSize(new Dimension(width, height));
 
             JButton titleButton = new JButton(media.getShortTitle());
             titleButton.setSize(new Dimension(width, height));
 
-            imageLabel.setIcon(new ImageIcon(pic));
-            imageLabel.setSize(new Dimension(width, height));
+            imageButton.setIcon(new ImageIcon(pic));
+            imageButton.setSize(new Dimension(width, height));
 
             titleButton.addActionListener(actionListener);
+            imageButton.addActionListener(actionListener);
 
-            imageLabel.setHorizontalAlignment(JLabel.CENTER);
+            imageButton.setHorizontalAlignment(JLabel.CENTER);
             titleButton.setHorizontalAlignment(JLabel.CENTER);
 
             gbc.fill = GridBagConstraints.WEST;
             gbc.gridx = 0;
             gbc.gridy = 0;
 
-            mediaPanel.add(imageLabel, gbc);
+            mediaPanel.add(imageButton, gbc);
 
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.gridx = 0;

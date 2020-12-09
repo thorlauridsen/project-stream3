@@ -11,9 +11,9 @@ public class User {
     private List<Media> watchList;
     private String name;
 
-    public User(String name) {
-        this.isAdmin = false;
-        this.isChild = false;
+    public User(String name, boolean isChild, boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        this.isChild = isChild;
         this.name = name;
         watchList = new ArrayList<>();
     }

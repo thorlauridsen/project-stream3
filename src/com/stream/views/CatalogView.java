@@ -23,6 +23,7 @@ public class CatalogView extends BaseView {
     public void addSearchField(ActionListener al) {
         searchField = new JTextField(2);
         searchField.addActionListener(al);
+        searchField.setFont(new Font("Verdana", Font.PLAIN, 30 ));
         toolBar.add(searchField);
     }
 
