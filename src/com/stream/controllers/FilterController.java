@@ -3,7 +3,7 @@ package com.stream.controllers;
 import com.stream.listeners.ClickMediaListener;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class FilterController {
     private List<Media> searchList = new ArrayList<>();
     private List<Media> selectedCategoryList = new ArrayList<>();
     private List<Media> filteredList = new ArrayList<>();
-    private Catalog c;
+    private CatalogViewModel c;
     private CatalogView cv;
 
     public static FilterController getInstance() {
@@ -25,7 +25,7 @@ public class FilterController {
         return filterController;
     }
 
-    public void setCatalog(Catalog c, CatalogView cv) {
+    public void setCatalog(CatalogViewModel c, CatalogView cv) {
         this.c = c;
         this.cv = cv;
 

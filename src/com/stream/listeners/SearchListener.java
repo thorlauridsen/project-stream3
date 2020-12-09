@@ -1,12 +1,9 @@
 package com.stream.listeners;
 
 import com.stream.controllers.FilterController;
-import com.stream.controllers.PageController;
 import com.stream.models.Media;
-import com.stream.models.MediaPanel;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,9 +13,9 @@ import java.util.List;
 public class SearchListener implements ActionListener {
 
     private CatalogView cv;
-    private Catalog c;
+    private CatalogViewModel c;
 
-    public SearchListener(CatalogView cv, Catalog c) {
+    public SearchListener(CatalogView cv, CatalogViewModel c) {
         this.cv = cv;
         this.c = c;
     }

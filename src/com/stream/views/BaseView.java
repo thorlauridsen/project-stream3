@@ -1,5 +1,7 @@
 package com.stream.views;
 
+import com.stream.models.ImageButton;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -30,15 +32,7 @@ public abstract class BaseView {
     }
 
     public void addHomeButton(ActionListener al) {
-        JButton homeButton = new JButton();
-        try {
-            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/homeButton.png");
-            BufferedImage pic = ImageIO.read(is2);
-            homeButton.setIcon(new ImageIcon(pic));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        homeButton.addActionListener(al);
+        ImageButton homeButton = new ImageButton(al, "res/images/homeButton.png");
         toolBar.add(homeButton);
     }
 }

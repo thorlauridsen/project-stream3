@@ -1,11 +1,11 @@
 package com.stream.controllers;
 
-import com.stream.listeners.CategoryButtonListener;
+import com.stream.listeners.CategoryListener;
 import com.stream.listeners.ClearListener;
 import com.stream.listeners.ClickMediaListener;
 import com.stream.listeners.SearchListener;
 import com.stream.models.MediaPanel;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.models.Media;
 import com.stream.views.CatalogView;
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 
 public class CatalogController extends BaseController {
 
-    private Catalog c;
+    private CatalogViewModel c;
     private CatalogView cv;
 
-    public CatalogController(Catalog c, CatalogView cv) {
+    public CatalogController(CatalogViewModel c, CatalogView cv) {
         super(c, cv);
         this.c = c;
         this.cv = cv;
@@ -44,7 +44,7 @@ public class CatalogController extends BaseController {
 
     public void addCategories() {
         for (String s : c.getUniqueCategories()) {
-            cv.addCategoryButton(s, new CategoryButtonListener(cv, c));
+            cv.addCategoryButton(s, new CategoryListener(cv, c));
         }
     }
 }

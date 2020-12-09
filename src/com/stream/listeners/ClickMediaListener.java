@@ -2,7 +2,7 @@ package com.stream.listeners;
 
 import com.stream.controllers.MediaDetailsController;
 import com.stream.models.Media;
-import com.stream.viewmodels.MediaDetails;
+import com.stream.viewmodels.MediaDetailsViewModel;
 import com.stream.views.MediaDetailsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ public class ClickMediaListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MediaDetails model = new MediaDetails(media);
+        MediaDetailsViewModel model = new MediaDetailsViewModel(media);
         MediaDetailsView view = new MediaDetailsView();
         MediaDetailsController mdc = new MediaDetailsController(model, view);
         mdc.updateView();

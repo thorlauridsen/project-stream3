@@ -2,7 +2,7 @@ package com.stream.listeners;
 
 import com.stream.controllers.FilterController;
 import com.stream.models.Media;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CategoryButtonListener implements ActionListener {
+public class CategoryListener implements ActionListener {
 
     private CatalogView cv;
-    private Catalog c;
+    private CatalogViewModel c;
     private ArrayList<String> selectedCategoryList = new ArrayList<>();
     private boolean somethingChecked;
 
-    public CategoryButtonListener(CatalogView cv, Catalog c) {
+    public CategoryListener(CatalogView cv, CatalogViewModel c) {
         this.cv = cv;
         this.c = c;
     }
