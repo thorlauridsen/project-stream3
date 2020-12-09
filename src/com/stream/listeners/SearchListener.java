@@ -12,28 +12,28 @@ import java.util.List;
 
 public class SearchListener implements ActionListener {
 
-    private CatalogView cv;
-    private CatalogViewModel c;
+    private CatalogView view;
+    private CatalogViewModel viewModel;
 
-    public SearchListener(CatalogView cv, CatalogViewModel c) {
-        this.cv = cv;
-        this.c = c;
+    public SearchListener(CatalogView view, CatalogViewModel viewModel) {
+        this.view = view;
+        this.viewModel = viewModel;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String query = cv.getSearchQuery().toLowerCase();
-        List<Media> mediaList = c.getMediaList();
+        String query = view.getSearchQuery().toLowerCase();
+        List<Media> mediaList = viewModel.getMediaList();
         List<Media> newList = new ArrayList<>();
 
-        for(Media m : mediaList) {
-            String title = m.getTitle().toLowerCase();
+        for (Media media : mediaList) {
+            String title = media.getTitle().toLowerCase();
             if (title.contains(query)){
-                newList.add(m);
+                newList.add(media);
             }
         }
         FilterController filterController = FilterController.getInstance();
-        filterController.setCatalog(c, cv);
+        filterController.setCatalog(viewModel, view);
         filterController.setSearchList(newList);
         filterController.updateFilterView();
     }

@@ -4,21 +4,20 @@ import com.stream.FileReader;
 import com.stream.models.Media;
 import com.stream.models.User;
 import com.stream.models.UserManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CatalogViewModel extends BaseViewModel {
+public class CatalogViewModel {
 
-    private FileReader fr;
+    private FileReader fileReader;
     private List<Media> mediaList;
     private List<String> categories;
 
     public CatalogViewModel() {
-        fr = new FileReader();
+        fileReader = new FileReader();
         categories = new ArrayList<>();
-        mediaList = fr.readAllMedia();
+        mediaList = fileReader.readAllMedia();
         getAllCategories();
     }
 
@@ -33,9 +32,9 @@ public class CatalogViewModel extends BaseViewModel {
             }
             if (user.isChild()) {
                 List<Media> familyList = new ArrayList<>();
-                for (Media m : mediaList) {
-                    if (m.getCategories().contains("Family")) {
-                        familyList.add(m);
+                for (Media media : mediaList) {
+                    if (media.getCategories().contains("Family")) {
+                        familyList.add(media);
                     }
                 }
                 return familyList;
@@ -45,16 +44,16 @@ public class CatalogViewModel extends BaseViewModel {
     }
 
     public void getAllCategories() {
-        for(Media m : mediaList) {
-            for (String s : m.getCategories()) {
-                if (!categories.contains(s)) {
-                    categories.add(s);
+        for (Media media : mediaList) {
+            for (String category : media.getCategories()) {
+                if (!categories.contains(category)) {
+                    categories.add(category);
                 }
             }
         }
     }
 
-    public List<String> getUniqueCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 }

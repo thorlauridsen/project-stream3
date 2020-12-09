@@ -18,9 +18,9 @@ public class ClickMediaListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MediaDetailsViewModel model = new MediaDetailsViewModel(media);
+        MediaDetailsViewModel viewModel = new MediaDetailsViewModel(media);
         MediaDetailsView view = new MediaDetailsView();
-        MediaDetailsController mdc = new MediaDetailsController(model, view);
-        mdc.updateView();
+        MediaDetailsController controller = new MediaDetailsController(viewModel, view);
+        controller.updateView();
     }
 }

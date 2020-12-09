@@ -15,10 +15,15 @@ import java.io.InputStream;
 
 public class MediaDetailsView extends BaseView {
 
-    private JPanel buttonPanel = new JPanel();
-    private JPanel playPanel = new JPanel();
+    private JPanel buttonPanel;
+    private JPanel playPanel;
     private ImageButton playButton;
     private ImageButton watchListButton;
+
+    public MediaDetailsView() {
+        buttonPanel = new JPanel();
+        playPanel = new JPanel();
+    }
 
     public void updateView(Media media, String sampleText) {
 

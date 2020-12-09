@@ -12,37 +12,35 @@ import com.stream.views.MediaDetailsView;
 
 public class MediaDetailsController extends BaseController {
 
-    private MediaDetailsViewModel md;
-    private MediaDetailsView mediaDetailsView;
+    private MediaDetailsViewModel viewModel;
+    private MediaDetailsView view;
 
-    public MediaDetailsController(MediaDetailsViewModel md, MediaDetailsView mediaDetailsView) {
-        super(md, mediaDetailsView);
-        this.md = md;
-        this.mediaDetailsView = mediaDetailsView;
+    public MediaDetailsController(MediaDetailsViewModel viewModel, MediaDetailsView view) {
+        this.viewModel = viewModel;
+        this.view = view;
     }
 
-    @Override
     public void updateView() {
-        Media media = md.getMedia();
+        Media media = viewModel.getMedia();
 
-        mediaDetailsView.updatePlayButton(null, "res/images/playButton.jpg");
+        view.updatePlayButton(null, "res/images/playButton.jpg");
 
         UserManager userManager = UserManager.getInstance();
         User user = userManager.getCurrentUser();
 
         if (user != null) {
             if (user.containsWatchList(media)) {
-                mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButton.png");
+                view.addWatchListButton(new ModifyWatchListListener(media, view), "res/images/watchListButton.png");
             } else {
-                mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
+                view.addWatchListButton(new ModifyWatchListListener(media, view), "res/images/watchListButtonEmpty.png");
             }
         } else {
-            mediaDetailsView.addWatchListButton(new ModifyWatchListListener(media, mediaDetailsView), "res/images/watchListButtonEmpty.png");
+            view.addWatchListButton(new ModifyWatchListListener(media, view), "res/images/watchListButtonEmpty.png");
         }
 
-        mediaDetailsView.updateView(media, md.getSampleText());
-        mediaDetailsView.addHomeButton(new ClearListener());
-        mediaDetailsView.addBackButton(new BackListener(), "res/images/backButton.png");
-        pageController.setView(mediaDetailsView.getPanel());
+        view.updateView(media, viewModel.getSampleText());
+        view.addHomeButton(new ClearListener());
+        view.addBackButton(new BackListener(), "res/images/backButton.png");
+        pageController.setView(view.getPanel());
     }
 }

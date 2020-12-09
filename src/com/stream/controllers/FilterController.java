@@ -9,30 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FilterController {
+public class FilterController extends BaseController {
 
-    private static FilterController filterController = null;
-    private List<Media> searchList = new ArrayList<>();
-    private List<Media> selectedCategoryList = new ArrayList<>();
-    private List<Media> filteredList = new ArrayList<>();
-    private CatalogViewModel c;
-    private CatalogView cv;
+    private static FilterController instance;
 
-    public static FilterController getInstance() {
-        if (filterController == null) {
-            filterController = new FilterController();
-        }
-        return filterController;
+    private List<Media> searchList;
+    private List<Media> selectedCategoryList;
+    private List<Media> filteredList;
+
+    private CatalogViewModel viewModel;
+    private CatalogView view;
+
+    public FilterController() {
+        searchList = new ArrayList<>();
+        selectedCategoryList = new ArrayList<>();
+        filteredList = new ArrayList<>();
     }
 
-    public void setCatalog(CatalogViewModel c, CatalogView cv) {
-        this.c = c;
-        this.cv = cv;
+    public void setCatalog(CatalogViewModel viewModel, CatalogView view) {
+        this.viewModel = viewModel;
+        this.view = view;
 
         searchList.clear();
         selectedCategoryList.clear();
-        searchList.addAll(c.getMediaList());
-        selectedCategoryList.addAll(c.getMediaList());
+        searchList.addAll(viewModel.getMediaList());
+        selectedCategoryList.addAll(viewModel.getMediaList());
     }
 
     public void setSearchList(List<Media> list) {
@@ -50,15 +51,21 @@ public class FilterController {
         filteredList.addAll(searchList);
         filteredList.retainAll(selectedCategoryList);
 
-        cv.clearMedia();
+        view.clearMedia();
 
         for (Media media : filteredList) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(media));
-            cv.addMedia(mp.getPanel());
+            MediaPanel mediaPanel = new MediaPanel(media, new ClickMediaListener(media));
+            view.addMedia(mediaPanel.getPanel());
         }
-        cv.updateView(filteredList.size());
+        view.updateView(filteredList.size());
 
-        PageController pageController = PageController.getInstance();
-        pageController.setView(cv.getPanel());
+        pageController.setView(view.getPanel());
+    }
+
+    public static FilterController getInstance() {
+        if (instance == null) {
+            instance = new FilterController();
+        }
+        return instance;
     }
 }

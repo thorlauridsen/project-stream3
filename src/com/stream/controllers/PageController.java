@@ -8,10 +8,10 @@ import java.io.InputStream;
 
 public class PageController {
 
-    private JFrame frame;
-    private Component previousComponent = null;
+    private static PageController instance;
 
-    private static PageController pageController = null;
+    private JFrame frame;
+    private Component previousComponent;
 
     public PageController() {
         frame = new JFrame();
@@ -25,6 +25,7 @@ public class PageController {
             InputStream is = getClass().getClassLoader().getResourceAsStream("res/images/LimeLogo.png");
             Image pic = ImageIO.read(is);
             frame.setIconImage(pic);
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -49,14 +50,9 @@ public class PageController {
     }
 
     public static PageController getInstance() {
-        if (pageController == null) {
-            pageController = new PageController();
+        if (instance == null) {
+            instance = new PageController();
         }
-        return pageController;
-    }
-
-    public void repaint() {
-        frame.revalidate();
-        frame.repaint();
+        return instance;
     }
 }

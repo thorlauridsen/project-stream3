@@ -12,11 +12,11 @@ public class FileReader {
     public List<Media> readAllMedia() {
         List<Media> mediaList = new ArrayList<>();
 
-        for (Media m : readMedia(MediaType.MOVIE)) {
-            mediaList.add(m);
+        for (Media media : readMedia(MediaType.MOVIE)) {
+            mediaList.add(media);
         }
-        for (Media m : readMedia(MediaType.SERIES)) {
-            mediaList.add(m);
+        for (Media media : readMedia(MediaType.SERIES)) {
+            mediaList.add(media);
         }
         return mediaList;
     }
@@ -100,13 +100,13 @@ public class FileReader {
                         seasonMap.put(seasonNumber, episodeAmount);
                     }
                 }
-                Series s = new Series(title, rating, categories, yearFrom, yearTo, seasonMap);
-                mediaList.add(s);
+                Series series = new Series(title, rating, categories, yearFrom, yearTo, seasonMap);
+                mediaList.add(series);
 
             } else if (mediaType == MediaType.MOVIE) {
 
-                Movie m = new Movie(title, rating, categories, yearFrom);
-                mediaList.add(m);
+                Movie movie = new Movie(title, rating, categories, yearFrom);
+                mediaList.add(movie);
             }
         }
         return mediaList;

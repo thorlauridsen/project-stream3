@@ -13,45 +13,43 @@ import java.util.List;
 
 public class CategoryListener implements ActionListener {
 
-    private CatalogView cv;
-    private CatalogViewModel c;
-    private ArrayList<String> selectedCategoryList = new ArrayList<>();
-    private boolean somethingChecked;
+    private CatalogView view;
+    private CatalogViewModel viewModel;
 
-    public CategoryListener(CatalogView cv, CatalogViewModel c) {
-        this.cv = cv;
-        this.c = c;
+    public CategoryListener(CatalogView view, CatalogViewModel viewModel) {
+        this.view = view;
+        this.viewModel = viewModel;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        selectedCategoryList.clear();
+        ArrayList<String> selectedCategoryList = new ArrayList<>();
 
-        List<Media> medialist = c.getMediaList();
+        List<Media> mediaList = viewModel.getMediaList();
         List<Media> filteredList = new ArrayList<>();
 
-        somethingChecked = false;
+        boolean somethingChecked = false;
 
-        for (JCheckBox box : cv.getCategoryBoxList()) {
+        for (JCheckBox box : view.getCategoryBoxList()) {
             if (box.isSelected()) {
                 selectedCategoryList.add(box.getText());
                 somethingChecked = true;
             }
         }
 
-        for (Media m : medialist) {
-            List<String> categories = m.getCategories();
+        for (Media media : mediaList) {
+            List<String> categories = media.getCategories();
             if (categories.containsAll(selectedCategoryList)) {
-                filteredList.add(m);
+                filteredList.add(media);
             }
         }
         if (!somethingChecked) {
             filteredList.clear();
-            filteredList.addAll(medialist);
+            filteredList.addAll(mediaList);
         }
 
         FilterController filterController = FilterController.getInstance();
-        filterController.setCatalog(c, cv);
+        filterController.setCatalog(viewModel, view);
         filterController.setSelectedCategoryList(filteredList);
         filterController.updateFilterView();
     }

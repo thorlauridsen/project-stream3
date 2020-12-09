@@ -3,21 +3,21 @@ package com.stream.models;
 
 public class UserManager {
 
-    private static UserManager userManager = null;
+    private static UserManager instance;
     private User currentUser;
 
     public UserManager() {
         currentUser = new User("Cronval", false, false);
     }
 
-    public static UserManager getInstance() {
-        if (userManager == null) {
-            userManager = new UserManager();
-        }
-        return userManager;
-    }
-
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public static UserManager getInstance() {
+        if (instance == null) {
+            instance = new UserManager();
+        }
+        return instance;
     }
 }
