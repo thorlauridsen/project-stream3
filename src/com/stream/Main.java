@@ -2,7 +2,7 @@ package com.stream;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.stream.controllers.CatalogController;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import javax.swing.*;
 
@@ -24,7 +24,7 @@ public class Main {
     }
 
     public void createGUI() {
-        Catalog c = new Catalog();
+        CatalogViewModel c = new CatalogViewModel();
         CatalogView cv = new CatalogView();
 
         CatalogController cc = new CatalogController(c, cv);

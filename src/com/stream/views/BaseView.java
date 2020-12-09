@@ -1,7 +1,13 @@
 package com.stream.views;
 
+import com.stream.models.ImageButton;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 
 public abstract class BaseView {
@@ -25,5 +31,8 @@ public abstract class BaseView {
         return mainPanel;
     }
 
-    public abstract void updateToolBar();
+    public void addHomeButton(ActionListener al) {
+        ImageButton homeButton = new ImageButton(al, "res/images/homeButton.png");
+        toolBar.add(homeButton);
+    }
 }

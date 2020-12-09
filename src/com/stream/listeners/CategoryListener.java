@@ -1,32 +1,30 @@
 package com.stream.listeners;
 
-import com.stream.controllers.PageController;
+import com.stream.controllers.FilterController;
 import com.stream.models.Media;
-import com.stream.models.MediaPanel;
-import com.stream.viewmodels.Catalog;
+import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CategoryButtonListener extends BaseListener{
+public class CategoryListener implements ActionListener {
 
     private CatalogView cv;
-    private Catalog c;
+    private CatalogViewModel c;
     private ArrayList<String> selectedCategoryList = new ArrayList<>();
     private boolean somethingChecked;
 
-    public CategoryButtonListener(CatalogView cv, Catalog c) {
-        super(cv);
+    public CategoryListener(CatalogView cv, CatalogViewModel c) {
         this.cv = cv;
         this.c = c;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cv.clearMedia();
         selectedCategoryList.clear();
 
         List<Media> medialist = c.getMediaList();
@@ -47,17 +45,14 @@ public class CategoryButtonListener extends BaseListener{
                 filteredList.add(m);
             }
         }
-        if (somethingChecked) {
-            medialist = filteredList;
+        if (!somethingChecked) {
+            filteredList.clear();
+            filteredList.addAll(medialist);
         }
 
-        for (Media media : medialist) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(cv, media));
-            cv.addMedia(mp.getPanel());
-        }
-        cv.updateView(medialist.size());
-
-        PageController pageController = PageController.getInstance();
-        pageController.setView(cv.getPanel());
+        FilterController filterController = FilterController.getInstance();
+        filterController.setCatalog(c, cv);
+        filterController.setSelectedCategoryList(filteredList);
+        filterController.updateFilterView();
     }
 }

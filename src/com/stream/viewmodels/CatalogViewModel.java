@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Catalog extends BaseViewModel {
+public class CatalogViewModel extends BaseViewModel {
 
     private FileReader fr;
     private List<Media> mediaList;
     private List<String> categories;
 
-    public Catalog() {
+    public CatalogViewModel() {
         fr = new FileReader();
         categories = new ArrayList<>();
         mediaList = fr.readAllMedia();
@@ -20,13 +20,7 @@ public class Catalog extends BaseViewModel {
     }
 
     public List<Media> getMediaList() {
-
         return mediaList;
-    }
-
-    public void setMediaList(List<Media> mediaList) {
-
-        this.mediaList = mediaList;
     }
 
     public void getAllCategories() {
@@ -40,7 +34,6 @@ public class Catalog extends BaseViewModel {
     }
 
     public List<String> getUniqueCategories() {
-
         return categories;
     }
 }

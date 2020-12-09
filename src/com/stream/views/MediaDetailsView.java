@@ -1,5 +1,6 @@
 package com.stream.views;
 
+import com.stream.models.ImageButton;
 import com.stream.models.Media;
 import com.stream.models.Series;
 import javax.imageio.ImageIO;
@@ -14,15 +15,12 @@ import java.io.InputStream;
 
 public class MediaDetailsView extends BaseView {
 
-    public void updateToolBar() {
-        //toolBar.add(new JButton("Button 1"));
-    }
+    private JPanel buttonPanel = new JPanel();
+    private JPanel playPanel = new JPanel();
 
     public void updateView(Media media, String sampleText) {
 
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
-
-        updateToolBar();
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
@@ -133,7 +131,6 @@ public class MediaDetailsView extends BaseView {
             factPanel.add(episodeComboBox, c);
 
         }
-        JPanel playPanel = new JPanel();
         playPanel.setLayout(new GridLayout(2,1,10,10));
 
         JTextArea episodeTextArea = new JTextArea(sampleText);
@@ -145,26 +142,6 @@ public class MediaDetailsView extends BaseView {
 
         playPanel.add(episodeTextArea);
 
-        JPanel buttonPanel = new JPanel();
-        JButton playButton = new JButton();
-
-        try {
-            InputStream is2 = getClass().getClassLoader().getResourceAsStream("res/images/playButton.jpg");
-            BufferedImage pic = ImageIO.read(is2);
-            playButton.setIcon(new ImageIcon(pic));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        JButton watchListButton = new JButton();
-        try {
-            InputStream is3 = getClass().getClassLoader().getResourceAsStream("res/images/watchListButton.png");
-            BufferedImage pic2 = ImageIO.read(is3);
-            watchListButton.setIcon(new ImageIcon(pic2));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        buttonPanel.add(playButton);
-        buttonPanel.add(watchListButton);
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         playPanel.add(episodeTextArea);
         playPanel.add(buttonPanel);
@@ -173,6 +150,16 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(descriptionTextArea);
         contentPanel.add(factPanel);
         contentPanel.add(playPanel);
+    }
+
+    public void addPlayButton(ActionListener al) {
+        ImageButton playButton = new ImageButton(al, "res/images/playButton.jpg");
+        buttonPanel.add(playButton);
+    }
+
+    public void addWatchListButton(ActionListener al) {
+        ImageButton watchListButton = new ImageButton(al, "res/images/watchListButton.jpg");
+        buttonPanel.add(watchListButton);
     }
 
     public void addBackButton(ActionListener al){
