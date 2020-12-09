@@ -109,6 +109,16 @@ public class MediaDetailsView extends BaseView {
 
         if (media instanceof Series) {
             Series a = (Series) media;
+
+            JTextArea episodeTextArea = new JTextArea(sampleText);
+            episodeTextArea.setLineWrap(true);
+            episodeTextArea.setWrapStyleWord(true);
+            episodeTextArea.setFont(new Font("Verdana", Font.PLAIN, 12));
+            episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
+            episodeTextArea.setOpaque(false);
+
+            playPanel.add(episodeTextArea);
+
             JComboBox seasonComboBox = new JComboBox();
             for (Integer seasonNumber : a.getSeasonMap().keySet()){
                 seasonComboBox.addItem(seasonNumber);
@@ -135,20 +145,13 @@ public class MediaDetailsView extends BaseView {
         }
         playPanel.setLayout(new GridLayout(2,1,10,10));
 
-        JTextArea episodeTextArea = new JTextArea(sampleText);
-        episodeTextArea.setLineWrap(true);
-        episodeTextArea.setWrapStyleWord(true);
-        episodeTextArea.setFont(new Font("Verdana", Font.PLAIN, 12));
-        episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
-        episodeTextArea.setOpaque(false);
 
-        playPanel.add(episodeTextArea);
 
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         buttonPanel.add(playButton);
         buttonPanel.add(watchListButton);
 
-        playPanel.add(episodeTextArea);
+
         playPanel.add(buttonPanel);
 
         contentPanel.add(imagePanel);
@@ -169,9 +172,8 @@ public class MediaDetailsView extends BaseView {
         watchListButton.draw(imagePath);
     }
 
-    public void addBackButton(ActionListener al){
-        JButton backButton = new JButton("<--");
-        backButton.addActionListener(al);
+    public void addBackButton(ActionListener al, String imagePath){
+        ImageButton backButton = new ImageButton(al, imagePath);
         toolBar.add(backButton);
     }
 }

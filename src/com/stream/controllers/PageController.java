@@ -1,7 +1,12 @@
 package com.stream.controllers;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class PageController {
@@ -18,6 +23,14 @@ public class PageController {
         frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        try {
+            InputStream is = getClass().getClassLoader().getResourceAsStream("res/images/LimeLogo.png");
+            Image pic = ImageIO.read(is);
+            frame.setIconImage(pic);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     public void setView(Component component) {

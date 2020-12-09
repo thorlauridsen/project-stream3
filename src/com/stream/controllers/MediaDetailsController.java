@@ -42,7 +42,7 @@ public class MediaDetailsController extends BaseController {
 
         mediaDetailsView.updateView(media, md.getSampleText());
         mediaDetailsView.addHomeButton(new ClearListener());
-        mediaDetailsView.addBackButton(new BackListener());
+        mediaDetailsView.addBackButton(new BackListener(), "res/images/backButton.png");
         pageController.setView(mediaDetailsView.getPanel());
     }
 }
