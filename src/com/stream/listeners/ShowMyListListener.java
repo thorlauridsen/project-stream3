@@ -5,15 +5,15 @@ import com.stream.models.User;
 import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
-import com.sun.org.apache.xml.internal.resolver.Catalog;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class ShowMyListListener implements ActionListener {
 
     private CatalogView catalogView;
     private CatalogViewModel catalogViewModel;
+
     public ShowMyListListener(CatalogView catalogView, CatalogViewModel catalogViewModel) {
         this.catalogView = catalogView;
         this.catalogViewModel = catalogViewModel;
@@ -28,6 +28,5 @@ public class ShowMyListListener implements ActionListener {
         FilterController filterController = FilterController.getInstance();
         filterController.setCatalog(catalogViewModel, catalogView);
         filterController.updateFilterView();
-
     }
 }

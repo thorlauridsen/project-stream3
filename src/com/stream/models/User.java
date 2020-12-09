@@ -1,8 +1,8 @@
 package com.stream.models;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class User {
 
@@ -10,8 +10,6 @@ public class User {
     private boolean isChild;
     private List<Media> watchList;
     private String name;
-
-
     private boolean myListToggled;
 
     public User(String name, boolean isChild, boolean isAdmin) {

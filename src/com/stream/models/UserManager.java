@@ -1,5 +1,6 @@
 package com.stream.models;
 
+
 public class UserManager {
 
     private static UserManager userManager = null;

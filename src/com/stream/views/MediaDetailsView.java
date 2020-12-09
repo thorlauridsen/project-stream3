@@ -145,12 +145,9 @@ public class MediaDetailsView extends BaseView {
         }
         playPanel.setLayout(new GridLayout(2,1,10,10));
 
-
-
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         buttonPanel.add(playButton);
         buttonPanel.add(watchListButton);
-
 
         playPanel.add(buttonPanel);
 
