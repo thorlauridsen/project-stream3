@@ -47,17 +47,13 @@ public class CategoryButtonListener extends BaseListener{
                 filteredList.add(m);
             }
         }
-        if (somethingChecked) {
-            medialist = filteredList;
-        } else {
-            medialist = c.getMediaList();
+        if (!somethingChecked) {
+            filteredList.clear();
+            filteredList.addAll(medialist);
         }
 
         FilterController filterController = FilterController.getInstance(c, cv);
-
-        System.out.println("Size1: " + medialist.size() + "something checked: " + somethingChecked);
-
-        filterController.setSelectedCategoryList(medialist);
+        filterController.setSelectedCategoryList(filteredList);
         filterController.updateFilterView();
     }
 }

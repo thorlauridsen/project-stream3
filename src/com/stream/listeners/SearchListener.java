@@ -36,9 +36,6 @@ public class SearchListener extends BaseListener{
 
         }
         FilterController filterController = FilterController.getInstance(c, cv);
-
-        System.out.println("Size2: " + newList.size());
-
         filterController.setSearchList(newList);
         filterController.updateFilterView();
     }

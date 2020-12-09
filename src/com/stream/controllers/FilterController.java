@@ -12,16 +12,17 @@ import java.util.List;
 public class FilterController {
 
     private static FilterController filterController = null;
-    private List<Media> searchList = null;
-    private List<Media> selectedCategoryList = null;
-    private List<Media> filteredList;
+    private List<Media> searchList = new ArrayList<>();
+    private List<Media> selectedCategoryList = new ArrayList<>();
+    private List<Media> filteredList = new ArrayList<>();
     private Catalog c;
     private CatalogView cv;
 
     public FilterController(Catalog c, CatalogView cv) {
         this.c = c;
         this.cv = cv;
-        filteredList = c.getMediaList();
+        searchList.addAll(c.getMediaList());
+        selectedCategoryList.addAll(c.getMediaList());
     }
 
     public static FilterController getInstance(Catalog c, CatalogView cv) {
@@ -32,36 +33,23 @@ public class FilterController {
     }
 
     public void setSearchList(List<Media> list) {
-        searchList = list;
+        searchList.clear();
+        searchList.addAll(list);
     }
 
     public void setSelectedCategoryList(List<Media> list) {
-        selectedCategoryList = list;
+        selectedCategoryList.clear();
+        selectedCategoryList.addAll(list);
     }
 
     public void updateFilterView() {
+        filteredList.clear();
 
-        if(searchList != null) {
-            System.out.println("Size3: " + searchList.size());
-        }
-        if(selectedCategoryList != null) {
-            System.out.println("Size4: " + selectedCategoryList.size());
-        }
+        filteredList.addAll(searchList);
 
-        System.out.println("Size5: " + filteredList.size());
 
-        if(searchList != null) {
-            filteredList = searchList;
-        }
         filteredList.retainAll(selectedCategoryList);
 
-        if(searchList != null) {
-            System.out.println("Size32: " + searchList.size());
-        }
-        if(selectedCategoryList != null) {
-            System.out.println("Size42: " + selectedCategoryList.size());
-        }
-        System.out.println("Size52: " + filteredList.size());
 
         cv.clearMedia();
 
