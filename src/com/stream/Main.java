@@ -9,12 +9,18 @@ import javax.swing.*;
 
 public class Main {
 
+    /**
+     * Main method that runs first when starting the program
+     */
     public static void main(String[] args) {
         Main main = new Main();
         main.setupTheme();
         main.createGUI();
     }
 
+    /**
+     * Setup dark mode theme
+     */
     public void setupTheme() {
         try {
             UIManager.setLookAndFeel( new FlatDarculaLaf() );
@@ -23,6 +29,9 @@ public class Main {
         }
     }
 
+    /**
+     * Create Catalog frontpage
+     */
     public void createGUI() {
         CatalogViewModel viewModel = new CatalogViewModel();
         CatalogView view = new CatalogView();

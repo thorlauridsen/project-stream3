@@ -3,6 +3,9 @@ package com.stream;
 
 public class Utility {
 
+    /**
+     * Check if a string can be parsed as an integer
+     */
     public static boolean isInt(String str) {
         try {
             Integer.parseInt(str);
@@ -12,6 +15,9 @@ public class Utility {
         }
     }
 
+    /**
+     * Check if a string can be parsed as a double
+     */
     public static boolean isDouble(String str) {
         try {
             Double.parseDouble(str);

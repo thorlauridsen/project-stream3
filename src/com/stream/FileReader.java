@@ -9,6 +9,9 @@ import java.util.*;
 
 public class FileReader {
 
+    /**
+     * Loads a list of all media types
+     */
     public List<Media> readAllMedia() {
         List<Media> mediaList = new ArrayList<>();
 
@@ -21,6 +24,10 @@ public class FileReader {
         return mediaList;
     }
 
+    /**
+     * Loads a list of the specific media type using Scanner
+     * @param mediaType The specific media type
+     */
     public List<Media> readMedia(MediaType mediaType) {
         List<Media> mediaList = new ArrayList<>();
 
