@@ -10,9 +10,9 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-        Main m = new Main();
-        m.setupTheme();
-        m.createGUI();
+        Main main = new Main();
+        main.setupTheme();
+        main.createGUI();
     }
 
     public void setupTheme() {
@@ -24,10 +24,10 @@ public class Main {
     }
 
     public void createGUI() {
-        CatalogViewModel c = new CatalogViewModel();
-        CatalogView cv = new CatalogView();
+        CatalogViewModel viewModel = new CatalogViewModel();
+        CatalogView view = new CatalogView();
 
-        CatalogController cc = new CatalogController(c, cv);
-        cc.updateView();
+        CatalogController controller = new CatalogController(viewModel, view);
+        controller.updateView();
     }
 }

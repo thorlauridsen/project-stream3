@@ -10,7 +10,7 @@ public abstract class Media {
     protected double rating;
     protected List<String> categories;
     protected String imageType;
-    protected String imagePath = null;
+    protected String imagePath;
 
     public String getImagePath() {
         if (imagePath == null) {
@@ -20,10 +20,10 @@ public abstract class Media {
     }
 
     public File getImageFile() {
-        File f = new File(getImagePath());
+        File file = new File(getImagePath());
         System.out.println("A " + getImagePath());
-        if (f.exists()) {
-            return f;
+        if (file.exists()) {
+            return file;
         }
         return null;
     }

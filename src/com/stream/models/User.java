@@ -6,35 +6,35 @@ import java.util.List;
 
 public class User {
 
+    private String name;
+    private List<Media> watchList;
     private boolean isAdmin;
     private boolean isChild;
-    private List<Media> watchList;
-    private String name;
     private boolean myListToggled;
 
     public User(String name, boolean isChild, boolean isAdmin) {
+        this.name = name;
         this.isAdmin = isAdmin;
         this.isChild = isChild;
-        this.name = name;
-        watchList = new ArrayList<>();
-        myListToggled = false;
+
+        this.watchList = new ArrayList<>();
+        this.myListToggled = false;
     }
 
-    public void addToWatchlist(Media m) {
-        if(!watchList.contains(m)) {
-            watchList.add(m);
-        }
-
-    }
-
-    public void removeFromWatchList(Media m) {
-        if (watchList.contains(m)) {
-            watchList.remove(m);
+    public void addToWatchlist(Media media) {
+        if (!watchList.contains(media)) {
+            watchList.add(media);
         }
     }
 
-    public boolean containsWatchList(Media m) {
-        return watchList.contains(m);
+    public void removeFromWatchList(Media media) {
+        if (watchList.contains(media)) {
+            watchList.remove(media);
+        }
+    }
+
+    public boolean containsWatchList(Media media) {
+        return watchList.contains(media);
     }
 
     public List<Media> getWatchList() {

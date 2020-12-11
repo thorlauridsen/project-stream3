@@ -11,12 +11,12 @@ import java.awt.event.ActionListener;
 
 public class ShowMyListListener implements ActionListener {
 
-    private CatalogView catalogView;
-    private CatalogViewModel catalogViewModel;
+    private CatalogView view;
+    private CatalogViewModel viewModel;
 
-    public ShowMyListListener(CatalogView catalogView, CatalogViewModel catalogViewModel) {
-        this.catalogView = catalogView;
-        this.catalogViewModel = catalogViewModel;
+    public ShowMyListListener(CatalogView view, CatalogViewModel viewModel) {
+        this.view = view;
+        this.viewModel = viewModel;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ShowMyListListener implements ActionListener {
         user.setMyListToggled(!user.isMyListToggled());
 
         FilterController filterController = FilterController.getInstance();
-        filterController.setCatalog(catalogViewModel, catalogView);
+        filterController.setCatalog(viewModel, view);
         filterController.updateFilterView();
     }
 }

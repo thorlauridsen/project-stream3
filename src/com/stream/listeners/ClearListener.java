@@ -19,15 +19,15 @@ public class ClearListener implements ActionListener {
         User user = userManager.getCurrentUser();
         user.setMyListToggled(false);
 
-        CatalogViewModel c = new CatalogViewModel();
-        CatalogView cv = new CatalogView();
-        FilterController filterController = FilterController.getInstance();
-        filterController.setCatalog(c, cv);
+        CatalogViewModel viewModel = new CatalogViewModel();
+        CatalogView view = new CatalogView();
+        CatalogController controller = new CatalogController(viewModel, view);
+        controller.updateView();
 
-        CatalogController cc = new CatalogController(c, cv);
-        cc.updateView();
+        FilterController filterController = FilterController.getInstance();
+        filterController.setCatalog(viewModel, view);
 
         PageController pageController = PageController.getInstance();
-        pageController.setView(cv.getPanel());
+        pageController.setView(view.getPanel());
     }
 }

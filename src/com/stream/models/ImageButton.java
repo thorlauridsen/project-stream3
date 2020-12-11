@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
+
 public class ImageButton extends JButton {
 
     public ImageButton(ActionListener al, String imagePath) {
@@ -20,6 +21,7 @@ public class ImageButton extends JButton {
             InputStream is = getClass().getClassLoader().getResourceAsStream(imagePath);
             BufferedImage pic = ImageIO.read(is);
             this.setIcon(new ImageIcon(pic));
+
         } catch (Exception ex) {
             System.out.println(ex);
         }

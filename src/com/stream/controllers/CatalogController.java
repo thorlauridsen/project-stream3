@@ -10,39 +10,37 @@ import java.util.List;
 
 public class CatalogController extends BaseController {
 
-    private CatalogViewModel c;
-    private CatalogView cv;
+    private CatalogViewModel viewModel;
+    private CatalogView view;
 
-    public CatalogController(CatalogViewModel c, CatalogView cv) {
-        super(c, cv);
-        this.c = c;
-        this.cv = cv;
+    public CatalogController(CatalogViewModel viewModel, CatalogView view) {
+        this.viewModel = viewModel;
+        this.view = view;
     }
 
-    @Override
     public void updateView() {
-        List<Media> mediaList = c.getMediaList();
+        List<Media> mediaList = viewModel.getMediaList();
 
-        cv.updateView(mediaList.size());
-        cv.addCategoryPanel(c.getUniqueCategories().size());
+        view.updateView(mediaList.size());
+        view.addCategoryPanel(viewModel.getCategories().size());
 
         addCategories();
-        cv.addHomeButton(new ClearListener());
-        cv.addSearchField(new SearchListener(cv, c));
-        cv.addClearButton(new ClearListener());
-        cv.addSearchButton(new SearchListener(cv, c));
-        cv.addMyListButton(new ShowMyListListener(cv, c));
+        view.addHomeButton(new ClearListener());
+        view.addSearchField(new SearchListener(view, viewModel));
+        view.addClearButton(new ClearListener());
+        view.addSearchButton(new SearchListener(view, viewModel));
+        view.addMyListButton(new ShowMyListListener(view, viewModel));
 
         for (Media media : mediaList) {
-            MediaPanel mp = new MediaPanel(media, new ClickMediaListener(media));
-            cv.addMedia(mp.getPanel());
+            MediaPanel mediaPanel = new MediaPanel(media, new ClickMediaListener(media));
+            view.addMedia(mediaPanel.getPanel());
         }
-        pageController.setView(cv.getPanel());
+        pageController.setView(view.getPanel());
     }
 
     public void addCategories() {
-        for (String s : c.getUniqueCategories()) {
-            cv.addCategoryButton(s, new CategoryListener(cv, c));
+        for (String category : viewModel.getCategories()) {
+            view.addCategoryButton(category, new CategoryListener(view, viewModel));
         }
     }
 }

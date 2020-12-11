@@ -15,10 +15,15 @@ import java.io.InputStream;
 
 public class MediaDetailsView extends BaseView {
 
-    private JPanel buttonPanel = new JPanel();
-    private JPanel playPanel = new JPanel();
+    private JPanel buttonPanel;
+    private JPanel playPanel;
     private ImageButton playButton;
     private ImageButton watchListButton;
+
+    public MediaDetailsView() {
+        buttonPanel = new JPanel();
+        playPanel = new JPanel();
+    }
 
     public void updateView(Media media, String sampleText) {
 
@@ -32,15 +37,15 @@ public class MediaDetailsView extends BaseView {
         InputStream is = getClass().getClassLoader().getResourceAsStream(media.getImagePath());
 
         try {
-            BufferedImage pic = ImageIO.read(is);
+            BufferedImage img = ImageIO.read(is);
 
-            int resizedHeight = (int) (1.5 * pic.getHeight());
-            int resizedWidth = (int) (1.5 * pic.getWidth());
+            int resizedHeight = (int) (1.5 * img.getHeight());
+            int resizedWidth = (int) (1.5 * img.getWidth());
 
-            BufferedImage outputImage = new BufferedImage(resizedWidth, resizedHeight, pic.getType());
+            BufferedImage outputImage = new BufferedImage(resizedWidth, resizedHeight, img.getType());
 
             Graphics2D g2d = outputImage.createGraphics();
-            g2d.drawImage(pic, 0, 0, resizedWidth, resizedHeight, null);
+            g2d.drawImage(img, 0, 0, resizedWidth, resizedHeight, null);
             g2d.dispose();
 
             JLabel imageLabel = new JLabel();
@@ -88,13 +93,13 @@ public class MediaDetailsView extends BaseView {
 
         String categories = "";
         int i = 1;
-        for (String l : media.getCategories()) {
+        for (String category : media.getCategories()) {
 
             if (i == media.getCategories().size()) {
-                categories += l + "";
+                categories += category + "";
                 i++;
             } else {
-                categories += l + ", ";
+                categories += category + ", ";
                 i++;
             }
         }
@@ -108,7 +113,7 @@ public class MediaDetailsView extends BaseView {
         factPanel.add(categoriesLabel, c);
 
         if (media instanceof Series) {
-            Series a = (Series) media;
+            Series series = (Series) media;
 
             JTextArea episodeTextArea = new JTextArea(sampleText);
             episodeTextArea.setLineWrap(true);
@@ -120,7 +125,7 @@ public class MediaDetailsView extends BaseView {
             playPanel.add(episodeTextArea);
 
             JComboBox seasonComboBox = new JComboBox();
-            for (Integer seasonNumber : a.getSeasonMap().keySet()){
+            for (Integer seasonNumber : series.getSeasonMap().keySet()){
                 seasonComboBox.addItem(seasonNumber);
             }
             c.gridx = 0;
@@ -132,7 +137,7 @@ public class MediaDetailsView extends BaseView {
 
             JComboBox episodeComboBox = new JComboBox();
             int selectedSeason = ((Integer) seasonComboBox.getSelectedItem());
-            for (int j = 1 ; j<= a.getSeasonMap().get(1) ; j++) {
+            for (int j = 1 ; j<= series.getSeasonMap().get(1) ; j++) {
                 episodeComboBox.addItem(j);
             }
             c.gridx = 0;

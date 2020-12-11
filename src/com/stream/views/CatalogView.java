@@ -11,14 +11,11 @@ public class CatalogView extends BaseView {
 
     private JScrollPane scroll;
     private JTextField searchField;
-    private JButton clearButton;
-    private JButton searchButton;
-    private JButton myListButton;
-    private List<JCheckBox> categoryBoxList = new ArrayList<>();
     private JPanel leftPanel;
+    private List<JCheckBox> categoryBoxList;
 
     public CatalogView() {
-        super();
+        categoryBoxList = new ArrayList<>();
     }
 
     public void addSearchField(ActionListener al) {
@@ -28,8 +25,8 @@ public class CatalogView extends BaseView {
         toolBar.add(searchField);
     }
 
-    public void addCategoryButton(String s, ActionListener al) {
-        JCheckBox categoryBox = new JCheckBox(s);
+    public void addCategoryButton(String category, ActionListener al) {
+        JCheckBox categoryBox = new JCheckBox(category);
         categoryBox.addActionListener(al);
         leftPanel.add(categoryBox);
         categoryBoxList.add(categoryBox);
@@ -44,13 +41,13 @@ public class CatalogView extends BaseView {
     }
 
     public void addClearButton(ActionListener al) {
-        clearButton = new JButton("X");
+        JButton clearButton = new JButton("X");
         clearButton.addActionListener(al);
         toolBar.add(clearButton);
     }
 
     public void addSearchButton(ActionListener al){
-        searchButton = new JButton("Search");
+        JButton searchButton = new JButton("Search");
         searchButton.addActionListener(al);
         toolBar.add(searchButton);
     }
@@ -74,12 +71,10 @@ public class CatalogView extends BaseView {
         int height = rows * heightMulti;
 
         contentPanel.setPreferredSize(new Dimension(800, height));
-
         contentPanel.setLayout(new GridLayout(rows, cols, 10, 10));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10,30,10,30));
 
         mainPanel.setPreferredSize(new Dimension(800, height));
-
         mainPanel.add(scroll, BorderLayout.CENTER);
 
         scroll.getVerticalScrollBar().setUnitIncrement(20);
@@ -92,11 +87,11 @@ public class CatalogView extends BaseView {
     public void clearMedia() {
         List<Component> toRemove = new ArrayList<>();
 
-        for (Component c : contentPanel.getComponents()) {
-            toRemove.add(c);
+        for (Component component : contentPanel.getComponents()) {
+            toRemove.add(component);
         }
-        for(Component c : toRemove) {
-            contentPanel.remove(c);
+        for(Component component : toRemove) {
+            contentPanel.remove(component);
         }
         mainPanel.remove(scroll);
         repaint();
@@ -108,7 +103,7 @@ public class CatalogView extends BaseView {
     }
 
     public void addMyListButton(ActionListener al) {
-        myListButton = new JButton("My List");
+        JButton myListButton = new JButton("My List");
         myListButton.addActionListener(al);
         toolBar.add(myListButton);
     }

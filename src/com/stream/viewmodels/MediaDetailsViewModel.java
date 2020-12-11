@@ -4,16 +4,16 @@ import com.stream.FileReader;
 import com.stream.models.Media;
 
 
-public class MediaDetailsViewModel extends BaseViewModel {
+public class MediaDetailsViewModel {
 
     private Media media;
-    private FileReader fr;
+    private FileReader fileReader;
     private String sampleText;
 
     public MediaDetailsViewModel(Media media) {
         this.media = media;
-        fr = new FileReader();
-        sampleText = fr.readSampleText();
+        this.fileReader = new FileReader();
+        this.sampleText = fileReader.readSampleText();
     }
 
     public void setMedia(Media media) {

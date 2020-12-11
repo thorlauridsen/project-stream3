@@ -29,9 +29,9 @@ public class MediaPanel {
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream(media.getImagePath());
-            BufferedImage pic = ImageIO.read(is);
-            int width = pic.getWidth();
-            int height = pic.getHeight();
+            BufferedImage img = ImageIO.read(is);
+            int width = img.getWidth();
+            int height = img.getHeight();
 
             JButton imageButton = new JButton();
             imageButton.setSize(new Dimension(width, height));
@@ -39,7 +39,7 @@ public class MediaPanel {
             JButton titleButton = new JButton(media.getShortTitle());
             titleButton.setSize(new Dimension(width, height));
 
-            imageButton.setIcon(new ImageIcon(pic));
+            imageButton.setIcon(new ImageIcon(img));
             imageButton.setSize(new Dimension(width, height));
 
             titleButton.addActionListener(actionListener);
