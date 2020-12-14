@@ -15,6 +15,11 @@ public abstract class BaseView {
     protected Font largeFont;
     protected Font titleFont;
 
+    /**
+     * BaseView constructor
+     * Initializes components that are displayed on every page
+     * Initializes all types of used fonts
+     */
     public BaseView() {
         mainPanel = new JPanel(new BorderLayout());
         contentPanel = new JPanel();
@@ -29,10 +34,18 @@ public abstract class BaseView {
         mainPanel.add(toolBar, BorderLayout.PAGE_START);
     }
 
+    /**
+     * Returns mainPanel populated by a controller
+     * @return mainPanel
+     */
     public JPanel getPanel() {
         return mainPanel;
     }
 
+    /**
+     * Adds homeButton to toolBar
+     * @param al ActionListener for the button
+     */
     public void addHomeButton(ActionListener al) {
         ImageButton homeButton = new ImageButton(al, "res/images/logo.png");
         toolBar.add(homeButton);

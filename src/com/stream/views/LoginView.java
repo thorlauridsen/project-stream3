@@ -21,6 +21,10 @@ public class LoginView extends BaseView {
         constraints = new GridBagConstraints();
     }
 
+    /**
+     * Populates contentPanel with login and password text fields
+     * Adds the contentPanel to mainPanel
+     */
     public void updateView() {
         contentPanel.setLayout(new GridBagLayout());
         mainPanel.add(contentPanel, BorderLayout.CENTER);
@@ -60,7 +64,7 @@ public class LoginView extends BaseView {
     }
 
     /**
-     * Adds the login button
+     * Adds loginButton to contentPanel
      * @param al ActionListener for the button
      */
     public void addLoginButton(ActionListener al) {
@@ -73,7 +77,7 @@ public class LoginView extends BaseView {
     }
 
     /**
-     * Adds the password field
+     * Adds passwordField to contentPanel
      * @param al ActionListener for the button
      */
     public void addPasswordField(ActionListener al) {
@@ -93,7 +97,7 @@ public class LoginView extends BaseView {
     }
 
     /**
-     * Displays an alert when login failed
+     * Displays an alert when login fails
      */
     public void showAlert() {
         JOptionPane.showMessageDialog(null, "Username / password incorrect");

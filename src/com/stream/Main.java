@@ -1,13 +1,9 @@
 package com.stream;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.stream.controllers.CatalogController;
 import com.stream.controllers.LoginController;
-import com.stream.viewmodels.CatalogViewModel;
 import com.stream.viewmodels.LoginViewModel;
-import com.stream.views.CatalogView;
 import com.stream.views.LoginView;
-
 import javax.swing.*;
 
 

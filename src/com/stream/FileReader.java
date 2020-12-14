@@ -119,6 +119,10 @@ public class FileReader {
         return mediaList;
     }
 
+    /**
+     * Reads sample text from a file at the given path
+     * @return text from file
+     */
     public String readSampleText(){
         String path = "res/data/sampleText.txt";
         Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream(path));

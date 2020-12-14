@@ -50,6 +50,11 @@ public class CatalogViewModel {
         return mediaList;
     }
 
+    /**
+     * Fills categories with every category from the list of all media
+     * Fills categories with default media types
+     * So users can select media types in the categoryPanel
+     */
     public void getAllCategories() {
         FilterController filterController = FilterController.getInstance();
         for (String mediaType : filterController.getMediaTypes()) {

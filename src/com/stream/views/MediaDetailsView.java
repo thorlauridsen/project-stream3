@@ -26,7 +26,7 @@ public class MediaDetailsView extends BaseView {
         playPanel = new JPanel();
     }
 
-    //TODO: Cleanup
+    //TODO: Cleanup this method by splitting it into smaller methods
     public void updateView(Media media, String sampleText) {
 
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
@@ -169,7 +169,7 @@ public class MediaDetailsView extends BaseView {
     }
 
     /**
-     * Initializes the play button
+     * Initializes playButton
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
@@ -178,7 +178,7 @@ public class MediaDetailsView extends BaseView {
     }
 
     /**
-     * Initializes the watch list button
+     * Initializes watchListButton
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
@@ -187,7 +187,7 @@ public class MediaDetailsView extends BaseView {
     }
 
     /**
-     * Updates the image of the watchlist button
+     * Updates the image of watchListButton
      * @param imagePath String path for image
      */
     public void updateWatchListButton(String imagePath) {
@@ -195,7 +195,7 @@ public class MediaDetailsView extends BaseView {
     }
 
     /**
-     * Adds the back button to the toolbar
+     * Adds backButton to toolBar
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
