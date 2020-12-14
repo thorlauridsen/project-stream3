@@ -15,6 +15,9 @@ public class LoginController extends BaseController {
         this.view = view;
     }
 
+    /**
+     * Populates and displays the view using pageController
+     */
     public void updateView() {
         view.updateView();
         view.addPasswordField(new LoginListener(view, viewModel));

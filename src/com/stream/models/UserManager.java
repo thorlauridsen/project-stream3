@@ -23,6 +23,10 @@ public class UserManager {
         return currentUser;
     }
 
+    /**
+     * Attempt to log in user
+     * @return true if login succeeded
+     */
     public boolean attemptLogin(String username, String password) {
         for (User user : userList) {
             if (user.getName().equalsIgnoreCase(username)) {
@@ -35,11 +39,18 @@ public class UserManager {
         return false;
     }
 
+    /**
+     * Handle user logout
+     */
     public void logout() {
         currentUser.setMyListToggled(false);
         currentUser = null;
     }
 
+    /**
+     * Creates an instance of UserManager if it does not exist yet
+     * @return singleton instance of UserManager
+     */
     public static UserManager getInstance() {
         if (instance == null) {
             instance = new UserManager();

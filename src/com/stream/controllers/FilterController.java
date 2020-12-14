@@ -34,6 +34,10 @@ public class FilterController extends BaseController {
         this.view = view;
     }
 
+    /**
+     * Resets searchList and selectedCategoryList
+     * Then it populates the two list with the list of all media
+     */
     public void resetFilter() {
         searchList.clear();
         selectedCategoryList.clear();
@@ -56,6 +60,11 @@ public class FilterController extends BaseController {
         selectedCategoryList.addAll(list);
     }
 
+    /**
+     * Creates filterList from the search input and the selected categories
+     * Contains all elements that searchList and selectedCategoryList have in common
+     * Then the method populates the view using pageController
+     */
     public void updateFilterView() {
         filteredList.clear();
 
@@ -76,6 +85,10 @@ public class FilterController extends BaseController {
         }
     }
 
+    /**
+     * Creates an instance of FilterController if it does not exist yet
+     * @return singleton instance of FilterController
+     */
     public static FilterController getInstance() {
         if (instance == null) {
             instance = new FilterController();

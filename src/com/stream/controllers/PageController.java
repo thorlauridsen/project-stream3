@@ -49,6 +49,10 @@ public class PageController {
         }
     }
 
+    /**
+     * Creates an instance of PageController if it does not exist yet
+     * @return singleton instance of PageController
+     */
     public static PageController getInstance() {
         if (instance == null) {
             instance = new PageController();

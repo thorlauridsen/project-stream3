@@ -22,6 +22,12 @@ public class CatalogViewModel {
         getAllCategories();
     }
 
+    /**
+     * Returns a list of media
+     * If the user is a child it will only media with the Family category
+     * If the user has toggled their watchlist it will return that list
+     * @return list of media
+     */
     public List<Media> getMediaList() {
 
         UserManager userManager = UserManager.getInstance();
@@ -45,12 +51,10 @@ public class CatalogViewModel {
     }
 
     public void getAllCategories() {
-
         FilterController filterController = FilterController.getInstance();
         for (String mediaType : filterController.getMediaTypes()) {
             categories.add(mediaType);
         }
-
         for (Media media : mediaList) {
             for (String category : media.getCategories()) {
                 if (!categories.contains(category)) {

@@ -18,6 +18,9 @@ public class CatalogController extends BaseController {
         this.view = view;
     }
 
+    /**
+     * Populates and displays the view using pageController
+     */
     public void updateView() {
         List<Media> mediaList = viewModel.getMediaList();
 
@@ -40,6 +43,9 @@ public class CatalogController extends BaseController {
         pageController.setView(view.getPanel());
     }
 
+    /**
+     * Adds all category buttons to the view with CategoryListener
+     */
     public void addCategories() {
         for (String category : viewModel.getCategories()) {
             view.addCategoryButton(category, new CategoryListener(view, viewModel));

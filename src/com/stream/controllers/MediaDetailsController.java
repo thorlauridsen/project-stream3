@@ -19,6 +19,9 @@ public class MediaDetailsController extends BaseController {
         this.view = view;
     }
 
+    /**
+     * Populates and displays the view using pageController
+     */
     public void updateView() {
         Media media = viewModel.getMedia();
 
