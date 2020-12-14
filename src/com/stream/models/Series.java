@@ -11,6 +11,8 @@ public class Series extends Media {
     private HashMap<Integer, Integer> seasonMap;
 
     public Series(String title, double rating, List<String> categories, int yearFrom, int yearTo, HashMap<Integer, Integer> seasonMap) {
+        categories.add("Series");
+
         this.title = title;
         this.rating = rating;
         this.categories = categories;

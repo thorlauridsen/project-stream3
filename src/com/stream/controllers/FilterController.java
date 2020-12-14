@@ -6,6 +6,7 @@ import com.stream.models.MediaPanel;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -16,6 +17,7 @@ public class FilterController extends BaseController {
     private List<Media> filteredList;
     private List<Media> searchList;
     private List<Media> selectedCategoryList;
+    private List<String> mediaTypes;
 
     private CatalogViewModel viewModel;
     private CatalogView view;
@@ -24,6 +26,7 @@ public class FilterController extends BaseController {
         filteredList = new ArrayList<>();
         searchList = new ArrayList<>();
         selectedCategoryList = new ArrayList<>();
+        mediaTypes = Arrays.asList("Movie", "Series");
     }
 
     public void setCatalog(CatalogViewModel viewModel, CatalogView view) {
@@ -35,6 +38,10 @@ public class FilterController extends BaseController {
 
         searchList.addAll(viewModel.getMediaList());
         selectedCategoryList.addAll(viewModel.getMediaList());
+    }
+
+    public List<String> getMediaTypes() {
+        return mediaTypes;
     }
 
     public void setSearchList(List<Media> list) {

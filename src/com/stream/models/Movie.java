@@ -8,6 +8,8 @@ public class Movie extends Media {
     private int year;
 
     public Movie(String title, double rating, List<String> categories, int year) {
+        categories.add("Movie");
+
         this.title = title;
         this.rating = rating;
         this.categories = categories;

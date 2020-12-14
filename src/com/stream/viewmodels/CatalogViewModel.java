@@ -1,6 +1,7 @@
 package com.stream.viewmodels;
 
 import com.stream.FileReader;
+import com.stream.controllers.FilterController;
 import com.stream.models.Media;
 import com.stream.models.User;
 import com.stream.models.UserManager;
@@ -44,6 +45,12 @@ public class CatalogViewModel {
     }
 
     public void getAllCategories() {
+
+        FilterController filterController = FilterController.getInstance();
+        for (String mediaType : filterController.getMediaTypes()) {
+            categories.add(mediaType);
+        }
+
         for (Media media : mediaList) {
             for (String category : media.getCategories()) {
                 if (!categories.contains(category)) {

@@ -1,5 +1,6 @@
 package com.stream.views;
 
+import com.stream.controllers.FilterController;
 import com.stream.models.ImageButton;
 import com.stream.models.Media;
 import com.stream.models.Series;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Filter;
 
 
 public class MediaDetailsView extends BaseView {
@@ -91,15 +93,19 @@ public class MediaDetailsView extends BaseView {
         c.insets = new Insets(30,0,0,0);
         factPanel.add(yearLabel, c);
 
+        FilterController filterController = FilterController.getInstance();
+
         String categories = "";
         int i = 1;
         for (String category : media.getCategories()) {
 
-            if (i == media.getCategories().size()) {
-                categories += category + "";
-                i++;
-            } else {
-                categories += category + ", ";
+            if (!filterController.getMediaTypes().contains(category)) {
+
+                if (i == (media.getCategories().size() - 1)) {
+                    categories += category + "";
+                } else {
+                    categories += category + ", ";
+                }
                 i++;
             }
         }
