@@ -69,8 +69,11 @@ public class FilterController extends BaseController {
             view.addMedia(mediaPanel.getPanel());
         }
         view.updateView(filteredList.size());
-
         pageController.setView(view.getPanel());
+
+        if (filteredList.size() == 0) {
+            view.showSearchAlert();
+        }
     }
 
     public static FilterController getInstance() {

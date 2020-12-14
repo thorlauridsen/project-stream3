@@ -18,7 +18,6 @@ public class CatalogView extends BaseView {
     private List<JCheckBox> categoryBoxList;
     private JButton logoutButton;
 
-
     public CatalogView() {
         categoryBoxList = new ArrayList<>();
     }
@@ -134,5 +133,7 @@ public class CatalogView extends BaseView {
         contentPanel.repaint();
     }
 
-
+    public void showSearchAlert() {
+        JOptionPane.showMessageDialog(null, "Your search returned no results!");
+    }
 }
