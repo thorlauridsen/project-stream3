@@ -12,6 +12,7 @@ public abstract class BaseView {
     protected JPanel contentPanel;
     protected JToolBar toolBar;
     protected Font standardFont;
+    protected Font largeFont;
     protected Font titleFont;
 
     public BaseView() {
@@ -19,6 +20,7 @@ public abstract class BaseView {
         contentPanel = new JPanel();
         toolBar = new JToolBar();
         standardFont = new Font("Verdana", Font.PLAIN, 12);
+        largeFont = new Font("Verdana", Font.PLAIN, 24);
         titleFont = new Font("Verdana", Font.PLAIN, 30);
 
         toolBar.setFloatable(false);
@@ -32,7 +34,7 @@ public abstract class BaseView {
     }
 
     public void addHomeButton(ActionListener al) {
-        ImageButton homeButton = new ImageButton(al, "res/images/homeButton.png");
+        ImageButton homeButton = new ImageButton(al, "res/images/logo.png");
         toolBar.add(homeButton);
     }
 }

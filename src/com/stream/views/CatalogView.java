@@ -13,6 +13,7 @@ public class CatalogView extends BaseView {
     private JTextField searchField;
     private JPanel leftPanel;
     private List<JCheckBox> categoryBoxList;
+    private JButton logoutButton;
 
     public CatalogView() {
         categoryBoxList = new ArrayList<>();
@@ -50,6 +51,12 @@ public class CatalogView extends BaseView {
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(al);
         toolBar.add(searchButton);
+    }
+
+    public void addLogoutButton(ActionListener al) {
+        logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(al);
+        toolBar.add(logoutButton);
     }
 
     public void addCategoryPanel(int categorySize) {

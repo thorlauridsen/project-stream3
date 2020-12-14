@@ -30,6 +30,7 @@ public class CatalogController extends BaseController {
         view.addClearButton(new ClearListener());
         view.addSearchButton(new SearchListener(view, viewModel));
         view.addMyListButton(new ShowMyListListener(view, viewModel));
+        view.addLogoutButton(new LogoutListener());
 
         for (Media media : mediaList) {
             MediaPanel mediaPanel = new MediaPanel(media, new ClickMediaListener(media));

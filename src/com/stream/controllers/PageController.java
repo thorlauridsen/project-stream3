@@ -22,7 +22,7 @@ public class PageController {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream("res/images/LimeLogo.png");
+            InputStream is = getClass().getClassLoader().getResourceAsStream("res/images/logoLime.png");
             Image pic = ImageIO.read(is);
             frame.setIconImage(pic);
 

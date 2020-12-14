@@ -1,8 +1,11 @@
 package com.stream.views;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 public class LoginView extends BaseView {
 
@@ -13,9 +16,7 @@ public class LoginView extends BaseView {
 
     public LoginView() {
         usernameField = new JTextField();
-        usernameField.setFont(titleFont);
-        passwordField = new JPasswordField();
-        passwordField.setFont(titleFont);
+        usernameField.setFont(largeFont);
         constraints = new GridBagConstraints();
     }
 
@@ -26,35 +27,56 @@ public class LoginView extends BaseView {
       mainPanel.add(contentPanel, BorderLayout.CENTER);
 
       JLabel usernameLabel = new JLabel("Username:");
-      usernameLabel.setFont(titleFont);
+      usernameLabel.setFont(largeFont);
       JLabel passwordLabel = new JLabel("Password:");
-      passwordLabel.setFont(titleFont);
+      passwordLabel.setFont(largeFont);
 
-      constraints.ipadx = 400;
-      constraints.ipady = 30;
+
+      JLabel imageLabel = new JLabel();
+
+      try {
+          InputStream is = getClass().getClassLoader().getResourceAsStream("res/images/logoMedium.png");
+          BufferedImage pic = ImageIO.read(is);
+          imageLabel.setIcon(new ImageIcon(pic));
+
+      } catch (Exception ex) {
+          System.out.println(ex);
+      }
+
+      constraints.gridy = 0;
+      contentPanel.add(imageLabel, constraints);
+
+      constraints.ipadx = 300;
+      constraints.ipady = 20;
       constraints.insets = new Insets(15,0,0,0);
       constraints.fill = GridBagConstraints.HORIZONTAL;
 
-      constraints.gridy = 0;
+      constraints.gridy = 1;
       contentPanel.add(usernameLabel, constraints);
 
-      constraints.gridy = 1;
+      constraints.gridy = 2;
       contentPanel.add(usernameField, constraints);
 
-      constraints.gridy = 2;
+      constraints.gridy = 3;
       contentPanel.add(passwordLabel, constraints);
 
-      constraints.gridy = 3;
-      contentPanel.add(passwordField, constraints);
   }
 
     public void addLoginButton(ActionListener al) {
         loginButton = new JButton("Login");
         loginButton.addActionListener(al);
-        loginButton.setFont(titleFont);
+        loginButton.setFont(largeFont);
         constraints.insets = new Insets(30,0,0,0);
-        constraints.gridy = 4;
+        constraints.gridy = 5;
         contentPanel.add(loginButton, constraints);
+    }
+
+    public void addPasswordField(ActionListener al) {
+        passwordField = new JPasswordField();
+        passwordField.setFont(largeFont);
+        passwordField.addActionListener(al);
+        constraints.gridy = 4;
+        contentPanel.add(passwordField, constraints);
     }
 
     public String getUsername() {

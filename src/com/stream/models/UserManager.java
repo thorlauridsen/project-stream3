@@ -32,6 +32,10 @@ public class UserManager {
         return false;
     }
 
+    public void clearCurrentUser() {
+        currentUser = null;
+    }
+
     public static UserManager getInstance() {
         if (instance == null) {
             instance = new UserManager();
