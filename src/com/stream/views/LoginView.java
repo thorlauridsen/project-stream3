@@ -13,7 +13,9 @@ public class LoginView extends BaseView {
 
     public LoginView() {
         usernameField = new JTextField();
+        usernameField.setFont(titleFont);
         passwordField = new JPasswordField();
+        passwordField.setFont(titleFont);
         constraints = new GridBagConstraints();
     }
 
@@ -24,7 +26,9 @@ public class LoginView extends BaseView {
       mainPanel.add(contentPanel, BorderLayout.CENTER);
 
       JLabel usernameLabel = new JLabel("Username:");
+      usernameLabel.setFont(titleFont);
       JLabel passwordLabel = new JLabel("Password:");
+      passwordLabel.setFont(titleFont);
 
       constraints.ipadx = 400;
       constraints.ipady = 30;
@@ -47,7 +51,8 @@ public class LoginView extends BaseView {
     public void addLoginButton(ActionListener al) {
         loginButton = new JButton("Login");
         loginButton.addActionListener(al);
-        loginButton.setSize( new Dimension(400, 200));
+        loginButton.setFont(titleFont);
+        constraints.insets = new Insets(30,0,0,0);
         constraints.gridy = 4;
         contentPanel.add(loginButton, constraints);
     }

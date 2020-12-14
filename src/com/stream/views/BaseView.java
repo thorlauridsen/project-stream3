@@ -11,11 +11,15 @@ public abstract class BaseView {
     protected JPanel mainPanel;
     protected JPanel contentPanel;
     protected JToolBar toolBar;
+    protected Font standardFont;
+    protected Font titleFont;
 
     public BaseView() {
         mainPanel = new JPanel(new BorderLayout());
         contentPanel = new JPanel();
         toolBar = new JToolBar();
+        standardFont = new Font("Verdana", Font.PLAIN, 12);
+        titleFont = new Font("Verdana", Font.PLAIN, 30);
 
         toolBar.setFloatable(false);
         toolBar.setRollover(true);
