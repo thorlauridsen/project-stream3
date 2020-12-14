@@ -64,7 +64,7 @@ public class MediaDetailsView extends BaseView {
         JTextArea descriptionTextArea = new JTextArea(sampleText);
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setWrapStyleWord(true);
-        descriptionTextArea.setFont(new Font("Verdana", Font.PLAIN, 15));
+        descriptionTextArea.setFont(largeFont);
         descriptionTextArea.setMargin(new Insets(20, 10, 10, 10));
         descriptionTextArea.setOpaque(false);
 
@@ -73,21 +73,21 @@ public class MediaDetailsView extends BaseView {
         GridBagConstraints c = new GridBagConstraints();
 
         JLabel titleLabel = new JLabel(media.getTitle());
-        titleLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
+        titleLabel.setFont(titleFont);
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.NORTHWEST;
         factPanel.add(titleLabel, c);
 
         JLabel ratingLabel = new JLabel("(" + media.getRating() + ")");
-        ratingLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
+        ratingLabel.setFont(titleFont);
         c.gridx = 1;
         c.gridy = 0;
         c.insets = new Insets(0,20,0,0);
         factPanel.add(ratingLabel, c);
 
         JLabel yearLabel = new JLabel(media.yearToString());
-        yearLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
+        yearLabel.setFont(titleFont);
         c.gridx = 0;
         c.gridy = 1;
         c.insets = new Insets(30,0,0,0);
@@ -111,7 +111,7 @@ public class MediaDetailsView extends BaseView {
         }
 
         JLabel categoriesLabel = new JLabel(categories);
-        categoriesLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
+        categoriesLabel.setFont(titleFont);
         c.gridx = 0;
         c.gridy = 2;
         c.gridwidth = 2;
@@ -124,7 +124,7 @@ public class MediaDetailsView extends BaseView {
             JTextArea episodeTextArea = new JTextArea(sampleText);
             episodeTextArea.setLineWrap(true);
             episodeTextArea.setWrapStyleWord(true);
-            episodeTextArea.setFont(new Font("Verdana", Font.PLAIN, 12));
+            episodeTextArea.setFont(standardFont);
             episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
             episodeTextArea.setOpaque(false);
 

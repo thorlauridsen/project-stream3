@@ -1,5 +1,6 @@
 package com.stream.views;
 
+import com.stream.controllers.FilterController;
 import com.stream.models.ToolBarButton;
 
 import javax.swing.*;
@@ -28,13 +29,20 @@ public class CatalogView extends BaseView {
         searchPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         searchField = new JTextField(2);
         searchField.addActionListener(al);
-        searchField.setFont(new Font("Verdana", Font.PLAIN, 30 ));
+        searchField.setFont(titleFont);
         searchPanel.add(searchField);
         toolBar.add(searchPanel);
     }
 
     public void addCategoryButton(String category, ActionListener al) {
+
         JCheckBox categoryBox = new JCheckBox(category);
+        categoryBox.setFont(standardFont);
+
+        FilterController filterController = FilterController.getInstance();
+        if (filterController.getMediaTypes().contains(category)) {
+            categoryBox.setForeground(Color.decode("#8bc10b"));
+        }
         categoryBox.addActionListener(al);
         leftPanel.add(categoryBox);
         categoryBoxList.add(categoryBox);
