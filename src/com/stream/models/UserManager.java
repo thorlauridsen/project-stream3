@@ -12,8 +12,11 @@ public class UserManager {
 
     public UserManager() {
         userList = new ArrayList<>();
-        User user = new User("Cronval", "mypassword123", false, false);
-        userList.add(user);
+        User user1 = new User("Cronval", "mypassword123", false, false);
+        User user2 = new User("Thor", "FrozenIsCool", true, false);
+
+        userList.add(user1);
+        userList.add(user2);
     }
 
     public User getCurrentUser() {
@@ -32,7 +35,8 @@ public class UserManager {
         return false;
     }
 
-    public void clearCurrentUser() {
+    public void logout() {
+        currentUser.setMyListToggled(false);
         currentUser = null;
     }
 

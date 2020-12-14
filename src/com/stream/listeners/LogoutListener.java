@@ -14,7 +14,7 @@ public class LogoutListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         UserManager userManager = UserManager.getInstance();
-        userManager.clearCurrentUser();
+        userManager.logout();
 
         LoginViewModel viewModel = new LoginViewModel();
         LoginView view = new LoginView();

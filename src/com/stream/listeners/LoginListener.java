@@ -1,6 +1,7 @@
 package com.stream.listeners;
 
 import com.stream.controllers.CatalogController;
+import com.stream.controllers.FilterController;
 import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.viewmodels.LoginViewModel;
@@ -33,6 +34,8 @@ public class LoginListener implements ActionListener {
                 CatalogViewModel viewModel = new CatalogViewModel();
                 CatalogView view = new CatalogView();
                 CatalogController controller = new CatalogController(viewModel, view);
+                FilterController filterController = FilterController.getInstance();
+                filterController.setCatalog(viewModel, view);
                 controller.updateView();
 
             } else {
