@@ -27,6 +27,7 @@ public class ShowMyListListener implements ActionListener {
 
         FilterController filterController = FilterController.getInstance();
         filterController.setCatalog(viewModel, view);
+        filterController.resetFilter();
         filterController.updateFilterView();
     }
 }

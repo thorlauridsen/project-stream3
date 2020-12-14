@@ -26,6 +26,7 @@ public class ClearListener implements ActionListener {
 
         FilterController filterController = FilterController.getInstance();
         filterController.setCatalog(viewModel, view);
+        filterController.resetFilter();
 
         PageController pageController = PageController.getInstance();
         pageController.setView(view.getPanel());

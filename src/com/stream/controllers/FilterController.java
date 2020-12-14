@@ -32,7 +32,9 @@ public class FilterController extends BaseController {
     public void setCatalog(CatalogViewModel viewModel, CatalogView view) {
         this.viewModel = viewModel;
         this.view = view;
+    }
 
+    public void resetFilter() {
         searchList.clear();
         selectedCategoryList.clear();
 
@@ -56,6 +58,7 @@ public class FilterController extends BaseController {
 
     public void updateFilterView() {
         filteredList.clear();
+
         filteredList.addAll(searchList);
         filteredList.retainAll(selectedCategoryList);
 

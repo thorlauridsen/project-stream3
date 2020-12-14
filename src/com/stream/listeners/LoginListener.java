@@ -36,6 +36,7 @@ public class LoginListener implements ActionListener {
                 CatalogController controller = new CatalogController(viewModel, view);
                 FilterController filterController = FilterController.getInstance();
                 filterController.setCatalog(viewModel, view);
+                filterController.resetFilter();
                 controller.updateView();
 
             } else {
