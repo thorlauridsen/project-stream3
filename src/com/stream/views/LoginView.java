@@ -59,6 +59,10 @@ public class LoginView extends BaseView {
         contentPanel.add(passwordLabel, constraints);
     }
 
+    /**
+     * Adds the login button
+     * @param al ActionListener for the button
+     */
     public void addLoginButton(ActionListener al) {
         loginButton = new JButton("Login");
         loginButton.addActionListener(al);
@@ -68,6 +72,10 @@ public class LoginView extends BaseView {
         contentPanel.add(loginButton, constraints);
     }
 
+    /**
+     * Adds the password field
+     * @param al ActionListener for the button
+     */
     public void addPasswordField(ActionListener al) {
         passwordField = new JPasswordField();
         passwordField.setFont(largeFont);
@@ -84,6 +92,9 @@ public class LoginView extends BaseView {
         return passwordField.getText();
     }
 
+    /**
+     * Displays an alert when login failed
+     */
     public void showAlert() {
         JOptionPane.showMessageDialog(null, "Username / password incorrect");
     }

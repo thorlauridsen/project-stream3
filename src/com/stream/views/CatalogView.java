@@ -2,7 +2,6 @@ package com.stream.views;
 
 import com.stream.controllers.FilterController;
 import com.stream.models.ToolBarButton;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -14,7 +13,7 @@ public class CatalogView extends BaseView {
 
     private JScrollPane scroll;
     private JTextField searchField;
-    private JPanel leftPanel;
+    private JPanel categoryPanel;
     private List<JCheckBox> categoryBoxList;
     private JButton logoutButton;
 
@@ -22,6 +21,10 @@ public class CatalogView extends BaseView {
         categoryBoxList = new ArrayList<>();
     }
 
+    /**
+     * Creates the searchFiled and adds it to toolBar
+     * @param al ActionListener for the button
+     */
     public void addSearchField(ActionListener al) {
         JPanel searchPanel = new JPanel();
         searchPanel.setLayout(new GridLayout(1,1));
@@ -33,6 +36,11 @@ public class CatalogView extends BaseView {
         toolBar.add(searchPanel);
     }
 
+    /**
+     * Adds the specific categoryBox to categoryPanel
+     * @param category Category to display
+     * @param al ActionListener for the button
+     */
     public void addCategoryButton(String category, ActionListener al) {
 
         JCheckBox categoryBox = new JCheckBox(category);
@@ -43,7 +51,7 @@ public class CatalogView extends BaseView {
             categoryBox.setForeground(Color.decode("#8bc10b"));
         }
         categoryBox.addActionListener(al);
-        leftPanel.add(categoryBox);
+        categoryPanel.add(categoryBox);
         categoryBoxList.add(categoryBox);
     }
 
@@ -55,21 +63,37 @@ public class CatalogView extends BaseView {
         return categoryBoxList;
     }
 
+    /**
+     * Adds the clearButton to toolBar
+     * @param al ActionListener for the button
+     */
     public void addClearButton(ActionListener al) {
         ToolBarButton clearButton = new ToolBarButton("X", al, largeFont);
         toolBar.add(clearButton);
     }
 
+    /**
+     * Adds the searchButton to toolBar
+     * @param al ActionListener for the button
+     */
     public void addSearchButton(ActionListener al){
         JButton searchButton = new ToolBarButton("Search", al, largeFont);
         toolBar.add(searchButton);
     }
 
+    /**
+     * Adds the myListButton to toolBar
+     * @param al ActionListener for the button
+     */
     public void addMyListButton(ActionListener al) {
         JButton myListButton = new ToolBarButton("My List", al, largeFont);
         toolBar.add(myListButton);
     }
 
+    /**
+     * Adds the userLabel to toolBar
+     * @param name Username to display
+     */
     public void addUserLabel(String name) {
         JLabel userLabel = new JLabel(name);
         userLabel.setFont(largeFont);
@@ -78,19 +102,31 @@ public class CatalogView extends BaseView {
         toolBar.add(userLabel);
     }
 
+    /**
+     * Adds the logoutButton to toolBar
+     * @param al ActionListener for the button
+     */
     public void addLogoutButton(ActionListener al) {
         logoutButton = new ToolBarButton("Logout", al, largeFont);
         toolBar.add(logoutButton);
     }
 
+    /**
+     * Adds the categoryPanel to mainPanel
+     * @param categorySize Amount of rows for the grid layout.
+     */
     public void addCategoryPanel(int categorySize) {
-        leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayout(categorySize, 1));
-        leftPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,30));
+        categoryPanel = new JPanel();
+        categoryPanel.setLayout(new GridLayout(categorySize, 1));
+        categoryPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,30));
 
-        mainPanel.add(leftPanel, BorderLayout.WEST);
+        mainPanel.add(categoryPanel, BorderLayout.WEST);
     }
 
+    /**
+     * Initially setup the contentPanel as a JScrollPane and adds it to mainPanel
+     * @param mediaSize Size used to specify the amount of rows
+     */
     public void updateView(int mediaSize) {
 
         scroll = new JScrollPane(contentPanel);
@@ -111,10 +147,17 @@ public class CatalogView extends BaseView {
         scroll.getVerticalScrollBar().setUnitIncrement(20);
     }
 
+    /**
+     * Adds the specific panel to contentPanel
+     * @param panel JPanel that gets added
+     */
     public void addMedia(JPanel panel) {
         contentPanel.add(panel);
     }
 
+    /**
+     * Removes all media from the contentPanel
+     */
     public void clearMedia() {
         List<Component> toRemove = new ArrayList<>();
 
@@ -128,11 +171,17 @@ public class CatalogView extends BaseView {
         repaint();
     }
 
+    /**
+     * Repaints and revalidates the contentPanel
+     */
     public void repaint() {
         contentPanel.revalidate();
         contentPanel.repaint();
     }
 
+    /**
+     * Displays an alert when search returned zero results
+     */
     public void showSearchAlert() {
         JOptionPane.showMessageDialog(null, "Your search returned no results!");
     }

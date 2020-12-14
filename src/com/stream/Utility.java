@@ -5,6 +5,7 @@ public class Utility {
 
     /**
      * Check if a string can be parsed as an integer
+     * @param str The required string to check
      */
     public static boolean isInt(String str) {
         try {
@@ -17,6 +18,7 @@ public class Utility {
 
     /**
      * Check if a string can be parsed as a double
+     * @param str The required string to check
      */
     public static boolean isDouble(String str) {
         try {
