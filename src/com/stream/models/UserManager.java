@@ -12,8 +12,8 @@ public class UserManager {
 
     public UserManager() {
         userList = new ArrayList<>();
-        User user1 = new User("Cronval", "mypassword123", false, false);
-        User user2 = new User("Thor", "FrozenIsCool", true, false);
+        User user1 = new User("Cronval", "1234", false, false);
+        User user2 = new User("Thor", "1234", true, false);
 
         userList.add(user1);
         userList.add(user2);

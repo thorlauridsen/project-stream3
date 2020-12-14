@@ -1,5 +1,7 @@
 package com.stream.views;
 
+import com.stream.models.ToolBarButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,15 +17,20 @@ public class CatalogView extends BaseView {
     private List<JCheckBox> categoryBoxList;
     private JButton logoutButton;
 
+
     public CatalogView() {
         categoryBoxList = new ArrayList<>();
     }
 
     public void addSearchField(ActionListener al) {
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(new GridLayout(1,1));
+        searchPanel.setBorder(BorderFactory.createEmptyBorder(20,600,20,10));
         searchField = new JTextField(2);
         searchField.addActionListener(al);
         searchField.setFont(new Font("Verdana", Font.PLAIN, 30 ));
-        toolBar.add(searchField);
+        searchPanel.add(searchField);
+        toolBar.add(searchPanel);
     }
 
     public void addCategoryButton(String category, ActionListener al) {
@@ -42,20 +49,30 @@ public class CatalogView extends BaseView {
     }
 
     public void addClearButton(ActionListener al) {
-        JButton clearButton = new JButton("X");
-        clearButton.addActionListener(al);
+        ToolBarButton clearButton = new ToolBarButton("X", al, largeFont);
         toolBar.add(clearButton);
     }
 
     public void addSearchButton(ActionListener al){
-        JButton searchButton = new JButton("Search");
-        searchButton.addActionListener(al);
+        JButton searchButton = new ToolBarButton("Search", al, largeFont);
         toolBar.add(searchButton);
     }
 
+    public void addMyListButton(ActionListener al) {
+        JButton myListButton = new ToolBarButton("My List", al, largeFont);
+        toolBar.add(myListButton);
+    }
+
+    public void addUserLabel(String name) {
+        JLabel userLabel = new JLabel(name);
+        userLabel.setFont(largeFont);
+        userLabel.setForeground(Color.decode("#8bc10b"));
+        userLabel.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
+        toolBar.add(userLabel);
+    }
+
     public void addLogoutButton(ActionListener al) {
-        logoutButton = new JButton("Logout");
-        logoutButton.addActionListener(al);
+        logoutButton = new ToolBarButton("Logout", al, largeFont);
         toolBar.add(logoutButton);
     }
 
@@ -109,9 +126,5 @@ public class CatalogView extends BaseView {
         contentPanel.repaint();
     }
 
-    public void addMyListButton(ActionListener al) {
-        JButton myListButton = new JButton("My List");
-        myListButton.addActionListener(al);
-        toolBar.add(myListButton);
-    }
+
 }

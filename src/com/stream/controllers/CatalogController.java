@@ -31,6 +31,7 @@ public class CatalogController extends BaseController {
         view.addSearchButton(new SearchListener(view, viewModel));
         view.addMyListButton(new ShowMyListListener(view, viewModel));
         view.addLogoutButton(new LogoutListener());
+        view.addUserLabel(userManager.getCurrentUser().getName());
 
         for (Media media : mediaList) {
             MediaPanel mediaPanel = new MediaPanel(media, new ClickMediaListener(media));
