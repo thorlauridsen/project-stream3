@@ -1,11 +1,12 @@
 package com.stream.controllers;
 
-
 import com.stream.listeners.LoginListener;
 import com.stream.viewmodels.LoginViewModel;
 import com.stream.views.LoginView;
 
+
 public class LoginController extends BaseController {
+
     private LoginViewModel viewModel;
     private LoginView view;
 

@@ -25,7 +25,7 @@ public class CatalogView extends BaseView {
     public void addSearchField(ActionListener al) {
         JPanel searchPanel = new JPanel();
         searchPanel.setLayout(new GridLayout(1,1));
-        searchPanel.setBorder(BorderFactory.createEmptyBorder(20,600,20,10));
+        searchPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         searchField = new JTextField(2);
         searchField.addActionListener(al);
         searchField.setFont(new Font("Verdana", Font.PLAIN, 30 ));
