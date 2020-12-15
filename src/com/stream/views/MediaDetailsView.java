@@ -22,18 +22,23 @@ public class MediaDetailsView extends BaseView {
     private ImageButton watchListButton;
     private JPanel factPanel;
     private GridBagConstraints constraints;
+    private JComboBox seasonComboBox;
+    private JComboBox episodeComboBox;
 
     public MediaDetailsView() {
         constraints = new GridBagConstraints();
         buttonPanel = new JPanel();
         playPanel = new JPanel();
         factPanel = new JPanel();
+        seasonComboBox = new JComboBox();
+        episodeComboBox = new JComboBox();
     }
 
     //TODO: Cleanup this method by splitting it into smaller methods
     public void updateView() {
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
         mainPanel.add(contentPanel, BorderLayout.CENTER);
+        factPanel.setLayout(new GridBagLayout());
         playPanel.setLayout(new GridLayout(2,1,10,10));
     }
 
@@ -80,9 +85,6 @@ public class MediaDetailsView extends BaseView {
     }
 
     public void addFactPanel(Media media) {
-        JPanel factPanel = new JPanel();
-        factPanel.setLayout(new GridBagLayout());
-
         JLabel titleLabel = new JLabel(media.getTitle());
         titleLabel.setFont(titleFont);
         constraints.gridx = 0;
@@ -159,7 +161,6 @@ public class MediaDetailsView extends BaseView {
     public void addSeasonComboBox(Media media, ActionListener al) {
         if (media instanceof Series) {
             Series series = (Series) media;
-            JComboBox seasonComboBox = new JComboBox();
             for (Integer seasonNumber : series.getSeasonMap().keySet()) {
                 seasonComboBox.addItem(seasonNumber);
             }
@@ -170,14 +171,14 @@ public class MediaDetailsView extends BaseView {
 
             seasonComboBox.addActionListener(al);
 
+
             factPanel.add(seasonComboBox, constraints);
         }
     }
 
-    public void addEpisodeComboBox (Media media, ActionListener al,int seasonNumber){
+    public void addEpisodeComboBox(Media media, ActionListener al, int seasonNumber){
         if (media instanceof Series) {
             Series series = (Series) media;
-            JComboBox episodeComboBox = new JComboBox();
             for (int j = 1; j <= series.getSeasonMap().get(seasonNumber); j++) {
                 episodeComboBox.addItem(j);
             }
@@ -187,6 +188,7 @@ public class MediaDetailsView extends BaseView {
             constraints.insets = new Insets(30, 80, 0, 0);
 
             episodeComboBox.addActionListener(al);
+
             factPanel.add(episodeComboBox, constraints);
         }
     }

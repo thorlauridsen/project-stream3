@@ -13,6 +13,8 @@ public class MediaDetailsViewModel {
     private int selectedEpisode;
 
     public MediaDetailsViewModel(Media media) {
+        this.selectedSeason = 1;
+        this.selectedEpisode = 1;
         this.media = media;
         this.fileReader = new FileReader();
         this.sampleText = fileReader.readSampleText();

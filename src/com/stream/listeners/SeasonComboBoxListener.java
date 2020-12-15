@@ -1,5 +1,6 @@
 package com.stream.listeners;
 
+import com.stream.models.Media;
 import com.stream.viewmodels.MediaDetailsViewModel;
 import com.stream.views.MediaDetailsView;
 
@@ -20,10 +21,8 @@ public class SeasonComboBoxListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         JComboBox seasonComboBox = (JComboBox) e.getSource();
         int selectedSeason = (int) seasonComboBox.getSelectedItem();
         viewModel.setSelectedSeason(selectedSeason);
-
     }
 }
