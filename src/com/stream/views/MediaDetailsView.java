@@ -24,6 +24,7 @@ public class MediaDetailsView extends BaseView {
     private GridBagConstraints constraints;
     private JComboBox seasonComboBox;
     private JComboBox episodeComboBox;
+    private JTextArea episodeTextArea;
 
     public MediaDetailsView() {
         constraints = new GridBagConstraints();
@@ -32,6 +33,7 @@ public class MediaDetailsView extends BaseView {
         factPanel = new JPanel();
         seasonComboBox = new JComboBox();
         episodeComboBox = new JComboBox();
+        episodeTextArea = new JTextArea();
     }
 
     //TODO: Cleanup this method by splitting it into smaller methods
@@ -80,6 +82,7 @@ public class MediaDetailsView extends BaseView {
         descriptionTextArea.setFont(largeFont);
         descriptionTextArea.setMargin(new Insets(20, 10, 10, 10));
         descriptionTextArea.setOpaque(false);
+        descriptionTextArea.setEditable(false);
 
         contentPanel.add(descriptionTextArea);
     }
@@ -135,16 +138,16 @@ public class MediaDetailsView extends BaseView {
 
     }
 
-    public void addEpisodeTextArea(Media media, String sampleText) {
+    public void addEpisodeTextArea(Media media, String sampleText, int seasonNumber, int episodeNumber) {
         if (media instanceof Series) {
-            JTextArea episodeTextArea = new JTextArea(sampleText);
+            episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
 
             episodeTextArea.setLineWrap(true);
             episodeTextArea.setWrapStyleWord(true);
             episodeTextArea.setFont(standardFont);
             episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
             episodeTextArea.setOpaque(false);
-
+            episodeTextArea.setEditable(false);
             playPanel.add(episodeTextArea);
         }
     }
@@ -191,6 +194,21 @@ public class MediaDetailsView extends BaseView {
 
             factPanel.add(episodeComboBox, constraints);
         }
+    }
+
+    public void updateEpisodeComboBox(Media media, ActionListener al, int seasonNumber) {
+        if (media instanceof Series) {
+            Series series = (Series) media;
+            episodeComboBox.removeAllItems();
+            for (int j = 1; j <= series.getSeasonMap().get(seasonNumber); j++) {
+                episodeComboBox.addItem(j);
+            }
+            episodeComboBox.addActionListener(al);
+        }
+    }
+
+    public void updateEpisodeTextArea(String sampleText, int seasonNumber, int episodeNumber) {
+        episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
     }
 
     /**

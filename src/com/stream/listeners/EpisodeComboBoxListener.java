@@ -18,12 +18,14 @@ public class EpisodeComboBoxListener implements ActionListener {
         this.viewModel = viewModel;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox episodeComboBox = (JComboBox) e.getSource();
-        int selectedEpisode = (int) episodeComboBox.getSelectedItem();
+        int selectedEpisode = 1;
+        if (episodeComboBox.getSelectedItem() != null) {
+            selectedEpisode = (int) episodeComboBox.getSelectedItem();
+        }
         viewModel.setSelectedEpisode(selectedEpisode);
-
+        view.updateEpisodeTextArea(viewModel.getSampleText(), viewModel.getSelectedSeason(), viewModel.getSelectedEpisode());
     }
 }
