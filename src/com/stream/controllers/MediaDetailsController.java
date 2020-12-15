@@ -39,7 +39,7 @@ public class MediaDetailsController extends BaseController {
 
         view.updateView();
         view.addImagePanel(media);
-        view.addDescriptionTextArea(viewModel.getSampleText());
+        view.addDescriptionTextArea(media, viewModel.getSampleText());
         view.addFactPanel(media);
         view.addSeasonComboBox(media, new SeasonComboBoxListener(media, view, viewModel));
         view.addEpisodeComboBox(media, new EpisodeComboBoxListener(view, viewModel), viewModel.getSelectedSeason());
