@@ -9,8 +9,12 @@ public class MediaDetailsViewModel {
     private Media media;
     private FileReader fileReader;
     private String sampleText;
+    private int selectedSeason;
+    private int selectedEpisode;
 
     public MediaDetailsViewModel(Media media) {
+        this.selectedSeason = 1;
+        this.selectedEpisode = 1;
         this.media = media;
         this.fileReader = new FileReader();
         this.sampleText = fileReader.readSampleText();
@@ -26,5 +30,21 @@ public class MediaDetailsViewModel {
 
     public String getSampleText(){
         return sampleText;
+    }
+
+    public void setSelectedSeason(int selectedSeason) {
+        this.selectedSeason = selectedSeason;
+    }
+
+    public int getSelectedSeason() {
+        return selectedSeason;
+    }
+
+    public void setSelectedEpisode(int selectedEpisode) {
+        this.selectedEpisode = selectedEpisode;
+    }
+
+    public int getSelectedEpisode() {
+        return selectedEpisode;
     }
 }

@@ -1,8 +1,6 @@
 package com.stream.controllers;
 
-import com.stream.listeners.BackListener;
-import com.stream.listeners.ClearListener;
-import com.stream.listeners.ModifyWatchListListener;
+import com.stream.listeners.*;
 import com.stream.models.Media;
 import com.stream.models.User;
 import com.stream.viewmodels.MediaDetailsViewModel;
@@ -39,7 +37,14 @@ public class MediaDetailsController extends BaseController {
             view.addWatchListButton(new ModifyWatchListListener(media, view), "res/images/watchListButtonEmpty.png");
         }
 
-        view.updateView(media, viewModel.getSampleText());
+        view.updateView();
+        view.addImagePanel(media);
+        view.addDescriptionTextArea(media, viewModel.getSampleText());
+        view.addFactPanel(media);
+        view.addSeasonComboBox(media, new SeasonComboBoxListener(media, view, viewModel));
+        view.addEpisodeComboBox(media, new EpisodeComboBoxListener(view, viewModel), viewModel.getSelectedSeason());
+        view.addEpisodeTextArea(media, viewModel.getSampleText(), viewModel.getSelectedSeason(), viewModel.getSelectedEpisode());
+        view.addButtonPanel();
         view.addHomeButton(new ClearListener());
         view.addBackButton(new BackListener(), "res/images/backButton.png");
         pageController.setView(view.getPanel());

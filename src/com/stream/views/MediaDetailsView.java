@@ -20,19 +20,30 @@ public class MediaDetailsView extends BaseView {
     private JPanel playPanel;
     private ImageButton playButton;
     private ImageButton watchListButton;
+    private JPanel factPanel;
+    private GridBagConstraints constraints;
+    private JComboBox seasonComboBox;
+    private JComboBox episodeComboBox;
+    private JTextArea episodeTextArea;
 
     public MediaDetailsView() {
+        constraints = new GridBagConstraints();
         buttonPanel = new JPanel();
         playPanel = new JPanel();
+        factPanel = new JPanel();
+        seasonComboBox = new JComboBox();
+        episodeComboBox = new JComboBox();
+        episodeTextArea = new JTextArea();
     }
 
-    //TODO: Cleanup this method by splitting it into smaller methods
-    public void updateView(Media media, String sampleText) {
-
+    public void updateView() {
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
-
         mainPanel.add(contentPanel, BorderLayout.CENTER);
+        factPanel.setLayout(new GridBagLayout());
+        playPanel.setLayout(new GridLayout(2,1,10,10));
+    }
 
+    public void addImagePanel(Media media) {
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BorderLayout());
 
@@ -60,38 +71,42 @@ public class MediaDetailsView extends BaseView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        contentPanel.add(imagePanel);
+    }
 
+    public void addDescriptionTextArea(Media media, String sampleText) {
         JTextArea descriptionTextArea = new JTextArea(sampleText);
+
+        if (media instanceof Series) {
+            descriptionTextArea.setText("Series Description: \n" + sampleText);
+        } else {
+            descriptionTextArea.setText("Movie Description: \n" + sampleText);
+        }
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setWrapStyleWord(true);
         descriptionTextArea.setFont(largeFont);
         descriptionTextArea.setMargin(new Insets(20, 10, 10, 10));
         descriptionTextArea.setOpaque(false);
+        descriptionTextArea.setEditable(false);
 
-        JPanel factPanel = new JPanel();
-        factPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        contentPanel.add(descriptionTextArea);
+    }
 
-        JLabel titleLabel = new JLabel(media.getTitle());
+    public void addFactPanel(Media media) {
+        JLabel titleLabel = new JLabel(media.getTitle() + "   (" + media.getRating() + ")");
         titleLabel.setFont(titleFont);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        factPanel.add(titleLabel, c);
-
-        JLabel ratingLabel = new JLabel("(" + media.getRating() + ")");
-        ratingLabel.setFont(titleFont);
-        c.gridx = 1;
-        c.gridy = 0;
-        c.insets = new Insets(0,20,0,0);
-        factPanel.add(ratingLabel, c);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.NORTHWEST;
+        constraints.insets= new Insets(0,0,30,0);
+        factPanel.add(titleLabel, constraints);
 
         JLabel yearLabel = new JLabel(media.yearToString());
         yearLabel.setFont(titleFont);
-        c.gridx = 0;
-        c.gridy = 1;
-        c.insets = new Insets(30,0,0,0);
-        factPanel.add(yearLabel, c);
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.insets = new Insets(0, 0, 30, 0);
+        factPanel.add(yearLabel, constraints);
 
         FilterController filterController = FilterController.getInstance();
 
@@ -112,60 +127,104 @@ public class MediaDetailsView extends BaseView {
 
         JLabel categoriesLabel = new JLabel(categories);
         categoriesLabel.setFont(titleFont);
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.insets = new Insets(30,0,0,0);
-        factPanel.add(categoriesLabel, c);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
+        constraints.insets = new Insets(0, 0, 30, 0);
+        factPanel.add(categoriesLabel, constraints);
 
         if (media instanceof Series) {
-            Series series = (Series) media;
+            JLabel seasonLabel = new JLabel("Season");
+            seasonLabel.setFont(largeFont);
+            seasonLabel.setForeground(Color.decode("#8bc10b"));
+            constraints.gridx = 0;
+            constraints.gridy = 3;
+            constraints.gridwidth = 1;
+            constraints.insets = new Insets(10, 0, 0, 0);
+            factPanel.add(seasonLabel, constraints);
 
-            JTextArea episodeTextArea = new JTextArea(sampleText);
+            JLabel episodeLabel = new JLabel("Episode");
+            episodeLabel.setFont(largeFont);
+            episodeLabel.setForeground(Color.decode("#8bc10b"));
+            constraints.gridx = 0;
+            constraints.gridy = 3;
+            constraints.insets = new Insets(10, 120, 0, 0);
+            factPanel.add(episodeLabel, constraints);
+        }
+        contentPanel.add(factPanel);
+    }
+
+    public void addEpisodeTextArea(Media media, String sampleText, int seasonNumber, int episodeNumber) {
+        if (media instanceof Series) {
+            episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
+
             episodeTextArea.setLineWrap(true);
             episodeTextArea.setWrapStyleWord(true);
             episodeTextArea.setFont(standardFont);
             episodeTextArea.setMargin(new Insets(20, 10, 10, 10));
             episodeTextArea.setOpaque(false);
+            episodeTextArea.setEditable(false);
 
             playPanel.add(episodeTextArea);
-
-            JComboBox seasonComboBox = new JComboBox();
-            for (Integer seasonNumber : series.getSeasonMap().keySet()){
-                seasonComboBox.addItem(seasonNumber);
-            }
-            c.gridx = 0;
-            c.gridy = 3;
-            c.gridwidth = 1;
-            c.insets = new Insets(30,0,0,0);
-
-            factPanel.add(seasonComboBox, c);
-
-            JComboBox episodeComboBox = new JComboBox();
-            int selectedSeason = ((Integer) seasonComboBox.getSelectedItem());
-            for (int j = 1 ; j<= series.getSeasonMap().get(1) ; j++) {
-                episodeComboBox.addItem(j);
-            }
-            c.gridx = 0;
-            c.gridy = 3;
-            c.gridwidth = 1;
-            c.insets = new Insets(30,80,0,0);
-
-            factPanel.add(episodeComboBox, c);
-
         }
-        playPanel.setLayout(new GridLayout(2,1,10,10));
+    }
 
+    public void addButtonPanel() {
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         buttonPanel.add(playButton);
         buttonPanel.add(watchListButton);
 
         playPanel.add(buttonPanel);
-
-        contentPanel.add(imagePanel);
-        contentPanel.add(descriptionTextArea);
-        contentPanel.add(factPanel);
         contentPanel.add(playPanel);
+    }
+
+    public void addSeasonComboBox(Media media, ActionListener al) {
+        if (media instanceof Series) {
+            Series series = (Series) media;
+            for (Integer seasonNumber : series.getSeasonMap().keySet()) {
+                seasonComboBox.addItem(seasonNumber);
+            }
+            constraints.gridx = 0;
+            constraints.gridy = 4;
+            constraints.gridwidth = 1;
+            constraints.insets = new Insets(0, 5, 60, 0);
+
+            seasonComboBox.addActionListener(al);
+
+            factPanel.add(seasonComboBox, constraints);
+        }
+    }
+
+    public void addEpisodeComboBox(Media media, ActionListener al, int seasonNumber){
+        if (media instanceof Series) {
+            Series series = (Series) media;
+            for (int j = 1; j <= series.getSeasonMap().get(seasonNumber); j++) {
+                episodeComboBox.addItem(j);
+            }
+            constraints.gridx = 0;
+            constraints.gridy = 4;
+            constraints.gridwidth = 1;
+            constraints.insets = new Insets(0, 125, 60, 0);
+
+            episodeComboBox.addActionListener(al);
+
+            factPanel.add(episodeComboBox, constraints);
+        }
+    }
+
+    public void updateEpisodeComboBox(Media media, ActionListener al, int seasonNumber) {
+        if (media instanceof Series) {
+            Series series = (Series) media;
+            episodeComboBox.removeAllItems();
+            for (int j = 1; j <= series.getSeasonMap().get(seasonNumber); j++) {
+                episodeComboBox.addItem(j);
+            }
+            episodeComboBox.addActionListener(al);
+        }
+    }
+
+    public void updateEpisodeTextArea(String sampleText, int seasonNumber, int episodeNumber) {
+        episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
     }
 
     /**
@@ -173,7 +232,7 @@ public class MediaDetailsView extends BaseView {
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
-    public void updatePlayButton(ActionListener al, String imagePath) {
+    public void updatePlayButton (ActionListener al, String imagePath){
         playButton = new ImageButton(al, imagePath);
     }
 
@@ -182,7 +241,7 @@ public class MediaDetailsView extends BaseView {
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
-    public void addWatchListButton(ActionListener al, String imagePath) {
+    public void addWatchListButton (ActionListener al, String imagePath){
         watchListButton = new ImageButton(al, imagePath);
     }
 
@@ -190,7 +249,7 @@ public class MediaDetailsView extends BaseView {
      * Updates the image of watchListButton
      * @param imagePath String path for image
      */
-    public void updateWatchListButton(String imagePath) {
+    public void updateWatchListButton (String imagePath){
         watchListButton.draw(imagePath);
     }
 
@@ -199,8 +258,9 @@ public class MediaDetailsView extends BaseView {
      * @param al ActionListener for the button
      * @param imagePath String path for image
      */
-    public void addBackButton(ActionListener al, String imagePath){
+    public void addBackButton (ActionListener al, String imagePath){
         ImageButton backButton = new ImageButton(al, imagePath);
         toolBar.add(backButton);
     }
 }
+
