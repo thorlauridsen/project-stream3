@@ -178,11 +178,4 @@ public class CatalogView extends BaseView {
         contentPanel.revalidate();
         contentPanel.repaint();
     }
-
-    /**
-     * Displays an alert when search returned zero results
-     */
-    public void showSearchAlert(String message) {
-        JOptionPane.showMessageDialog(null, message);
-    }
 }

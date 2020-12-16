@@ -19,8 +19,10 @@ public class SearchException extends Exception {
         if (searchQuery != null && !searchQuery.isEmpty()) {
             message += "\n - " + searchQuery;
         }
-        for (String category : selectedCategoryList) {
-            message += "\n - " + category;
+        if (selectedCategoryList != null) {
+            for (String category : selectedCategoryList) {
+                message += "\n - " + category;
+            }
         }
         message += "\nReturned no results!";
         return message;

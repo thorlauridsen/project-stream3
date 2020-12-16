@@ -96,11 +96,5 @@ public class LoginView extends BaseView {
         return passwordField.getText();
     }
 
-    /**
-     * Displays an alert when login fails
-     */
-    public void showAlert() {
 
-        JOptionPane.showMessageDialog(null, "Username / password incorrect");
-    }
 }

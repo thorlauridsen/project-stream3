@@ -2,6 +2,7 @@ package com.stream.listeners;
 
 import com.stream.controllers.CatalogController;
 import com.stream.controllers.FilterController;
+import com.stream.exceptions.LoginException;
 import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.viewmodels.LoginViewModel;
@@ -29,18 +30,19 @@ public class LoginListener implements ActionListener {
         if (username != null && password != null) {
 
             UserManager userManager = UserManager.getInstance();
-            if (userManager.attemptLogin(username, password)) {
+            try {
+                if (userManager.attemptLogin(username, password)) {
 
-                CatalogViewModel viewModel = new CatalogViewModel();
-                CatalogView view = new CatalogView();
-                CatalogController controller = new CatalogController(viewModel, view);
-                FilterController filterController = FilterController.getInstance();
-                filterController.setCatalog(viewModel, view);
-                filterController.resetFilter();
-                controller.updateView();
-
-            } else {
-                view.showAlert();
+                    CatalogViewModel viewModel = new CatalogViewModel();
+                    CatalogView view = new CatalogView();
+                    CatalogController controller = new CatalogController(viewModel, view);
+                    FilterController filterController = FilterController.getInstance();
+                    filterController.setCatalog(viewModel, view);
+                    filterController.resetFilter();
+                    controller.updateView();
+                }
+            } catch (LoginException ex) {
+                view.showAlert(ex.getMessage());
             }
         }
     }

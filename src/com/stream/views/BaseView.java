@@ -50,4 +50,11 @@ public abstract class BaseView {
         ImageButton homeButton = new ImageButton(al, "res/images/logo.png");
         toolBar.add(homeButton);
     }
+
+    /**
+     * Displays an alert with message
+     */
+    public void showAlert(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
 }

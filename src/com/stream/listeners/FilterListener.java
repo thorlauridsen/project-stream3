@@ -23,8 +23,8 @@ public class FilterListener implements ActionListener {
     public void updateFilter() {
         try {
             filterController.updateFilterView();
-        } catch (SearchException e) {
-            view.showSearchAlert(e.getMessage());
+        } catch (SearchException ex) {
+            view.showAlert(ex.getMessage());
         }
     }
 

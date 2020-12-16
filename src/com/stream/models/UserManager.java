@@ -1,5 +1,7 @@
 package com.stream.models;
 
+import com.stream.exceptions.LoginException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class UserManager {
      * Attempt to log in user
      * @return true if login succeeded
      */
-    public boolean attemptLogin(String username, String password) {
+    public boolean attemptLogin(String username, String password) throws LoginException {
         for (User user : userList) {
             if (user.getName().equalsIgnoreCase(username)) {
                 if (user.getPassword().equals(password)) {
@@ -36,7 +38,7 @@ public class UserManager {
                 }
             }
         }
-        return false;
+        throw new LoginException();
     }
 
     /**
