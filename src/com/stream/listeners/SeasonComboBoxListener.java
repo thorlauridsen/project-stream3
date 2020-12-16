@@ -20,7 +20,6 @@ public class SeasonComboBoxListener implements ActionListener {
         this.viewModel = viewModel;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox seasonComboBox = (JComboBox) e.getSource();

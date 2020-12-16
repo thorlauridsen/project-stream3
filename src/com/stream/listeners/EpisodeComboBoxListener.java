@@ -2,7 +2,6 @@ package com.stream.listeners;
 
 import com.stream.viewmodels.MediaDetailsViewModel;
 import com.stream.views.MediaDetailsView;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
