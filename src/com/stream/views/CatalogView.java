@@ -16,6 +16,7 @@ public class CatalogView extends BaseView {
     private JPanel categoryPanel;
     private List<JCheckBox> categoryBoxList;
     private JButton logoutButton;
+    private JButton myListButton;
 
     public CatalogView() {
         categoryBoxList = new ArrayList<>();
@@ -86,7 +87,7 @@ public class CatalogView extends BaseView {
      * @param al ActionListener for the button
      */
     public void addMyListButton(ActionListener al) {
-        JButton myListButton = new ToolBarButton("My List", al, largeFont);
+        myListButton = new ToolBarButton("My List", al, largeFont);
         toolBar.add(myListButton);
     }
 

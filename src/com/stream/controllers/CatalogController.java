@@ -2,6 +2,8 @@ package com.stream.controllers;
 
 import com.stream.listeners.*;
 import com.stream.models.MediaPanel;
+import com.stream.models.User;
+import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.models.Media;
 import com.stream.views.CatalogView;
@@ -23,6 +25,9 @@ public class CatalogController extends BaseController {
      */
     public void updateView() {
         List<Media> mediaList = viewModel.getMediaList();
+
+        UserManager userManager = UserManager.getInstance();
+        User user = userManager.getCurrentUser();
 
         view.updateView(mediaList.size());
         view.addCategoryPanel(viewModel.getCategories().size());

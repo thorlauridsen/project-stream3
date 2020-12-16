@@ -1,7 +1,6 @@
 package com.stream.models;
 
 import com.stream.exceptions.LoginException;
-
 import java.util.ArrayList;
 import java.util.List;
 

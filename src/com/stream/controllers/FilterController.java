@@ -2,8 +2,11 @@ package com.stream.controllers;
 
 import com.stream.exceptions.SearchException;
 import com.stream.listeners.ClickMediaListener;
+import com.stream.listeners.ShowMyListListener;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
+import com.stream.models.User;
+import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import java.util.ArrayList;
@@ -108,7 +111,11 @@ public class FilterController extends BaseController {
         pageController.setView(view.getPanel());
 
         if (filteredList.size() == 0) {
-            throw new SearchException(this.searchQuery, this.selectedCategoryList);
+            UserManager userManager = UserManager.getInstance();
+            User user = userManager.getCurrentUser();
+            boolean myListToggled = user.isMyListToggled();
+
+            throw new SearchException(this.searchQuery, this.selectedCategoryList, myListToggled);
         }
     }
 
