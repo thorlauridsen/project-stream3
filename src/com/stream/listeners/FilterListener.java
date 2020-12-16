@@ -4,9 +4,9 @@ import com.stream.controllers.FilterController;
 import com.stream.exceptions.SearchException;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class FilterListener implements ActionListener {
 
@@ -20,11 +20,6 @@ public class FilterListener implements ActionListener {
         this.filterController = FilterController.getInstance();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
     public void updateFilter() {
         try {
             filterController.updateFilterView();
@@ -33,4 +28,6 @@ public class FilterListener implements ActionListener {
         }
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {}
 }
