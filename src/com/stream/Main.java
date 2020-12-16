@@ -2,8 +2,12 @@ package com.stream;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.stream.controllers.LoginController;
+import com.stream.controllers.SignupController;
 import com.stream.viewmodels.LoginViewModel;
+import com.stream.viewmodels.SignupViewModel;
 import com.stream.views.LoginView;
+import com.stream.views.SignupView;
+
 import javax.swing.*;
 
 
@@ -33,10 +37,16 @@ public class Main {
      * Create Login frontpage
      */
     public void createGUI() {
-        LoginViewModel viewModel = new LoginViewModel();
-        LoginView view = new LoginView();
+        SignupViewModel viewModel = new SignupViewModel();
+        SignupView view = new SignupView();
 
-        LoginController controller = new LoginController(viewModel, view);
+        SignupController controller = new SignupController(viewModel, view);
         controller.updateView();
+
+//        LoginViewModel viewModel = new LoginViewModel();
+//        LoginView view = new LoginView();
+//
+//        LoginController controller = new LoginController(viewModel, view);
+//        controller.updateView();
     }
 }

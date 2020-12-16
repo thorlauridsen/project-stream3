@@ -21,7 +21,7 @@ public class LoginController extends BaseController {
     public void updateView() {
         view.updateView();
         view.addPasswordField(new LoginListener(view, viewModel));
-        view.addLoginButton(new LoginListener(view, viewModel));
+        view.addSubmitButton(new LoginListener(view, viewModel), "Login");
 
         pageController.setView(view.getPanel());
     }

@@ -24,6 +24,20 @@ public class UserManager {
         return currentUser;
     }
 
+    public boolean doesAccountExist(String username) {
+        for (User user : userList) {
+            if (user.getName().equalsIgnoreCase(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void createAccount(String username, String password, boolean isChild) {
+        User user = new User(username, password, isChild, false);
+        userList.add(user);
+    }
+
     /**
      * Attempt to log in user
      * @return true if login succeeded

@@ -24,25 +24,27 @@ public class LoginListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String username = view.getUsername();
-        String password = view.getPassword();
+        String name = view.getUsername();
+        String pass = view.getPassword();
 
-        if (username != null && password != null) {
+        if (name != null && pass != null) {
+            if (!name.isEmpty() && !pass.isEmpty()) {
 
-            UserManager userManager = UserManager.getInstance();
-            try {
-                if (userManager.attemptLogin(username, password)) {
+                UserManager userManager = UserManager.getInstance();
+                try {
+                    if (userManager.attemptLogin(name, pass)) {
 
-                    CatalogViewModel viewModel = new CatalogViewModel();
-                    CatalogView view = new CatalogView();
-                    CatalogController controller = new CatalogController(viewModel, view);
-                    FilterController filterController = FilterController.getInstance();
-                    filterController.setCatalog(viewModel, view);
-                    filterController.resetFilter();
-                    controller.updateView();
+                        CatalogViewModel viewModel = new CatalogViewModel();
+                        CatalogView view = new CatalogView();
+                        CatalogController controller = new CatalogController(viewModel, view);
+                        FilterController filterController = FilterController.getInstance();
+                        filterController.setCatalog(viewModel, view);
+                        filterController.resetFilter();
+                        controller.updateView();
+                    }
+                } catch (LoginException ex) {
+                    view.showAlert(ex.getMessage());
                 }
-            } catch (LoginException ex) {
-                view.showAlert(ex.getMessage());
             }
         }
     }
