@@ -182,7 +182,7 @@ public class CatalogView extends BaseView {
     /**
      * Displays an alert when search returned zero results
      */
-    public void showSearchAlert() {
-        JOptionPane.showMessageDialog(null, "Your search returned no results!");
+    public void showSearchAlert(String message) {
+        JOptionPane.showMessageDialog(null, message);
     }
 }
