@@ -12,9 +12,13 @@ public class SearchException extends Exception {
         this.searchQuery = searchQuery;
         this.selectedCategoryList = selectedCategoryList;
     }
+
     @Override
     public String getMessage() {
-        String message = "Your search for:\n - " + searchQuery;
+        String message = "Your search for:";
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            message += "\n - " + searchQuery;
+        }
         for (String category : selectedCategoryList) {
             message += "\n - " + category;
         }
