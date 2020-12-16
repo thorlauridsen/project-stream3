@@ -37,16 +37,10 @@ public class Main {
      * Create Login frontpage
      */
     public void createGUI() {
-        SignupViewModel viewModel = new SignupViewModel();
-        SignupView view = new SignupView();
+        LoginViewModel viewModel = new LoginViewModel();
+        LoginView view = new LoginView();
 
-        SignupController controller = new SignupController(viewModel, view);
+        LoginController controller = new LoginController(viewModel, view);
         controller.updateView();
-
-//        LoginViewModel viewModel = new LoginViewModel();
-//        LoginView view = new LoginView();
-//
-//        LoginController controller = new LoginController(viewModel, view);
-//        controller.updateView();
     }
 }

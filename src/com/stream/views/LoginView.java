@@ -2,6 +2,7 @@ package com.stream.views;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
@@ -29,8 +30,16 @@ public class LoginView extends AccountView {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-
         constraints.gridy = 0;
         contentPanel.add(imageLabel, constraints);
+    }
+
+    public void addSignUpButton(ActionListener al) {
+        JButton signUpButton = new JButton("Create Account");
+        signUpButton.setFont(largeFont);
+        signUpButton.addActionListener(al);
+
+        constraints.gridy = 6;
+        contentPanel.add(signUpButton, constraints);
     }
 }
