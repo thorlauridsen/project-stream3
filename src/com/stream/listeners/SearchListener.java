@@ -13,7 +13,7 @@ public class SearchListener extends FilterListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String query = view.getSearchQuery().toLowerCase();
+        String query = view.getSearchQuery();
 
         filterController.setCatalog(viewModel, view);
         filterController.setSearchQuery(query);

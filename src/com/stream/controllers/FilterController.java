@@ -5,7 +5,6 @@ import com.stream.listeners.ClickMediaListener;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
 import com.stream.models.User;
-import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
 import java.util.ArrayList;
@@ -56,7 +55,9 @@ public class FilterController extends BaseController {
     }
 
     public void setSearchQuery(String searchQuery) {
+        searchQuery = searchQuery.toLowerCase();
         this.searchQuery = searchQuery;
+
         List<Media> mediaList = viewModel.getMediaList();
         List<Media> newList = new ArrayList<>();
 
@@ -92,13 +93,18 @@ public class FilterController extends BaseController {
     /**
      * Creates filterList from the search input and the selected categories
      * Contains all elements that searchList and mediaCategoryList have in common
-     * Then the method populates the view using pageController
      */
-    public void updateFilterView() throws SearchException {
+    public void updateFilterList() {
         filteredList.clear();
-
         filteredList.addAll(searchList);
         filteredList.retainAll(mediaCategoryList);
+    }
+
+    /**
+     * The method populates the view with filteredList using pageController
+     */
+    public void updateFilterView() throws SearchException {
+        updateFilterList();
 
         view.clearMedia();
 
@@ -115,6 +121,14 @@ public class FilterController extends BaseController {
 
             throw new SearchException(this.searchQuery, this.selectedCategoryList, myListToggled);
         }
+    }
+
+    public List<Media> getFilteredList() {
+        return filteredList;
+    }
+
+    public List<String> getSelectedCategoryList() {
+        return selectedCategoryList;
     }
 
     /**

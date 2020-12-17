@@ -84,7 +84,9 @@ public class UserManager {
      * Handle user logout
      */
     public void logout() {
-        currentUser.setMyListToggled(false);
+        if (currentUser != null) {
+            currentUser.setMyListToggled(false);
+        }
         currentUser = null;
     }
 
