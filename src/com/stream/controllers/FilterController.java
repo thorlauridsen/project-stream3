@@ -50,10 +50,9 @@ public class FilterController extends BaseController {
         mediaCategoryList.addAll(viewModel.getMediaList());
     }
 
-    public List<String> getMediaTypes() {
-        return mediaTypes;
-    }
-
+    /**
+     * Sets searchQuery and updates the searchList with media matching the query
+     */
     public void setSearchQuery(String searchQuery) {
         searchQuery = searchQuery.toLowerCase();
         this.searchQuery = searchQuery;
@@ -71,6 +70,9 @@ public class FilterController extends BaseController {
         searchList.addAll(newList);
     }
 
+    /**
+     * Sets selectedCategoryList and updates the mediaCategoryList with media matching the query
+     */
     public void setMediaCategoryList(List<String> selectedCategoryList) {
         this.selectedCategoryList = selectedCategoryList;
         ArrayList<Media> list = new ArrayList<>();
@@ -129,6 +131,10 @@ public class FilterController extends BaseController {
 
     public List<String> getSelectedCategoryList() {
         return selectedCategoryList;
+    }
+
+    public List<String> getMediaTypes() {
+        return mediaTypes;
     }
 
     /**

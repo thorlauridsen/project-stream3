@@ -11,6 +11,9 @@ public class SearchListener extends FilterListener {
         super(view, viewModel);
     }
 
+    /**
+     * Sends query to filterController and updates the view
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String query = view.getSearchQuery();

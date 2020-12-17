@@ -3,7 +3,6 @@ package com.stream.controllers;
 import com.stream.listeners.*;
 import com.stream.models.MediaPanel;
 import com.stream.models.User;
-import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.models.Media;
 import com.stream.views.CatalogView;

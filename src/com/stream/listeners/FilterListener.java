@@ -20,6 +20,9 @@ public class FilterListener implements ActionListener {
         this.filterController = FilterController.getInstance();
     }
 
+    /**
+     * Attempt to update the filter or display an alert to the user with a given message
+     */
     public void updateFilter() {
         try {
             filterController.updateFilterView();

@@ -17,6 +17,9 @@ public class EpisodeComboBoxListener implements ActionListener {
         this.viewModel = viewModel;
     }
 
+    /**
+     * Sets the selected season episode and updates the text area
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox episodeComboBox = (JComboBox) e.getSource();

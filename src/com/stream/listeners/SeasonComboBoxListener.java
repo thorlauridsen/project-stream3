@@ -20,6 +20,9 @@ public class SeasonComboBoxListener implements ActionListener {
         this.viewModel = viewModel;
     }
 
+    /**
+     * Sets the selected season number and updates the text area
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox seasonComboBox = (JComboBox) e.getSource();

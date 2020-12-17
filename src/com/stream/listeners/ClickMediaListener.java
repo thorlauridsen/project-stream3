@@ -16,6 +16,9 @@ public class ClickMediaListener implements ActionListener {
         this.media = media;
     }
 
+    /**
+     * Displays MediaDetailsView for a specific media clicked
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         MediaDetailsViewModel viewModel = new MediaDetailsViewModel(media);

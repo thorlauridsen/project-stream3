@@ -1,10 +1,7 @@
 package com.stream.controllers;
 
-import com.stream.models.User;
-import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
 import com.stream.views.CatalogView;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

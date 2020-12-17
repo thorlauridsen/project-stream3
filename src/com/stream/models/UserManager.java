@@ -26,6 +26,11 @@ public class UserManager {
         return currentUser;
     }
 
+    /**
+     * Check if account exists with given name
+     * @param name username
+     * @return true if account exists
+     */
     public boolean doesAccountExist(String name) {
         for (User user : userList) {
             if (user.getName().equalsIgnoreCase(name)) {
@@ -35,11 +40,26 @@ public class UserManager {
         return false;
     }
 
+    /**
+     * Create an account with the given data
+     * @param name username
+     * @param pass password
+     * @param isChild whether or not the account is a child
+     */
     public void createAccount(String name, String pass, boolean isChild) {
         User user = new User(name, pass, isChild);
         userList.add(user);
     }
 
+    /**
+     * Attempt create an account with the given data
+     * @param name username
+     * @param pass password
+     * @param passAgain confirm password
+     * @param isChild whether or not the account is a child
+     * @throws SignupException if account creation fails
+     * @return true if account creation succeeded
+     */
     public boolean attemptCreateAccount(String name, String pass, String passAgain, boolean isChild) throws SignupException {
         String error;
 
@@ -67,6 +87,9 @@ public class UserManager {
 
     /**
      * Attempt to log in user
+     * @param name username
+     * @param pass password
+     * @throws LoginException if login fails
      * @return true if login succeeded
      */
     public boolean attemptLogin(String name, String pass) throws LoginException {

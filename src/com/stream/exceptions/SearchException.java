@@ -16,6 +16,9 @@ public class SearchException extends Exception {
         this.selectedCategoryList = selectedCategoryList;
     }
 
+    /**
+     * Returns an error message when a filter search returned no results
+     */
     @Override
     public String getMessage() {
         String msg = "Your filter search for:";

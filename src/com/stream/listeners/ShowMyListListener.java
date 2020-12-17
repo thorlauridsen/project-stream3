@@ -13,6 +13,9 @@ public class ShowMyListListener extends FilterListener {
         super(view,viewModel);
     }
 
+    /**
+     * Toggles the user watch list and updates the view
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         UserManager userManager = UserManager.getInstance();

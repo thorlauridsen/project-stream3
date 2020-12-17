@@ -13,6 +13,10 @@ public class CategoryListener extends FilterListener {
         super(view, viewModel);
     }
 
+    /**
+     * Sends a list of selected categories to filterController
+     * Updates the view with the specific filter
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         ArrayList<String> selectedCategoryList = new ArrayList<>();

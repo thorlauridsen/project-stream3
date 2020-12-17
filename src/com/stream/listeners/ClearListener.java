@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 
 public class ClearListener implements ActionListener {
 
+    /**
+     * Clears the catalog view and displays all media again
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         UserManager userManager = UserManager.getInstance();

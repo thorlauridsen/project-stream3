@@ -18,6 +18,9 @@ public class ModifyWatchListListener implements ActionListener {
         this.mediaDetailsView = mediaDetailsView;
     }
 
+    /**
+     * Add or remove media from user watch list and update the image accordingly
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         UserManager userManager = UserManager.getInstance();

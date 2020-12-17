@@ -2,7 +2,6 @@ package com.stream;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.stream.controllers.LoginController;
-import com.stream.viewmodels.LoginViewModel;
 import com.stream.views.LoginView;
 import javax.swing.*;
 
@@ -23,7 +22,7 @@ public class Main {
      */
     public void setupTheme() {
         try {
-            UIManager.setLookAndFeel( new FlatDarculaLaf() );
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
         } catch (Exception ex) {
             System.out.println("Failed to initialize theme");
         }
@@ -33,10 +32,9 @@ public class Main {
      * Create Login frontpage
      */
     public void createGUI() {
-        LoginViewModel viewModel = new LoginViewModel();
         LoginView view = new LoginView();
 
-        LoginController controller = new LoginController(viewModel, view);
+        LoginController controller = new LoginController(view);
         controller.updateView();
     }
 }

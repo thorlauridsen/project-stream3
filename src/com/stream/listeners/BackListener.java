@@ -13,6 +13,9 @@ public class BackListener implements ActionListener {
         pageController = PageController.getInstance();
     }
 
+    /**
+     * Returns to previous page using pageController
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         pageController.goBack();

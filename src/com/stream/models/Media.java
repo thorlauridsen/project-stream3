@@ -1,6 +1,5 @@
 package com.stream.models;
 
-import java.io.File;
 import java.util.List;
 
 
@@ -17,15 +16,6 @@ public abstract class Media {
             imagePath = "res/images/"+imageType+"/"+title+".jpg";
         }
         return imagePath;
-    }
-
-    public File getImageFile() {
-        File file = new File(getImagePath());
-        System.out.println("A " + getImagePath());
-        if (file.exists()) {
-            return file;
-        }
-        return null;
     }
 
     public String getShortTitle() {

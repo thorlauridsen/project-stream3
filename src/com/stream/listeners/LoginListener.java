@@ -5,7 +5,6 @@ import com.stream.controllers.FilterController;
 import com.stream.exceptions.LoginException;
 import com.stream.models.UserManager;
 import com.stream.viewmodels.CatalogViewModel;
-import com.stream.viewmodels.LoginViewModel;
 import com.stream.views.CatalogView;
 import com.stream.views.LoginView;
 import java.awt.event.ActionEvent;
@@ -15,13 +14,14 @@ import java.awt.event.ActionListener;
 public class LoginListener implements ActionListener {
 
     private LoginView view;
-    private LoginViewModel viewModel;
 
-    public LoginListener(LoginView view, LoginViewModel viewModel) {
+    public LoginListener(LoginView view) {
         this.view = view;
-        this.viewModel = viewModel;
     }
 
+    /**
+     * Attempt to login user if user has filled the fields
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = view.getUsername();

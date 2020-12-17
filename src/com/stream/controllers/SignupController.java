@@ -2,17 +2,14 @@ package com.stream.controllers;
 
 import com.stream.listeners.BackListener;
 import com.stream.listeners.SignupListener;
-import com.stream.viewmodels.SignupViewModel;
 import com.stream.views.SignupView;
 
 
 public class SignupController extends BaseController {
 
-    private SignupViewModel viewModel;
     private SignupView view;
 
-    public SignupController(SignupViewModel viewModel, SignupView view) {
-        this.viewModel = viewModel;
+    public SignupController(SignupView view) {
         this.view = view;
     }
 
@@ -22,8 +19,8 @@ public class SignupController extends BaseController {
     public void updateView() {
         view.updateView();
         view.addPasswordField(null);
-        view.addPasswordAgainField(new SignupListener(view, viewModel));
-        view.addSubmitButton(new SignupListener(view, viewModel), "Sign Up");
+        view.addPasswordAgainField(new SignupListener(view));
+        view.addSubmitButton(new SignupListener(view), "Sign Up");
         view.addBackButton(new BackListener());
         pageController.setView(view.getPanel());
     }

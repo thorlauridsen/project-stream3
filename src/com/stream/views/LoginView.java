@@ -17,8 +17,8 @@ public class LoginView extends AccountView {
     }
 
     /**
-     * Populates contentPanel with login and password text fields
-     * Adds the contentPanel to mainPanel
+     * Populates contentPanel with imageLabel
+     * The super class updates the rest of the view
      */
     public void updateView() {
         super.updateView();
@@ -42,6 +42,10 @@ public class LoginView extends AccountView {
         constraints.fill = GridBagConstraints.HORIZONTAL;
     }
 
+    /**
+     * Adds signUpButton to contentPanel
+     * @param al ActionListener for the button
+     */
     public void addSignUpButton(ActionListener al) {
         JButton signUpButton = new JButton("Create Account");
         signUpButton.setFont(mediumFont);

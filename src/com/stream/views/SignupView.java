@@ -20,6 +20,10 @@ public class SignupView extends AccountView {
         submitButtonPos = 7;
     }
 
+    /**
+     * Populates contentPanel with passwordAgainLabel and isChildBox
+     * The super class updates the rest of the view
+     */
     public void updateView() {
         super.updateView();
 
@@ -46,6 +50,10 @@ public class SignupView extends AccountView {
         contentPanel.add(passwordAgainField, constraints);
     }
 
+    /**
+     * Adds addBackButton to contentPanel
+     * @param al ActionListener for the button
+     */
     public void addBackButton(ActionListener al) {
         JButton backButton = new JButton("Back to login");
         backButton.setFont(mediumFont);
