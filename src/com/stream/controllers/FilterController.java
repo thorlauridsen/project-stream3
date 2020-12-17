@@ -2,7 +2,6 @@ package com.stream.controllers;
 
 import com.stream.exceptions.SearchException;
 import com.stream.listeners.ClickMediaListener;
-import com.stream.listeners.ShowMyListListener;
 import com.stream.models.Media;
 import com.stream.models.MediaPanel;
 import com.stream.models.User;
