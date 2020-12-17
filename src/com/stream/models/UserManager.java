@@ -1,5 +1,6 @@
 package com.stream.models;
 
+import com.stream.controllers.FilterController;
 import com.stream.exceptions.LoginException;
 import com.stream.exceptions.SignupException;
 import java.util.ArrayList;
@@ -88,6 +89,9 @@ public class UserManager {
             currentUser.setMyListToggled(false);
         }
         currentUser = null;
+
+        FilterController filterController = FilterController.getInstance();
+        filterController.resetFilter();
     }
 
     /**

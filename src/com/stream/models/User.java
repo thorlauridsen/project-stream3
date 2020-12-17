@@ -21,20 +21,23 @@ public class User {
         this.myListToggled = false;
     }
 
-    public void addToWatchlist(Media media) {
-        if (!watchList.contains(media)) {
+    public boolean containsWatchList(Media media) {
+        if (watchList.contains(media)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void addToWatchList(Media media) {
+        if (!containsWatchList(media)) {
             watchList.add(media);
         }
     }
 
     public void removeFromWatchList(Media media) {
-        if (watchList.contains(media)) {
+        if (containsWatchList(media)) {
             watchList.remove(media);
         }
-    }
-
-    public boolean containsWatchList(Media media) {
-        return watchList.contains(media);
     }
 
     public String getName() {

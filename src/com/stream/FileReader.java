@@ -1,13 +1,21 @@
 package com.stream;
 
-import com.stream.models.Media;
-import com.stream.models.MediaType;
-import com.stream.models.Movie;
-import com.stream.models.Series;
+import com.stream.models.*;
 import java.util.*;
 
 
 public class FileReader {
+
+    private static FileReader instance;
+    private List<Media> mediaList;
+
+    public FileReader() {
+        mediaList = readAllMedia();
+    }
+
+    public List<Media> getMediaList() {
+        return mediaList;
+    }
 
     /**
      * Loads a list of all media types
@@ -127,5 +135,16 @@ public class FileReader {
         String path = "res/data/sampleText.txt";
         Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream(path));
         return sc.nextLine();
+    }
+
+    /**
+     * Creates an instance of FileReader if it does not exist yet
+     * @return singleton instance of FileReader
+     */
+    public static FileReader getInstance() {
+        if (instance == null) {
+            instance = new FileReader();
+        }
+        return instance;
     }
 }

@@ -23,7 +23,7 @@ public class SignupView extends AccountView {
     public void updateView() {
         super.updateView();
 
-        JLabel passwordAgainLabel = new JLabel("Password again:");
+        JLabel passwordAgainLabel = new JLabel("Confirm password:");
         passwordAgainLabel.setFont(mediumFont);
 
         constraints.gridy = 4;

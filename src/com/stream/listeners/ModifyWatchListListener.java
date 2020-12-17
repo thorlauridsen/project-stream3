@@ -28,7 +28,7 @@ public class ModifyWatchListListener implements ActionListener {
                 user.removeFromWatchList(media);
                 mediaDetailsView.updateWatchListButton("res/images/watchListButtonEmpty.png");
             } else {
-                user.addToWatchlist(media);
+                user.addToWatchList(media);
                 mediaDetailsView.updateWatchListButton("res/images/watchListButton.png");
             }
         }

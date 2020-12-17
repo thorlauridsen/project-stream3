@@ -73,7 +73,7 @@ public class FilterControllerTest {
 
         Media media = viewModel.getMediaList().get(0);
 
-        user.addToWatchlist(media);
+        user.addToWatchList(media);
         user.setMyListToggled(true);
 
         filterController.resetFilter();

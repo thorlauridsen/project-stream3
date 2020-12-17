@@ -12,13 +12,13 @@ import java.util.List;
 public class CatalogViewModel {
 
     private FileReader fileReader;
-    private List<Media> mediaList;
     private List<String> categories;
+    private List<Media> mediaList;
 
     public CatalogViewModel() {
-        fileReader = new FileReader();
+        fileReader = FileReader.getInstance();
         categories = new ArrayList<>();
-        mediaList = fileReader.readAllMedia();
+        mediaList = fileReader.getMediaList();
         getAllCategories();
     }
 
