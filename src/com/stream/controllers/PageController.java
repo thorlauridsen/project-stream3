@@ -1,5 +1,10 @@
 package com.stream.controllers;
 
+import com.stream.models.User;
+import com.stream.models.UserManager;
+import com.stream.viewmodels.CatalogViewModel;
+import com.stream.views.CatalogView;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -49,6 +54,19 @@ public class PageController {
         if (previousComponent != null) {
             setView(previousComponent);
         }
+    }
+
+    public void clearCatalog() {
+        CatalogViewModel viewModel = new CatalogViewModel();
+        CatalogView view = new CatalogView();
+        CatalogController controller = new CatalogController(viewModel, view);
+        controller.updateView();
+
+        FilterController filterController = FilterController.getInstance();
+        filterController.setCatalog(viewModel, view);
+        filterController.resetFilter();
+
+        setView(view.getPanel());
     }
 
     /**

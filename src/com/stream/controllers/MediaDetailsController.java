@@ -46,7 +46,7 @@ public class MediaDetailsController extends BaseController {
         view.addEpisodeTextArea(media, viewModel.getSampleText(), viewModel.getSelectedSeason(), viewModel.getSelectedEpisode());
         view.addButtonPanel();
         view.addHomeButton(new ClearListener());
-        view.addBackButton(new BackListener(), "res/images/backButton.png");
+        view.addBackButton(new MediaDetailsBackListener(), "res/images/backButton.png");
         pageController.setView(view.getPanel());
     }
 }

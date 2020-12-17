@@ -7,9 +7,14 @@ import java.awt.event.ActionListener;
 
 public class BackListener implements ActionListener {
 
+    protected PageController pageController;
+
+    public BackListener() {
+        pageController = PageController.getInstance();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        PageController pageController = PageController.getInstance();
         pageController.goBack();
     }
 }
