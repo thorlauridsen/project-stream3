@@ -110,7 +110,6 @@ public class FilterController extends BaseController {
         pageController.setView(view.getPanel());
 
         if (filteredList.size() == 0) {
-            UserManager userManager = UserManager.getInstance();
             User user = userManager.getCurrentUser();
             boolean myListToggled = user.isMyListToggled();
 

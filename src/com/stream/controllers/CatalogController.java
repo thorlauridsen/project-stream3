@@ -26,7 +26,6 @@ public class CatalogController extends BaseController {
     public void updateView() {
         List<Media> mediaList = viewModel.getMediaList();
 
-        UserManager userManager = UserManager.getInstance();
         User user = userManager.getCurrentUser();
 
         view.updateView(mediaList.size());
@@ -39,7 +38,7 @@ public class CatalogController extends BaseController {
         view.addSearchButton(new SearchListener(view, viewModel));
         view.addMyListButton(new ShowMyListListener(view, viewModel));
         view.addLogoutButton(new LogoutListener());
-        view.addUserLabel(userManager.getCurrentUser().getName());
+        view.addUserLabel(user.getName());
 
         for (Media media : mediaList) {
             MediaPanel mediaPanel = new MediaPanel(media, new ClickMediaListener(media));

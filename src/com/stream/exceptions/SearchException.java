@@ -18,19 +18,19 @@ public class SearchException extends Exception {
 
     @Override
     public String getMessage() {
-        String message = "Your filter search for:";
+        String msg = "Your filter search for:";
         if (searchQuery != null && !searchQuery.isEmpty()) {
-            message += "\n - " + searchQuery;
+            msg += "\n - " + searchQuery;
         }
         if (myListToggled) {
-            message += "\n - My List";
+            msg += "\n - My List";
         }
         if (selectedCategoryList != null) {
             for (String category : selectedCategoryList) {
-                message += "\n - " + category;
+                msg += "\n - " + category;
             }
         }
-        message += "\nReturned no results!";
-        return message;
+        msg += "\nReturned no results!";
+        return msg;
     }
 }

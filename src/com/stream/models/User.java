@@ -7,16 +7,14 @@ import java.util.List;
 public class User {
 
     private String name;
-    private String password;
+    private String pass;
     private List<Media> watchList;
-    private boolean isAdmin;
     private boolean isChild;
     private boolean myListToggled;
 
-    public User(String name, String password, boolean isChild, boolean isAdmin) {
+    public User(String name, String pass, boolean isChild) {
         this.name = name;
-        this.password = password;
-        this.isAdmin = isAdmin;
+        this.pass = pass;
         this.isChild = isChild;
 
         this.watchList = new ArrayList<>();
@@ -44,15 +42,11 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return pass;
     }
 
     public List<Media> getWatchList() {
         return watchList;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
     }
 
     public boolean isChild() {

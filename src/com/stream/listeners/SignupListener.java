@@ -1,6 +1,7 @@
 package com.stream.listeners;
 
 import com.stream.controllers.LoginController;
+import com.stream.exceptions.SignupException;
 import com.stream.models.User;
 import com.stream.models.UserManager;
 import com.stream.viewmodels.LoginViewModel;
@@ -28,33 +29,19 @@ public class SignupListener implements ActionListener {
         String passAgain = view.getPasswordAgain();
 
         UserManager userManager = UserManager.getInstance();
+        boolean isChild = view.isChildBoxSelected();
 
-        if (name != null && pass != null && passAgain != null) {
-            if (!name.isEmpty() && !pass.isEmpty() && !passAgain.isEmpty()) {
+        try {
+            if (userManager.attemptCreateAccount(name, pass, passAgain, isChild)) {
 
-                if (!userManager.doesAccountExist(name)) {
-                    if (pass.equalsIgnoreCase(passAgain)) {
+                LoginViewModel viewModel = new LoginViewModel();
+                LoginView view = new LoginView();
 
-                        boolean isChild = view.isChildBoxSelected();
-                        userManager.createAccount(name, pass, isChild);
-
-                        LoginViewModel viewModel = new LoginViewModel();
-                        LoginView view = new LoginView();
-
-                        LoginController controller = new LoginController(viewModel, view);
-                        controller.updateView();
-
-                    } else {
-                        view.showAlert("Passwords do not match!");
-                    }
-                } else {
-                    view.showAlert("There already exists an account with this username!");
-                }
-            } else {
-                view.showAlert("Please fill out the required fields!");
+                LoginController controller = new LoginController(viewModel, view);
+                controller.updateView();
             }
-        } else {
-            view.showAlert("Please fill out the required fields!");
+        } catch (SignupException ex) {
+            view.showAlert(ex.getMessage());
         }
     }
 }
