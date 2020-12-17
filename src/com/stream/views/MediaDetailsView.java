@@ -21,6 +21,7 @@ public class MediaDetailsView extends BaseView {
     private ImageButton playButton;
     private ImageButton watchListButton;
     private JPanel factPanel;
+    private JPanel seasonPanel;
     private GridBagConstraints constraints;
     private JComboBox seasonComboBox;
     private JComboBox episodeComboBox;
@@ -31,6 +32,7 @@ public class MediaDetailsView extends BaseView {
         buttonPanel = new JPanel();
         playPanel = new JPanel();
         factPanel = new JPanel();
+        seasonPanel = new JPanel();
         seasonComboBox = new JComboBox();
         episodeComboBox = new JComboBox();
         episodeTextArea = new JTextArea();
@@ -39,8 +41,11 @@ public class MediaDetailsView extends BaseView {
     public void updateView() {
         contentPanel.setLayout(new GridLayout(2, 2, 30, 30));
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-        factPanel.setLayout(new GridBagLayout());
+        factPanel.setLayout(new GridLayout(4, 1));
+        seasonPanel.setLayout(new GridLayout(2, 2, 20, 20));
         playPanel.setLayout(new GridLayout(2,1,10,10));
+
+        factPanel.setBorder(BorderFactory.createEmptyBorder(0,40,10,40));
     }
 
     public void addImagePanel(Media media) {
@@ -84,7 +89,7 @@ public class MediaDetailsView extends BaseView {
         }
         descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setWrapStyleWord(true);
-        descriptionTextArea.setFont(largeFont);
+        descriptionTextArea.setFont(mediumFont);
         descriptionTextArea.setMargin(new Insets(20, 10, 10, 10));
         descriptionTextArea.setOpaque(false);
         descriptionTextArea.setEditable(false);
@@ -94,19 +99,12 @@ public class MediaDetailsView extends BaseView {
 
     public void addFactPanel(Media media) {
         JLabel titleLabel = new JLabel(media.getTitle() + "   (" + media.getRating() + ")");
-        titleLabel.setFont(titleFont);
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.NORTHWEST;
-        constraints.insets= new Insets(0,0,30,0);
-        factPanel.add(titleLabel, constraints);
+        titleLabel.setFont(mediumFont);
+        factPanel.add(titleLabel);
 
         JLabel yearLabel = new JLabel(media.yearToString());
-        yearLabel.setFont(titleFont);
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.insets = new Insets(0, 0, 30, 0);
-        factPanel.add(yearLabel, constraints);
+        yearLabel.setFont(mediumFont);
+        factPanel.add(yearLabel);
 
         FilterController filterController = FilterController.getInstance();
 
@@ -126,31 +124,28 @@ public class MediaDetailsView extends BaseView {
         }
 
         JLabel categoriesLabel = new JLabel(categories);
-        categoriesLabel.setFont(titleFont);
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 2;
-        constraints.insets = new Insets(0, 0, 30, 0);
-        factPanel.add(categoriesLabel, constraints);
+        categoriesLabel.setFont(mediumFont);
+        factPanel.add(categoriesLabel);
 
         if (media instanceof Series) {
             JLabel seasonLabel = new JLabel("Season");
-            seasonLabel.setFont(largeFont);
+            seasonLabel.setFont(mediumFont);
             seasonLabel.setForeground(Color.decode("#8bc10b"));
             constraints.gridx = 0;
             constraints.gridy = 3;
             constraints.gridwidth = 1;
             constraints.insets = new Insets(10, 0, 0, 0);
-            factPanel.add(seasonLabel, constraints);
+            seasonPanel.add(seasonLabel);
 
             JLabel episodeLabel = new JLabel("Episode");
-            episodeLabel.setFont(largeFont);
+            episodeLabel.setFont(mediumFont);
             episodeLabel.setForeground(Color.decode("#8bc10b"));
             constraints.gridx = 0;
             constraints.gridy = 3;
             constraints.insets = new Insets(10, 120, 0, 0);
-            factPanel.add(episodeLabel, constraints);
+            seasonPanel.add(episodeLabel);
         }
+        factPanel.add(seasonPanel);
         contentPanel.add(factPanel);
     }
 
@@ -191,7 +186,7 @@ public class MediaDetailsView extends BaseView {
 
             seasonComboBox.addActionListener(al);
 
-            factPanel.add(seasonComboBox, constraints);
+            seasonPanel.add(seasonComboBox);
         }
     }
 
@@ -208,7 +203,7 @@ public class MediaDetailsView extends BaseView {
 
             episodeComboBox.addActionListener(al);
 
-            factPanel.add(episodeComboBox, constraints);
+            seasonPanel.add(episodeComboBox);
         }
     }
 

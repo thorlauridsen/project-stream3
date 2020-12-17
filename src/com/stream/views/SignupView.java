@@ -11,7 +11,7 @@ public class SignupView extends AccountView {
 
     public SignupView() {
         isChildBox = new JCheckBox("Is child?");
-        isChildBox.setFont(standardFont);
+        isChildBox.setFont(mediumFont);
 
         usernameLabelPos = 0;
         usernameFieldPos = 1;
@@ -24,7 +24,7 @@ public class SignupView extends AccountView {
         super.updateView();
 
         JLabel passwordAgainLabel = new JLabel("Password again:");
-        passwordAgainLabel.setFont(largeFont);
+        passwordAgainLabel.setFont(mediumFont);
 
         constraints.gridy = 4;
         contentPanel.add(passwordAgainLabel, constraints);
@@ -39,11 +39,20 @@ public class SignupView extends AccountView {
      */
     public void addPasswordAgainField(ActionListener al) {
         passwordAgainField = new JPasswordField();
-        passwordAgainField.setFont(largeFont);
+        passwordAgainField.setFont(mediumFont);
         passwordAgainField.addActionListener(al);
         constraints.gridy = 5;
 
         contentPanel.add(passwordAgainField, constraints);
+    }
+
+    public void addBackButton(ActionListener al) {
+        JButton backButton = new JButton("Back to login");
+        backButton.setFont(mediumFont);
+        backButton.addActionListener(al);
+        constraints.gridy = 8;
+
+        contentPanel.add(backButton, constraints);
     }
 
     public boolean isChildBoxSelected() {

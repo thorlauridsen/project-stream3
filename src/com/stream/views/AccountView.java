@@ -19,7 +19,7 @@ public class AccountView extends BaseView {
 
     public AccountView() {
         usernameField = new JTextField();
-        usernameField.setFont(largeFont);
+        usernameField.setFont(mediumFont);
         constraints = new GridBagConstraints();
     }
 
@@ -32,9 +32,9 @@ public class AccountView extends BaseView {
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         JLabel usernameLabel = new JLabel("Username:");
-        usernameLabel.setFont(largeFont);
+        usernameLabel.setFont(mediumFont);
         JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setFont(largeFont);
+        passwordLabel.setFont(mediumFont);
 
         constraints.ipadx = 300;
         constraints.ipady = 20;
@@ -58,7 +58,7 @@ public class AccountView extends BaseView {
     public void addSubmitButton(ActionListener al, String text) {
         submitButton = new JButton(text);
         submitButton.addActionListener(al);
-        submitButton.setFont(largeFont);
+        submitButton.setFont(mediumFont);
         constraints.insets = new Insets(30,0,0,0);
         constraints.gridy = submitButtonPos;
         contentPanel.add(submitButton, constraints);
@@ -70,7 +70,7 @@ public class AccountView extends BaseView {
      */
     public void addPasswordField(ActionListener al) {
         passwordField = new JPasswordField();
-        passwordField.setFont(largeFont);
+        passwordField.setFont(mediumFont);
         passwordField.addActionListener(al);
         constraints.gridy = passwordFieldPos;
         contentPanel.add(passwordField, constraints);

@@ -44,7 +44,7 @@ public class LoginView extends AccountView {
 
     public void addSignUpButton(ActionListener al) {
         JButton signUpButton = new JButton("Create Account");
-        signUpButton.setFont(largeFont);
+        signUpButton.setFont(mediumFont);
         signUpButton.addActionListener(al);
 
         constraints.gridy = 6;

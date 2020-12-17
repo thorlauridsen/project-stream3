@@ -12,6 +12,7 @@ public abstract class BaseView {
     protected JPanel contentPanel;
     protected JToolBar toolBar;
     protected Font standardFont;
+    protected Font mediumFont;
     protected Font largeFont;
     protected Font titleFont;
 
@@ -25,6 +26,7 @@ public abstract class BaseView {
         contentPanel = new JPanel();
         toolBar = new JToolBar();
         standardFont = new Font("Verdana", Font.PLAIN, 12);
+        mediumFont = new Font("Verdana", Font.PLAIN, 16);
         largeFont = new Font("Verdana", Font.PLAIN, 24);
         titleFont = new Font("Verdana", Font.PLAIN, 30);
 
