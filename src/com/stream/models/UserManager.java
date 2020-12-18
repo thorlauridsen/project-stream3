@@ -17,9 +17,13 @@ public class UserManager {
         userList = new ArrayList<>();
         User user1 = new User("Cronval", "1234", false);
         User user2 = new User("Thor", "1234", true);
+        User user3 = new User("User", "user", false);
+        User user4 = new User("UserChild", "user", true);
 
         userList.add(user1);
         userList.add(user2);
+        userList.add(user3);
+        userList.add(user4);
     }
 
     public User getCurrentUser() {
