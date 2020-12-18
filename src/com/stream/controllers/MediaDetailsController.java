@@ -23,7 +23,7 @@ public class MediaDetailsController extends BaseController {
     public void updateView() {
         Media media = viewModel.getMedia();
 
-        view.updatePlayButton(null, "res/images/playButton.jpg");
+        view.updatePlayButton(new PlayListener(view), "res/images/playButton.jpg");
 
         User user = userManager.getCurrentUser();
 

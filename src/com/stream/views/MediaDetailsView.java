@@ -26,6 +26,7 @@ public class MediaDetailsView extends BaseView {
     private JComboBox seasonComboBox;
     private JComboBox episodeComboBox;
     private JTextArea episodeTextArea;
+    private boolean playButtonPressed = false;
 
     public MediaDetailsView() {
         constraints = new GridBagConstraints();
@@ -246,6 +247,19 @@ public class MediaDetailsView extends BaseView {
      */
     public void updateWatchListButton (String imagePath){
         watchListButton.draw(imagePath);
+    }
+
+    /**
+     * Updates the image of playButton
+     * @param imagePath String path for image
+     */
+    public void updatePlayButton (String imagePath){
+        playButton.draw(imagePath);
+        playButtonPressed = !playButtonPressed;
+    }
+
+    public boolean getPlayButtonPressed() {
+        return playButtonPressed;
     }
 
     /**
