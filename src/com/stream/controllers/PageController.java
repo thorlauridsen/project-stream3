@@ -33,6 +33,13 @@ public class PageController {
         }
     }
 
+    /**
+     * Saves current component of getContentPane from frame as previousComponent
+     * Can be used to return to the page later
+     * Removes all components from getContentPane
+     * Adds component to frame and updates the view
+     * @param component added to the frame view
+     */
     public void setView(Component component) {
         if (frame.getContentPane().getComponents().length > 0) {
             previousComponent = frame.getContentPane().getComponent(0);
@@ -47,12 +54,19 @@ public class PageController {
         frame.repaint();
     }
 
+    /**
+     * Sets view to the previously saved component if it exists
+     */
     public void goBack() {
         if (previousComponent != null) {
             setView(previousComponent);
         }
     }
 
+    /**
+     * Create new instance of Catalog and reset the filter of filterController
+     * Then update the view using setView
+     */
     public void clearCatalog() {
         CatalogViewModel viewModel = new CatalogViewModel();
         CatalogView view = new CatalogView();

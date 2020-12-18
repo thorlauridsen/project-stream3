@@ -13,6 +13,9 @@ public class PlayListener implements ActionListener {
         this.view = mediaDetailsView;
     }
 
+    /**
+     * Updates the image of playButton when clicked
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (view.getPlayButtonPressed()) {

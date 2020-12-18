@@ -4,8 +4,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
@@ -20,6 +18,10 @@ public class MediaPanel {
         this.actionListener = actionListener;
     }
 
+    /**
+     * Get a mediaPanel for a specific media
+     * @return A JPanel for the specific media
+     */
     public JPanel getPanel() {
         JPanel mediaPanel = new JPanel();
 
@@ -63,35 +65,6 @@ public class MediaPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        mediaPanel.addMouseListener(
-            new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-            }
-        );
         return mediaPanel;
     }
 }
