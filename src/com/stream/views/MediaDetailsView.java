@@ -49,6 +49,10 @@ public class MediaDetailsView extends BaseView {
         factPanel.setBorder(BorderFactory.createEmptyBorder(0,40,10,40));
     }
 
+    /**
+     * Adds imagePanel to contentPanel
+     * @param media Specific media
+     */
     public void addImagePanel(Media media) {
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BorderLayout());
@@ -80,6 +84,11 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(imagePanel);
     }
 
+    /**
+     * Adds descriptionTextArea to contentPanel
+     * @param media Specific media
+     * @param sampleText Text to display
+     */
     public void addDescriptionTextArea(Media media, String sampleText) {
         JTextArea descriptionTextArea = new JTextArea(sampleText);
 
@@ -98,6 +107,11 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(descriptionTextArea);
     }
 
+    /**
+     * Adds factPanel to contentPanel
+     * If media is a series, a seasonPanel is added as well
+     * @param media Specific media
+     */
     public void addFactPanel(Media media) {
         JLabel titleLabel = new JLabel(media.getTitle() + "   (" + media.getRating() + ")");
         titleLabel.setFont(mediumFont);
@@ -150,6 +164,13 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(factPanel);
     }
 
+    /**
+     * Adds episodeTextArea to playPanel
+     * @param media Specific media
+     * @param sampleText Text to display
+     * @param seasonNumber Season number
+     * @param episodeNumber Episode number
+     */
     public void addEpisodeTextArea(Media media, String sampleText, int seasonNumber, int episodeNumber) {
         if (media instanceof Series) {
             episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
@@ -165,6 +186,9 @@ public class MediaDetailsView extends BaseView {
         }
     }
 
+    /**
+     * Adds buttonPanel to playPanel which is added to contentPanel
+     */
     public void addButtonPanel() {
         buttonPanel.setBorder(new EmptyBorder(10,100,10,100));
         buttonPanel.add(playButton);
@@ -174,6 +198,11 @@ public class MediaDetailsView extends BaseView {
         contentPanel.add(playPanel);
     }
 
+    /**
+     * Adds the season JComboBox and the relevant listener
+     * @param al ActionListener for the button
+     * @param media Specific media
+     */
     public void addSeasonComboBox(Media media, ActionListener al) {
         if (media instanceof Series) {
             Series series = (Series) media;
@@ -191,7 +220,13 @@ public class MediaDetailsView extends BaseView {
         }
     }
 
-    public void addEpisodeComboBox(Media media, ActionListener al, int seasonNumber){
+    /**
+     * Adds the episode JComboBox and the relevant listener
+     * @param al ActionListener for the button
+     * @param seasonNumber Season number
+     * @param media Specific media
+     */
+    public void addEpisodeComboBox(Media media, ActionListener al, int seasonNumber) {
         if (media instanceof Series) {
             Series series = (Series) media;
             for (int j = 1; j <= series.getSeasonMap().get(seasonNumber); j++) {
@@ -208,6 +243,12 @@ public class MediaDetailsView extends BaseView {
         }
     }
 
+    /**
+     * Updates the episode JComboBox and the relevant listener
+     * @param al ActionListener for the button
+     * @param seasonNumber Season number
+     * @param media Specific media
+     */
     public void updateEpisodeComboBox(Media media, ActionListener al, int seasonNumber) {
         if (media instanceof Series) {
             Series series = (Series) media;
@@ -219,6 +260,12 @@ public class MediaDetailsView extends BaseView {
         }
     }
 
+    /**
+     * Updates the episode text area
+     * @param sampleText Text to display
+     * @param seasonNumber Season number
+     * @param episodeNumber Episode number
+     */
     public void updateEpisodeTextArea(String sampleText, int seasonNumber, int episodeNumber) {
         episodeTextArea.setText("Season: " + seasonNumber + " Episode: " + episodeNumber + "\n" + sampleText);
     }
